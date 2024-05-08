@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100..900&family=Lexend+Deca:wght@100..900&display=swap');
+
+
+@font-face {
+  font-family: Norse-Bold;
+  src: url(./Norse-Bold.otf) format('opentype');; 
+}
+
+:root {
+  --offWhite: #F9FAFB;
+  --white: #FFFFFF;
+  --black: #000000;
+  --oliveGreen: #596D48;
+
+  --font-size-body: 16px;
+  --font-family-body: "Lexend Deca", sans-serif;
+  --font-family-logo: "Norse-Bold", sans-serif;
+}
+
