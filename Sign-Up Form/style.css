@@ -52,6 +52,7 @@ body {
 
 .img-container{
   background-image: url(./img/background-image.jpg);
+  background-size: cover;
   min-height: 25vh;
   display: flex;
   justify-content: center;
@@ -143,10 +144,10 @@ input:focus-visible  {
   outline-color: #6C88D5; 
 }
 
-input:invalid {
-  outline-color: #CA5454; 
-
+input[type="password"]:not(:placeholder-shown):invalid {
+  outline-color: #C94E4E;
 }
+
 
 label {
   display: block;
