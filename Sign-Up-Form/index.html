@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Sign-Up Form</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="img-container">
+        <div class="text-container">
+          <img src="./img/odin-lined.png" alt="odin project logo" />
+          <h1 class="odin-logo-header">Odin</h1>
+        </div>
+      </div>
+
+      <main class="main-content">
+        <div class="main-intro">
+          <p>This is not a real online service! You know you need something like this in your life to help you realize your deepest dreams.</p>
+          <p>
+            Sign up
+            <i>now</i>
+            to get started.
+          </p>
+
+          <p>
+            You
+            <i>know</i>
+            you want to.
+          </p>
+        </div>
+
+        <div class="form-container">
+          <form id="registerForm" action="#" method="post">
+            <div class="form-content">
+              <h2>Let's do this!</h2>
+              <div class="form-row">
+                <div class="labels">
+                  <label for="first name">First Name</label>
+                  <input type="text" placeholder="john" id="first name" name="first_name" />
+                </div>
+                <div class="labels">
+                  <label for="last name">Last Name</label>
+                  <input type="text" placeholder="doe" id="last name" name="last_name" />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="labels">
+                  <label for="email">Email</label>
+                  <input type="email" placeholder="email@email.com" id="email" name="email" />
+                </div>
+                <div class="labels">
+                  <label for="phone">Phone Number</label>
+                  <input type="tel" placeholder="999-999-9999" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone" />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="labels">
+                  <label for="password">Password</label>
+                  <input type="password" id="password" name="password" placeholder="password" required />
+                </div>
+                <div class="labels">
+                  <label for="confirm">Confirm Password</label>
+                  <input type="password" id="password" name="confirm" placeholder="confirm password" required />
+                </div>
+              </div>
+            </div>
+            <div class="btn-container">
+              <button type="submit" class="submit-btn">Create Account</button>
+            </div>
+          </form>
+        </div>
+        <p>
+          Already have an account?
+          <a href="#" class="accent">Log in</a>
+        </p>
+      </main>
+    </div>
+  </body>
+</html>
