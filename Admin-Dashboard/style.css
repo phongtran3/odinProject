@@ -8,3 +8,23 @@
   --font-size-body: 16px;
   --font-family-body: "Roboto", sans-serif;
 }
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* filter: brightness(0) invert(1); */
+img {
+  max-width: 100%;
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.icon-svg {
+  width: 50px;
+}

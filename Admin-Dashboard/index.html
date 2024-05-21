@@ -4,6 +4,94 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <section class="navbar-container">
+        <div class="dashboard-logo">
+          <img class="icon-svg" src="./assets/svgs/view-dashboard.svg" alt="dashboard logo" />
+          <h2>Dashboard</h2>
+        </div>
+        <nav class="navbar">
+          <ul class="primary-nav">
+            <li class="nav-link">
+              <img class="icon-svg" src="./assets/svgs/home.svg" alt="home logo" />
+              <h3>Home</h3>
+            </li>
+            <li class="nav-link">
+              <img class="icon-svg" src="./assets/svgs/profile.svg" alt="profile logo" />
+              <h3>Profile</h3>
+            </li>
+            <li class="nav-link">
+              <img class="icon-svg" src="./assets/svgs/message.svg" alt="message logo" />
+              <h3>Message</h3>
+            </li>
+            <li class="nav-link">
+              <img class="icon-svg" src="./assets/svgs/history.svg" alt="history logo" />
+              <h3>History</h3>
+            </li>
+            <li class="nav-link">
+              <img class="icon-svg" src="./assets/svgs/task.svg" alt="task logo" />
+              <h3>Task</h3>
+            </li>
+            <li class="nav-link">
+              <img class="icon-svg" src="./assets/svgs/communities.svg" alt="communities logo" />
+              <h3>Communities</h3>
+            </li>
+          </ul>
+          <ul class="secondary-nav">
+            <li class="nav-link">
+              <img class="icon-svg" src="./assets/svgs/settings.svg" alt="settings logo" />
+              <h3>Setting</h3>
+            </li>
+            <li class="nav-link">
+              <img class="icon-svg" src="./assets/svgs/support.svg" alt="support logo" />
+              <h3>Support</h3>
+            </li>
+            <li class="nav-link">
+              <img class="icon-svg" src="./assets/svgs/privacy.svg" alt="privacy logo" />
+              <h3>Privacy</h3>
+            </li>
+          </ul>
+        </nav>
+      </section>
+      <section class="main-content-container">
+        <div class="header">
+          <div class="search-contorl">
+            <div class="search-bar">
+              <img src="./assets/svgs/magnify.svg" alt="search icon" class="icon-svg" />
+              <label for="search">Search:</label>
+              <input type="text" name="search" id="search" />
+            </div>
+            <div class="user-controls">
+              <img src="./assets/svgs/notifications.svg" alt="notifications bell icon" class="icon-svg" />
+              <img class="icon-svg" src="./assets/images/kitty.png" alt="kitty profile picture" />
+              <h3>Phong Tran</h3>
+            </div>
+          </div>
+          <div class="user-welcome">
+            <div class="welcome">
+              <img class="icon-svg" src="./assets/images/kitty.png" alt="kitty profile picture" />
+              <div class="welcome-text">
+                <p>Hi there,</p>
+                <h2>Phong Tran (@phongtran_3)</h2>
+              </div>
+            </div>
+            <div class="buttons-containers">
+              <button>New</button>
+              <button>Upload</button>
+              <button>Share</button>
+            </div>
+          </div>
+        </div>
+        <main class="main-content">
+          <section class="projects">
+            <h3>Your projects</h3>
+            <div class="projects-container"></div>
+          </section>
+        </main>
+      </section>
+    </div>
+  </body>
 </html>
