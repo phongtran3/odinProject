@@ -21,6 +21,13 @@ a {
 /* filter: brightness(0) invert(1); */
 img {
   max-width: 100%;
+  
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 h1,
@@ -37,6 +44,34 @@ li {
   margin: 0;
 }
 
+.icon-pfp,
 .icon-svg {
   width: 50px;
+}
+
+.icon-svg{
+  filter: brightness(0) invert(1); 
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+  background-color: var(--white);
+}
+
+.nav-mobile-menu {
+  background-color: var(--primaryBlue);
+}
+
+.header-nav-mobile .nav-mobile-menu {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  justify-items: center;
+  color: var(--white);
+}
+
+.header-nav-mobile img {
+  width: 32px;
 }
