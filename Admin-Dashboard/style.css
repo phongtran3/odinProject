@@ -46,7 +46,7 @@ li {
 
 .icon-pfp,
 .icon-svg {
-  width: 50px;
+  width: 24px;
 }
 
 .icon-svg{
@@ -74,4 +74,54 @@ body {
 
 .header-nav-mobile img {
   width: 32px;
+}
+
+.nav-menu-overlay{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.navbar-container {
+  background-color: var(--primaryBlue);
+  position: fixed;
+  height: 100%;
+  width: 90%;
+  z-index: 100;
+  padding: 1rem;
+  max-width: 40vh;
+  color: var(--white);
+  top: 0;
+  transition: all 0.2s;
+  left: -90%;
+}
+
+.navbar-container.showOverlay {
+  left: 0;
+}
+
+.dashboard-logo{
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  margin-bottom: 2.5rem;
+  align-items: center;
+}
+
+.nav-link a {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  margin-bottom: 1rem;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  filter: invert(25%);
+}
+
+.primary-nav {
+  margin-bottom: 2.5rem;
 }
