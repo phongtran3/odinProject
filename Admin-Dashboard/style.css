@@ -1,6 +1,7 @@
 
 :root {
   --primaryBlue: #1992D4;
+  --primaryDarkBlue: #1474a9;
   --white: #ffffff;
   --gold: #F0B429;
   --greyBG: #E2E8F0;
@@ -42,6 +43,10 @@ li {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+li {
+  transition: all 0.25s cubic-bezier(0.3, 0, 0.4, 1) 0s;
 }
 
 .icon-pfp,
@@ -90,7 +95,7 @@ body {
   background-color: var(--primaryBlue);
   position: fixed;
   height: 100%;
-  width: 90%;
+  width: 75%;
   z-index: 100;
   padding: 1rem;
   max-width: 40vh;
@@ -98,6 +103,7 @@ body {
   top: 0;
   transition: all 0.2s;
   left: -90%;
+  
 }
 
 .navbar-container.showOverlay {
@@ -124,4 +130,34 @@ body {
 
 .primary-nav {
   margin-bottom: 2.5rem;
+}
+
+/* Mobile Footer */
+.footer-nav-mobile .nav-mobile-menu{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-nav-mobile .nav-mobile-menu-item{
+  width: 100%;
+  height: auto;
+  text-align: center;
+  padding: .75rem 0;
+  cursor: pointer;
+  border-top: 4px solid transparent
+}
+
+.footer-nav-mobile .nav-mobile-menu-item:hover,
+.footer-nav-mobile .nav-mobile-menu-item:focus {
+  border-top: 4px solid var(--gold);
+  background-color: var(--primaryDarkBlue);
+}
+
+/* Main content */
+.main-content-container {
+  margin-bottom: 5rem;
 }
