@@ -118,9 +118,9 @@
           </div>
         </div>
         <main class="main-content">
-          <section class="projects">
-            <h3>Your projects</h3>
-            <div class="projects-container">
+          <section id="projects-container">
+            <h2>Your projects</h2>
+            <div class="projects">
               <div class="project-card">
                 <div class="card-text">
                   <h3>Super Cool Project</h3>
@@ -198,25 +198,25 @@
             </div>
           </section>
           <section class="side-content">
-            <div class="announcements-container">
+            <div id="announcements-container" style="display: none">
               <h3>Annoucnements</h3>
               <div class="announcements">
-                <div class="annoucement">
+                <div class="announcement">
                   <h3>Site Maintenance</h3>
                   <p>Vestibulum condimentum tellus lacus, in accumsan elit maximus ac. Donec hendrerit sodales congue...</p>
                 </div>
-                <div class="annoucement">
+                <div class="announcement">
                   <h3>Community Share Day</h3>
                   <p>Nam vel lectus tincidunt, rutrum nulla eu, ornare libero. Aliquam dictum accumsan porttitor...</p>
                 </div>
-                <div class="annoucement">
+                <div class="announcement">
                   <h3>Updated Privacy Policy</h3>
                   <p>Phasellus efficitur nisi eget elit consectetur, eget condimentum ante auctor. Cras fringilla sagittis sem in mattis...</p>
                 </div>
               </div>
             </div>
 
-            <div class="trending-container">
+            <div id="trending-container" style="display: none">
               <h3>Trending</h3>
               <div class="trending">
                 <div class="trending-profile">
@@ -254,14 +254,14 @@
       </section>
       <nav class="footer-nav-mobile">
         <ul class="nav-mobile-menu">
-          <li class="nav-mobile-menu-item">
-            <a href="#"><img class="icon-svg" src="./assets/svgs/annoucement.svg" /></a>
+          <li class="nav-mobile-menu-item" title="announcement">
+            <a><img class="icon-svg" src="./assets/svgs/announcement.svg" /></a>
           </li>
-          <li class="nav-mobile-menu-item">
-            <a href="#"><img class="icon-svg" src="./assets/svgs/home.svg" /></a>
+          <li class="nav-mobile-menu-item active" title="home">
+            <a><img class="icon-svg" src="./assets/svgs/home.svg" /></a>
           </li>
-          <li class="nav-mobile-menu-item">
-            <a href="#"><img class="icon-svg" src="./assets/svgs/trending-up.svg" /></a>
+          <li class="nav-mobile-menu-item" name="trending" title="trending">
+            <a><img class="icon-svg" src="./assets/svgs/trending-up.svg" /></a>
           </li>
         </ul>
       </nav>
