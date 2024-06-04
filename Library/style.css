@@ -1,0 +1,100 @@
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  background-color: #e5e5e5
+}
+
+.container {
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.show {
+  display: block;
+}
+
+.no-books {
+  text-align: center;
+  font-style: italic;
+  display: none;
+}
+
+button {
+  color: #ffffff;
+  background-color: #1992D4;
+  border-radius: 50px;
+  padding: .75rem 2rem;
+  font-weight: bold;
+}
+
+button:hover,
+button:focus {
+  background-color: #1474a9;
+}
+
+dialog {
+  border-radius: 8px;
+  border: 1px solid black;
+  width: 500px;
+}
+
+label {
+  margin-bottom: .5rem;
+  display: inline-block;
+}
+
+form div {
+  margin-bottom: .5rem;
+}
+
+input[text] {
+  padding: .5rem;
+  width: 100%;
+}
+
+.form-btn-container{
+  float: right;
+}
+
+table {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 2rem;
+  height: 100;
+  border-collapse: collapse;
+}
+
+tr > * {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+thead{
+  background-color: #191919;
+  color: #ffffff;
+}

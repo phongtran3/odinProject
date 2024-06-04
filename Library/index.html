@@ -4,35 +4,69 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>theOdinProject Library</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main class="container">
+      <dialog>
+        <form method="dialog">
+          <div>
+            <label for="title">Title</label>
+            <input text="text" name="title" id="title" />
+          </div>
+
+          <div>
+            <label for="author">Author</label>
+            <input text="text" name="author" id="author" />
+          </div>
+
+          <div>
+            <label for="numPages">Number of Pages</label>
+            <input text="text" name="numPages" id="numPages" />
+          </div>
+
+          <div>
+            <p>Have you read this yet?</p>
+            <label for="yes">Yes</label>
+            <input type="radio" id="yes" name="choice" value="yes" />
+            <label for="no">No</label>
+            <input type="radio" id="no" name="choice" value="no" />
+          </div>
+
+          <div class="form-btn-container">
+            <button id="confirm-btn">Confirm</button>
+            <button id="close-btn">Close</button>
+          </div>
+        </form>
+      </dialog>
       <div class="header">
         <h1>theOdinProject Library</h1>
-        <button class="add">Add</button>
-        <table class="book-table" aria-label="A list of the books found in your Library">
-          <thead class="book-table-header">
+        <button class="add" id="add-btn">Add</button>
+      </div>
+      <table class="book-table" aria-label="A list of the books found in your Library">
+        <thead class="book-table-header">
+          <tr>
             <th>Title</th>
             <th>Author</th>
             <th>Number of Pages</th>
             <th>Read</th>
             <th></th>
-          </thead>
+          </tr>
+        </thead>
 
-          <tbody class="book-table-body">
-            <tr class="no-books">
-              <td colspan="5">No books found...</td>
-            </tr>
-            <tr>
-              <td>Pokemon</td>
-              <td>Ken Sugimori</td>
-              <td>151</td>
-              <td><button class="read">Read</button></td>
-              <td><button class="remove">Remove</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        <tbody class="book-table-body">
+          <tr class="no-books">
+            <td colspan="5">No books found...</td>
+          </tr>
+          <tr>
+            <td>Pokemon</td>
+            <td>Ken Sugimori</td>
+            <td>151</td>
+            <td><button class="read">Read</button></td>
+            <td><button class="remove">Remove</button></td>
+          </tr>
+        </tbody>
+      </table>
     </main>
     <script type="module" src="./script.js"></script>
   </body>
