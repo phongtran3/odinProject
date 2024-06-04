@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>theOdinProject Library</title>
+  </head>
+  <body>
+    <main class="container">
+      <div class="header">
+        <h1>theOdinProject Library</h1>
+        <button class="add">Add</button>
+        <table class="book-table" aria-label="A list of the books found in your Library">
+          <thead class="book-table-header">
+            <th>Title</th>
+            <th>Author</th>
+            <th>Number of Pages</th>
+            <th>Read</th>
+            <th></th>
+          </thead>
+
+          <tbody class="book-table-body">
+            <tr class="no-books">
+              <td colspan="5">No books found...</td>
+            </tr>
+            <tr>
+              <td>Pokemon</td>
+              <td>Ken Sugimori</td>
+              <td>151</td>
+              <td><button class="read">Read</button></td>
+              <td><button class="remove">Remove</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
