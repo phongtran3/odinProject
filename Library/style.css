@@ -95,6 +95,7 @@ table {
 tr > * {
   padding: 1.5rem;
   text-align: center;
+  width: 30%;
 }
 
 thead{
