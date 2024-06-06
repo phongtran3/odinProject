@@ -12,17 +12,17 @@
         <form method="dialog">
           <div>
             <label for="title">Title</label>
-            <input text="text" name="title" id="title" />
+            <input required type="text" name="title" id="title" />
           </div>
 
           <div>
             <label for="author">Author</label>
-            <input text="text" name="author" id="author" />
+            <input required type="text" name="author" id="author" />
           </div>
 
           <div>
             <label for="numPages">Number of Pages</label>
-            <input text="text" name="numPages" id="numPages" />
+            <input required type="number" name="numPages" id="numPages" />
           </div>
 
           <div>
@@ -50,21 +50,21 @@
             <th>Author</th>
             <th>Number of Pages</th>
             <th>Read</th>
-            <th></th>
+            <th style="color: transparent">Remove</th>
           </tr>
         </thead>
 
-        <tbody class="book-table-body">
-          <tr class="no-books">
+        <tbody id="book-table-body">
+          <tr id="no-books">
             <td colspan="5">No books found...</td>
           </tr>
-          <tr>
+          <!-- <tr data-id="0">
             <td>Pokemon</td>
-            <td>Ken Sugimori</td>
+            <td>Satoshi Tajiri</td>
             <td>151</td>
-            <td><button class="read">Read</button></td>
-            <td><button class="remove">Remove</button></td>
-          </tr>
+            <td><button data-id="0" id="read-btn">Read</button></td>
+            <td><button data-id="0" id="remove-btn">Remove</button></td>
+          </tr> -->
         </tbody>
       </table>
     </main>
