@@ -2,8 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const addBtn = document.getElementById("add-btn");
   const confirmBtn = document.getElementById("confirm-btn");
   const closeBtn = document.getElementById("close-btn");
-  // const readBtn = document.getElementById("read-btn");
-  // const removeBtn = document.getElementById("remove-btn");
+  const form = document.getElementById("form");
   const dialog = document.querySelector("dialog");
   const myLibrary = [];
 
@@ -15,16 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   closeBtn.addEventListener("click", (e) => {
     e.preventDefault();
+    form.reset();
     dialog.close();
   });
-
-  // readBtn.addEventListener("click", (e) => {
-  //   console.log(e.target);
-  // });
-
-  // removeBtn.addEventListener("click", (e) => {
-  //   console.log(e.target);
-  // });
 
   confirmBtn.addEventListener("click", addBookToLibrary);
 
@@ -35,7 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
     this.isRead = isRead;
   }
 
-  function addBookToLibrary() {
+  function addBookToLibrary(e) {
+    e.preventDefault();
+
     const title = document.getElementById("title").value;
     const author = document.getElementById("author").value;
     const numPages = document.getElementById("numPages").value;
@@ -45,6 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
     myLibrary.push(newBook);
 
     addToTable(newBook);
+    form.reset();
+    dialog.close();
   }
 
   function addToTable(newBook) {
@@ -77,10 +73,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     readButtonCell.append(readButton);
 
+    //Create Remove button cell
+    const removeButtonCell = document.createElement("td");
+    const removeButton = document.createElement("button");
+    removeButton.setAttribute("data-id", dataID);
+    removeButton.textContent = "Remove";
+    removeButton.addEventListener("click", (e) => {
+      removeBook(e, newBook);
+    });
+    removeButtonCell.append(removeButton);
+
     row.append(cellTitle);
     row.append(cellAuthor);
     row.append(cellNumPages);
     row.append(readButtonCell);
+    row.append(removeButtonCell);
     tableBody.append(row);
   }
 
@@ -91,5 +98,14 @@ document.addEventListener("DOMContentLoaded", () => {
       e.target.textContent = "Read";
     }
     newBook.isRead = !newBook.isRead;
+  }
+
+  function removeBook(e) {
+    const dataID = e.target.getAttribute("data-id");
+    const row = document.querySelector(`tr[data-id="${dataID}"]`);
+
+    row.remove();
+    myLibrary.splice(dataID, 1);
+    if (myLibrary.length < 1) document.getElementById("no-books").classList.add("show");
   }
 });
