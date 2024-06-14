@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  --battleShipGray: #8A817C;
+  --isabelline: #F4F3EE;
+  --taupe: #463F3A;
+  --offSilver: #BCB8B1;
+
+  --font-family: 'Press Start 2P', sans-serif;
+  --font-size-body: 16px;
+}
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+button {
+  /* background: none; */
+  /* border: none; */
+  cursor: pointer;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
+}
