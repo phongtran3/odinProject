@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 :root {
-  --battleShipGray: #8A817C;
-  --isabelline: #F4F3EE;
   --taupe: #463F3A;
+  --battleShipGray: #8A817C;
   --offSilver: #BCB8B1;
+  --isabelline: #F4F3EE;
 
   --font-family: 'Press Start 2P', sans-serif;
   --font-size-body: 16px;
@@ -15,14 +15,87 @@
   box-sizing: border-box;
 }
 
-button {
-  /* background: none; */
-  /* border: none; */
-  cursor: pointer;
-}
-
 body {
   margin: 0;
   font-family: var(--font-family);
   font-size: var(--font-size-body);
+  background-color: var(--taupe);
+  color: var(--isabelline);
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-family);
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+.container {
+  padding: .5rem;
+}
+
+
+.header {
+  text-align: center;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#game-board {
+  height: 300px;
+  width: 300px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  border: 1px solid var(--battleShipGray);
+}
+
+.cell {
+  background-color: var(--isabelline);
+  border: 2px solid var(--battleShipGray);
+  text-align: center;
+  font-size: 2rem;
+  color: var(--taupe);
+  transition: 0.2s;
+}
+
+#score-board {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.score {
+  font-size: .75rem;
+}
+
+#btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+#btn-container button {
+  padding: .75rem;
+  background-color: var(--isabelline);
+  color: var(--taupe);
+  border: 2px solid var(--battleShipGray);
+  line-height: 1.25rem;
+  transition: 0.2s;
+}
+
+#btn-container button:hover,
+#btn-container button:focus {
+  opacity: .7;
 }
