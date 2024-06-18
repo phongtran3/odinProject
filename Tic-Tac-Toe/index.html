@@ -13,8 +13,8 @@
       </section>
       <main class="game-container">
         <section id="game-board">
-          <button class="cell" data-index="0">x</button>
-          <button class="cell" data-index="1">o</button>
+          <button class="cell" data-index="0"></button>
+          <button class="cell" data-index="1"></button>
           <button class="cell" data-index="2"></button>
           <button class="cell" data-index="3"></button>
           <button class="cell" data-index="4"></button>
@@ -29,7 +29,7 @@
         </section>
 
         <section id="score-board">
-          <div class="score">
+          <div class="score" id="player-x">
             <p>Player(X)</p>
             <p id="x-score">5</p>
           </div>
@@ -39,7 +39,7 @@
             <p id="tie-score">5</p>
           </div>
 
-          <div class="score">
+          <div class="score" id="player-o">
             <p>Player(O)</p>
             <p id="o-score">5</p>
           </div>
