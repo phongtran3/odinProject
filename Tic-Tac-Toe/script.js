@@ -35,17 +35,18 @@ const gameBoard = (() => {
   cells.forEach((cell) => {
     cell.addEventListener("click", handleClick);
 
-    cell.addEventListener("mouseover", (e) => {
-      if (board[e.target.dataset.index] === "") {
-        e.target.textContent = currentPlayer.symbol;
-      }
-    });
+    // cell.addEventListener("mouseover", (e) => {
+    //   if (board[e.target.dataset.index] === "") {
+    //     e.target.textContent = currentPlayer.symbol;
+    //   }
+    // });
 
-    cell.addEventListener("mouseout", (e) => {
-      if (board[e.target.dataset.index] === "") {
-        e.target.textContent = "";
-      }
-    });
+    // cell.addEventListener("mouseout", (e) => {
+    //   if (board[e.target.dataset.index] === "") {
+    //     e.target.textContent = "";
+    //   }
+
+    // });
   });
 
   return {};

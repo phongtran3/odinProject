@@ -31,7 +31,7 @@ button {
 }
 
 section {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .container {
@@ -68,11 +68,9 @@ section {
 }
 
 #score-board {
-  width: 100%;
   display: flex;
   text-align: center;
-  align-items: center;
-  justify-content: space-between;
+  gap: 2rem;
 }
 
 .score {
@@ -81,8 +79,6 @@ section {
 
 #btn-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 2rem;
 }
 
@@ -98,4 +94,36 @@ section {
 #btn-container button:hover,
 #btn-container button:focus {
   opacity: .7;
+}
+
+
+@media (min-width: 550px) {
+  #game-board {
+    height: 500px;
+    width: 500px;
+  }
+
+  .cell {
+    font-size: 4rem;
+  }
+
+  .score {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1040px) {
+  #game-board {
+    height: 600px;
+    width: 600px;
+  }
+
+  .cell {
+    font-size: 5rem;
+  }
+
+  #score-board,
+  #btn-container {
+    gap: 5rem;
+  }
 }
