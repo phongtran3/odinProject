@@ -15,9 +15,11 @@ const resetBoardBtn = document.getElementById("reset-board");
 const gameBoard = (() => {
   const playerX = { name: "Player X", symbol: "X", color: "" };
   const playerO = { name: "Player O", symbol: "O", color: "" };
-
+  xScore.textContent = 0;
+  oScore.textContent = 0;
+  tieScore.textContent = 0;
   let currentPlayer = playerX;
-  let winner = false;
+  let winner = -1;
 
   const board = Array(9).fill("");
   const winningLines = [
@@ -33,15 +35,26 @@ const gameBoard = (() => {
 
   const checkWin = (symbol) => {
     console.log("Check Win");
-    winner = winningLines.some((line) => line.every((index) => board[index] === symbol));
+    winner = winningLines.findIndex((line) => line.every((index) => board[index] === symbol));
+    console.log(winner);
     return winner;
+  };
+
+  const highlightRow = () => {
+    cells.forEach((cell) => {
+      cell.classList.remove("win");
+    });
+
+    winningLines[winner].forEach((cellIndex) => {
+      cells[cellIndex].classList.add("win");
+    });
   };
 
   const handleClick = (e) => {
     const cell = e.target;
     const index = cell.dataset.index;
 
-    if (cell.textContent) return;
+    if (winner > 0) return;
 
     if (board[index] === "") {
       board[index] = currentPlayer.symbol;
@@ -49,9 +62,16 @@ const gameBoard = (() => {
       console.log(board);
       checkWin(currentPlayer.symbol);
 
-      if (winner) {
-        //Display winner, Prevent anymore clicks on empty cells, Highlight winning row
-        console.log("you win");
+      //Display winner, Prevent anymore clicks on empty cells, Highlight winning row Update Score or Tie
+      if (winner !== -1) {
+        resultDisplay.textContent = `${currentPlayer.name} wins!`;
+        resultDisplay.classList.add("winText");
+        currentPlayer === playerX ? xScore.textContent++ : oScore.textContent++;
+        highlightRow();
+      } else if (winner === -1 && board.every((cell) => cell !== "")) {
+        resultDisplay.textContent = `Tie Game!`;
+        resultDisplay.classList.add("winText");
+        tieScore.textContent++;
       }
 
       currentPlayer = currentPlayer === playerX ? playerO : playerX;
@@ -61,17 +81,17 @@ const gameBoard = (() => {
   cells.forEach((cell) => {
     cell.addEventListener("click", handleClick);
 
-    // cell.addEventListener("mouseover", (e) => {
-    //   if (board[e.target.dataset.index] === "") {
-    //     e.target.textContent = currentPlayer.symbol;
-    //   }
-    // });
+    cell.addEventListener("mouseover", (e) => {
+      if (board[e.target.dataset.index] === "") {
+        e.target.textContent = currentPlayer.symbol;
+      }
+    });
 
-    // cell.addEventListener("mouseout", (e) => {
-    //   if (board[e.target.dataset.index] === "") {
-    //     e.target.textContent = "";
-    //   }
-    // });
+    cell.addEventListener("mouseout", (e) => {
+      if (board[e.target.dataset.index] === "") {
+        e.target.textContent = "";
+      }
+    });
   });
 
   return {};
