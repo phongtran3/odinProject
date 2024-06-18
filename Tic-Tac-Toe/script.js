@@ -1,7 +1,6 @@
 "use strict";
 
 const cells = document.querySelectorAll(".cell");
-console.log(cells);
 
 const tieScore = document.getElementById("tie-score");
 const xScore = document.getElementById("x-score");
@@ -34,9 +33,7 @@ const gameBoard = (() => {
   ];
 
   const checkWin = (symbol) => {
-    console.log("Check Win");
     winner = winningLines.findIndex((line) => line.every((index) => board[index] === symbol));
-    console.log(winner);
     return winner;
   };
 
@@ -45,9 +42,21 @@ const gameBoard = (() => {
       cell.classList.remove("win");
     });
 
-    winningLines[winner].forEach((cellIndex) => {
-      cells[cellIndex].classList.add("win");
-    });
+    if (winner !== -1) {
+      winningLines[winner].forEach((cellIndex) => {
+        cells[cellIndex].classList.add("win");
+      });
+    }
+  };
+
+  const updatePlayerIndicator = () => {
+    if (currentPlayer === playerX) {
+      playerXIndicator.classList.remove("not-active");
+      playerOIndicator.classList.add("not-active");
+    } else {
+      playerOIndicator.classList.remove("not-active");
+      playerXIndicator.classList.add("not-active");
+    }
   };
 
   const handleClick = (e) => {
@@ -59,7 +68,6 @@ const gameBoard = (() => {
     if (board[index] === "") {
       board[index] = currentPlayer.symbol;
       cell.textContent = currentPlayer.symbol;
-      console.log(board);
       checkWin(currentPlayer.symbol);
 
       //Display winner, Prevent anymore clicks on empty cells, Highlight winning row Update Score or Tie
@@ -72,9 +80,10 @@ const gameBoard = (() => {
         resultDisplay.textContent = `Tie Game!`;
         resultDisplay.classList.add("winText");
         tieScore.textContent++;
+      } else {
+        currentPlayer = currentPlayer === playerX ? playerO : playerX;
+        updatePlayerIndicator();
       }
-
-      currentPlayer = currentPlayer === playerX ? playerO : playerX;
     }
   };
 
@@ -92,6 +101,36 @@ const gameBoard = (() => {
         e.target.textContent = "";
       }
     });
+  });
+
+  const resetBoard = () => {
+    board.fill("");
+    cells.forEach((cell) => (cell.textContent = ""));
+    winner = -1;
+    highlightRow();
+    resultDisplay.textContent = "";
+  };
+
+  const resetScore = () => {
+    console.log("reset score");
+    xScore.textContent = 0;
+    oScore.textContent = 0;
+    tieScore.textContent = 0;
+  };
+
+  //Reset Score
+  resetScoreBtn.addEventListener("click", () => {
+    resetScore();
+    resetBoard();
+    currentPlayer = playerX;
+    updatePlayerIndicator();
+  });
+
+  //Reset Board
+  resetBoardBtn.addEventListener("click", () => {
+    resetBoard();
+    currentPlayer = currentPlayer === playerX ? playerO : playerX;
+    updatePlayerIndicator();
   });
 
   return {};
