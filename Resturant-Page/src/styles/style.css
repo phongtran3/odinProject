@@ -1,3 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Young+Serif&display=swap');
+
+:root {
+  --black: #000000;
+  --white: #FFFFFF;
+  --darkRed: #AF1E26;
+
+  --font-size-body: 16px;
+  --font-family-heading: "Young Serif", sans-serif;
+  --font-family-body: "Outfit", sans-serif;
+}
+
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
