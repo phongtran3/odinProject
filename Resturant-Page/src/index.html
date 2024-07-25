@@ -3,7 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TOP Restaurant Page</title>
+    <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
-  <body></body>
+  <body>
+    <header id="header">
+      <div id="header-logo-container">
+        <img alt="" id="header-logo" />
+      </div>
+      <nav class="navbar">
+        <button class="navBtn">About Us</button>
+        <button class="navBtn">Menu</button>
+        <button class="navBtn">Contact Us</button>
+      </nav>
+    </header>
+    <div id="content"></div>
+  </body>
 </html>
