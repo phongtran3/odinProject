@@ -14,3 +14,50 @@
 *, *::before, *::after {
   box-sizing: border-box;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+}
+
+#header {
+  background-color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .5rem 1.25rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+#header-logo{
+
+}
+
+.navbar {
+  display: flex;
+  gap: 1rem;
+}
+
+.navBtn{
+  font-family: var(--font-family-heading);
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.navBtn:hover,
+.navBtn:focus {
+  color: var(--darkRed);
+}

@@ -4,18 +4,52 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
   </head>
   <body>
     <header id="header">
       <div id="header-logo-container">
-        <img alt="" id="header-logo" />
+        <img src="./assets/7-leaves-cafe-logo-red-transparent.png" id="header-logo" />
       </div>
       <nav class="navbar">
         <button class="navBtn">About Us</button>
         <button class="navBtn">Menu</button>
-        <button class="navBtn">Contact Us</button>
+        <button class="navBtn">Contact</button>
       </nav>
     </header>
-    <div id="content"></div>
+
+    <div id="content">
+      <section id="mission-statement">
+        <div class="mission-text-container">
+          <h3 class="accent">OUR MISSION</h3>
+          <div class="mission-text">
+            <p>"To enrich the human experience by serving the very best coffee, tea and goodness in every cup, every community."</p>
+          </div>
+        </div>
+      </section>
+      <section id="menu-preview">
+        <div class="menu-item">Coffees</div>
+        <div class="menu-item">Milk Teas</div>
+        <div class="menu-item">Teas</div>
+      </section>
+
+      <footer class="footer">
+        <div class="copyright">
+          <p>&copy; Phong Tran</p>
+        </div>
+
+        <div class="footer-title">
+          <p>The Oden Project 7 Leaves Cafe</p>
+          <p>All images used on this site are property of 7 Leaves Cafe. This site is a clone and does not own any rights to the images.</p>
+        </div>
+
+        <div class="social-media-links">
+          <a href="https://github.com/phongtran3" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-github"></i></a>
+          <a href="https://www.instagram.com/phongtran_3/" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/phong-tran230/" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>
