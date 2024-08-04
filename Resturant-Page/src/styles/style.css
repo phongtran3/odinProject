@@ -113,6 +113,12 @@ body {
     color: var(--darkRed);
 }
 
+.img-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
 .navBtn{
   font-family: var(--font-family-heading);
   background: none;
@@ -150,7 +156,12 @@ body {
   position: relative;
 }
 
-.menu-item {
+#menu-preview-gallery > .menu-item:nth-of-type(2),
+#menu-preview-gallery > .menu-item:nth-of-type(3){
+  display: none;
+}
+
+.menu-item  {
   background-image: url(../assets/House-Coffee.jpg);
   background-position: center center;
   background-size: cover;
@@ -158,6 +169,7 @@ body {
   text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
+  width: 100%;
 }
 
 .menu-item-text {
@@ -204,4 +216,50 @@ body {
 .social-media-links i:focus {
   transform: scale(1.25);
   color: var(--black);
+}
+
+.hide {
+  display: none;
+}
+
+@media screen and (min-width: 900px){
+  .navbar-hamburger,
+  .close-button {
+    display: none;
+  }
+
+  .navbar{
+    position: revert;
+  }
+
+  .navbar-items {
+    margin-top: 0;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .footer {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-size: 1.25rem;
+  }
+
+  #menu-preview-gallery {
+    display: flex;
+    width: 100%;
+  }
+
+  #menu-preview-gallery > .menu-item:nth-of-type(2),
+  #menu-preview-gallery > .menu-item:nth-of-type(3){
+    display: block;
+  }
+
+  .left-arrow, .right-arrow {
+    display: none;
+  }
+
+
 }
