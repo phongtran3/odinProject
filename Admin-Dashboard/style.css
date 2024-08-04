@@ -26,8 +26,8 @@ p {
 /* filter: brightness(0) invert(1); */
 img {
   max-width: 100%;
-  
 }
+
 .mobile {
   display: none;
 }

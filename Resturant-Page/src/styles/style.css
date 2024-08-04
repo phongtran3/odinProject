@@ -130,7 +130,7 @@ body {
 #mission-statement {
   background: url(../assets/house-coffee-cafe-order-menu.jpg);
   background-size: cover;
-  background-position: top center;
+  background-position: top left;
 }
 
 .mission-text-container {
@@ -144,3 +144,5 @@ body {
   font-size: 1.5rem;
   line-height: 2rem
 }
+
+
