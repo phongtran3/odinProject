@@ -187,3 +187,21 @@ body {
 .right-arrow {
   right: 0;
 }
+
+.footer {
+  background-color: var(--darkRed);
+  color: var(--white);
+  padding: .5rem;
+  font-size: 1.1rem;
+}
+
+.social-media-links a {
+  margin-right: 1rem;
+  transition: all 0.3s linear;
+}
+
+.social-media-links i:hover,
+.social-media-links i:focus {
+  transform: scale(1.25);
+  color: var(--black);
+}
