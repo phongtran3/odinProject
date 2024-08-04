@@ -136,12 +136,12 @@ body {
 #mission-statement {
   background: url(../assets/house-coffee-cafe-order-menu.jpg);
   background-size: cover;
-  background-position: top left;
+  background-position: top center;
 }
 
 .mission-text-container {
   text-align: center;
-  padding: 5rem .25rem;
+  padding: 7rem .25rem;
   margin: 0 auto;
   max-width: 500px;
 }
@@ -170,11 +170,38 @@ body {
   font-size: 1.5rem;
   font-weight: bold;
   width: 100%;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  opacity: 1;
+  position: relative;
 }
 
 .menu-item-text {
-  color: white;
+  color: var(--black);
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+  opacity: 0;
+  z-index: 2;
 }
+
+.fade-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1;
+}
+
+.menu-item:hover .fade-overlay,
+.menu-item:hover .menu-item-text {
+  opacity: 1;
+}
+
+
 
 .left-arrow, .right-arrow {
   cursor: pointer;
@@ -190,6 +217,7 @@ body {
   user-select: none;
   opacity: 0.8;
   transition: opacity 0.3s;
+  z-index: 300;
 }
 
 .left-arrow {
@@ -243,7 +271,6 @@ body {
     grid-template-columns: 1fr 3fr 1fr;
     align-items: center;
     text-align: center;
-    justify-content: center;
     font-size: 1.25rem;
   }
 
