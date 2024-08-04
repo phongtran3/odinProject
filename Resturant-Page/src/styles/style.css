@@ -146,3 +146,44 @@ body {
 }
 
 
+#menu-preview-gallery {
+  position: relative;
+}
+
+.menu-item {
+  background-image: url(../assets/House-Coffee.jpg);
+  background-position: center center;
+  background-size: cover;
+  padding: 200px 0;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.menu-item-text {
+  color: white;
+}
+
+.left-arrow, .right-arrow {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-weight: bold;
+  padding: 1rem;
+  font-size: 1rem;
+  border: none;
+  user-select: none;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.left-arrow {
+  left: 0;
+}
+
+.right-arrow {
+  right: 0;
+}
