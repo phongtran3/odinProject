@@ -158,7 +158,10 @@ body {
 }
 
 
-@media screen and (min-width: 900px){
+@media screen and (min-width: 720px){
+  #header {
+    margin: 0 3rem;
+  }
   .navbar-hamburger,
   .close-button {
     display: none;
@@ -181,4 +184,11 @@ body {
     text-align: center;
     font-size: 1.25rem;
   }
+}
+
+@media screen and (min-width: 1200px) {
+  .footer {
+    font-size: 1.5rem;
+  }
+  
 }

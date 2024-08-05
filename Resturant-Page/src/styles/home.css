@@ -90,7 +90,7 @@
   right: 0;
 }
 
-@media screen and (min-width: 900px){ 
+@media screen and (min-width: 720px){ 
   #menu-preview-gallery {
     display: flex;
     width: 100%;
@@ -104,7 +104,4 @@
   .left-arrow, .right-arrow {
     display: none;
   }
-
-
-
 }
