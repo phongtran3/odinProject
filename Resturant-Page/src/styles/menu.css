@@ -19,7 +19,7 @@
 }
 
 .menu-header-container,
-.coffees-container {
+.menu-item-container {
   max-width: 1040px;
   margin: 1.5rem auto;
 }
@@ -29,11 +29,11 @@
 }
 
 .menu-header-container > p {
-  opacity: .8;
+  opacity: .75;
   line-height: 1.75rem;
 }
 
-.coffees-container {
+.menu-item-container {
   padding: 0 1.25rem;
 }
 
@@ -53,7 +53,7 @@
 }
 
 .item-card-description > p {
-  opacity: .5;
+  opacity: .75;
 }
 
 .menu-item-grid {
