@@ -112,6 +112,7 @@ body {
   padding: .75rem;
   color: var(--black);
   right: 0;
+  cursor: pointer;
 }
 
 .close-button:hover,

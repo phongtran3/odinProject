@@ -20,15 +20,19 @@ export default function createHeader() {
   const navBurger = document.createElement("button");
   const burgerIcon = document.createElement("i");
   navBurger.classList.add("navbar-hamburger");
+  navBurger.id = "hamburger-menu";
   burgerIcon.classList.add("fas", "fa-bars");
   navBurger.appendChild(burgerIcon);
 
   const nav = document.createElement("nav");
+  nav.id = "nav-container";
   nav.classList.add("navbar");
 
+  // <a href="javascript:void(0)" id="close-btn" class="close-button mobile">x</a>
   const xBtn = document.createElement("a");
   xBtn.id = "close-btn";
-  xBtn.classList.add("closse-button");
+  xBtn.classList.add("close-button", "mobile");
+  xBtn.textContent = "x";
 
   const navbarItems = document.createElement("div");
   navbarItems.classList.add("navbar-items");
@@ -47,6 +51,13 @@ export default function createHeader() {
   header.appendChild(headerLogoContainer);
   header.appendChild(navBurger);
   header.appendChild(nav);
+
+  function onBurgerClick(e) {
+    let overlay = document.getElementById("overlay");
+    overlay.style.display = overlay.style.display === "none" ? "block" : "none";
+    document.getElementById("nav-container").classList.add("showOverlay");
+  }
+  document.getElementById("hamburger-menu").addEventListener("click", onBurgerClick);
 }
 
 /* 
