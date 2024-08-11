@@ -70,7 +70,7 @@ body {
   position: fixed;
   top: 0;
   height: 100%;
-  transition: all 0.2s;
+  transition: all 0.3s;
   overflow-y: auto;
   z-index: 100;
   background-color: var(--white);

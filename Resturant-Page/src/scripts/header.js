@@ -1,7 +1,6 @@
 import logo from "../assets/7-leaves-cafe-logo-red-transparent.png";
 
 export default function createHeader() {
-  console.log("test");
   const header = document.getElementById("header");
 
   //LOGO
@@ -41,6 +40,7 @@ export default function createHeader() {
   labels.forEach((label) => {
     const btn = document.createElement("button");
     btn.classList.add("navBtn");
+    btn.id = label.toLowerCase().split(" ").join("-");
     btn.textContent = label;
     navbarItems.append(btn);
   });
@@ -58,6 +58,15 @@ export default function createHeader() {
     document.getElementById("nav-container").classList.add("showOverlay");
   }
   document.getElementById("hamburger-menu").addEventListener("click", onBurgerClick);
+
+  function onOverlayClick(e) {
+    console.log("overlay");
+    document.getElementById("nav-container").classList.remove("showOverlay");
+    document.getElementById("overlay").style.display = "none";
+  }
+
+  document.getElementById("overlay").addEventListener("click", onOverlayClick);
+  document.getElementById("close-btn").addEventListener("click", onOverlayClick);
 }
 
 /* 
