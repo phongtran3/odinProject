@@ -1,4 +1,5 @@
 import logo from "../assets/7-leaves-cafe-logo-red-transparent.png";
+import { onOverlayClick } from "./helper";
 
 export default function createHeader() {
   const header = document.getElementById("header");
@@ -35,7 +36,7 @@ export default function createHeader() {
 
   const navbarItems = document.createElement("div");
   navbarItems.classList.add("navbar-items");
-  const labels = ["About Us", "Menu", "Contract"];
+  const labels = ["About Us", "Menu", "Contact Us"];
 
   labels.forEach((label) => {
     const btn = document.createElement("button");
@@ -55,12 +56,6 @@ export default function createHeader() {
     document.getElementById("nav-container").classList.add("showOverlay");
   }
   document.getElementById("hamburger-menu").addEventListener("click", onBurgerClick);
-
-  function onOverlayClick(e) {
-    console.log("overlay");
-    document.getElementById("nav-container").classList.remove("showOverlay");
-    document.getElementById("overlay").style.display = "none";
-  }
 
   document.getElementById("overlay").addEventListener("click", onOverlayClick);
   document.getElementById("close-btn").addEventListener("click", onOverlayClick);
