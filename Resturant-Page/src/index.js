@@ -4,6 +4,8 @@ import contact from "./scripts/contact";
 import menu from "./scripts/menu";
 import about from "./scripts/contact";
 import createHeader from "./scripts/header";
-import footer from "./scripts/footer";
+import createFooter from "./scripts/footer";
 
 createHeader();
+
+createFooter();

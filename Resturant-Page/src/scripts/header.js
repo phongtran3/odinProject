@@ -45,12 +45,9 @@ export default function createHeader() {
     navbarItems.append(btn);
   });
 
-  nav.appendChild(xBtn);
-  nav.appendChild(navbarItems);
+  nav.append(xBtn, navbarItems);
 
-  header.appendChild(headerLogoContainer);
-  header.appendChild(navBurger);
-  header.appendChild(nav);
+  header.append(headerLogoContainer, navBurger, nav);
 
   function onBurgerClick(e) {
     let overlay = document.getElementById("overlay");
@@ -68,20 +65,3 @@ export default function createHeader() {
   document.getElementById("overlay").addEventListener("click", onOverlayClick);
   document.getElementById("close-btn").addEventListener("click", onOverlayClick);
 }
-
-/* 
-<header id="header">
-  <div id="header-logo-container">
-	  <button class="img-btn"><img src="./assets/7-leaves-cafe-logo-red-transparent.png" id="header-logo" /></button>
-  </div>
-  <button class="navbar-hamburger"><i class="fas fa-bars"></i></button>
-
-  <nav class="navbar">
-    <a href="javascript:void(0)" id="close-btn" class="close-button mobile">x</a>
-    <div class="navbar-items">
-      <button class="navBtn">About Us</button>
-      <button class="navBtn">Menu</button>
-      <button class="navBtn">Contact</button>
-    </div>
-  </nav>
-</header> */
