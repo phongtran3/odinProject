@@ -100,6 +100,11 @@ body {
   cursor: pointer;
 }
 
+.navbar-hamburger:hover,
+.navbar-hamburger:focus {
+  background-color: #670005;
+}
+
 .navbar-hamburger > i {
   font-size: 1.5rem;
 }
