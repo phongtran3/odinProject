@@ -26,4 +26,5 @@ contactBtn.addEventListener("click", (e) => {
   onOverlayClick();
 });
 
+createHome();
 createFooter();

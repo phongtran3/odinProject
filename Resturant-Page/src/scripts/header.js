@@ -14,6 +14,9 @@ export default function createHeader() {
   logoImg.src = logo;
   logoImg.id = "header-logo";
   logoBtn.appendChild(logoImg);
+  logoBtn.addEventListener("click", (e) => {
+    console.log("home");
+  });
   headerLogoContainer.appendChild(logoBtn);
 
   //NAVBAR
