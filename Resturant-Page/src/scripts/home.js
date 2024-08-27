@@ -17,7 +17,7 @@ const menuItemsArray = [
 
 export default function createHome() {
   const content = document.getElementById("content");
-
+  const home = document.createElement("div");
   //MISSION STATEMENT
   const missionSection = document.createElement("section");
   missionSection.id = "mission-statement";
@@ -74,7 +74,8 @@ export default function createHome() {
   });
   menuPreviewGallery.append(rightBtn);
 
-  content.append(missionSection, menuPreviewGallery);
+  home.append(missionSection, menuPreviewGallery);
+  content.append(home);
 }
 
 {

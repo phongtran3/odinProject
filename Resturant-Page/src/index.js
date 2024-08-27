@@ -8,23 +8,37 @@ import createFooter from "./scripts/footer";
 import { onOverlayClick } from "./scripts/helper";
 
 createHeader();
+createHome();
+createFooter();
 
 const content = document.getElementById("content");
 
 const aboutUsBtn = document.getElementById("about-us");
 aboutUsBtn.addEventListener("click", (e) => {
   onOverlayClick();
-  content.firstElementChild.remove();
+  content.textContent = " ";
+  createFooter();
 });
 
 const menuBtn = document.getElementById("menu");
 menuBtn.addEventListener("click", (e) => {
   onOverlayClick();
+  content.textContent = " ";
+
+  createFooter();
 });
+
 const contactBtn = document.getElementById("contact-us");
 contactBtn.addEventListener("click", (e) => {
   onOverlayClick();
+  content.textContent = " ";
+
+  createFooter();
 });
 
-createHome();
-createFooter();
+const homeIconBtn = document.getElementById("header-logo");
+homeIconBtn.addEventListener("click", (e) => {
+  content.textContent = " ";
+  createHome();
+  createFooter();
+});
