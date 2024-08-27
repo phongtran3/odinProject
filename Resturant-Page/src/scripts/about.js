@@ -1,72 +1,73 @@
 import "../styles/about.css";
+import beginningImg from "../assets/cold-drink-cart-business-background.jpg";
+
 
 export default function createAbout() {
   const content = document.getElementById("content");
+  
+  // Create element
   const home = document.createElement("div");
-
   const ourStory = document.createElement("section");
-  ourStory.classList.add("our-story-header");
-
-  const ourStoryH2 = document.createElement("h2");
-  ourStoryH2.textContent = "Our Story";
-  ourStory.append(ourStoryH2);
-
   const beginningContainer = document.createElement("section");
-  beginningContainer.classList.add("beginning-container");
-
   const beginTextContainer = document.createElement("div");
-  beginTextContainer.classList.add("beginning-text-container");
-
   const beginHeader = document.createElement("div");
-  beginHeader.classList.add("beginning-header");
-
-  const beginHeaderH3 = document.createElement("h3");
-  beginHeaderH3.classList.add("accent");
-  beginHeaderH3.textContent = "7 Leaves Cafe";
-
-  const beginHeaderH2 = document.createElement("h2");
-  beginHeaderH2.textContent = "Our Humble Beginning";
-
-  beginHeader.append(beginHeaderH3, beginHeaderH2);
-
   const beginningText = document.createElement("div");
+  const beginImgContainer = document.createElement("div");
+
+  const missionSection = document.createElement("section");
+  const missionTextContainer = document.createElement("div");
+  const missionText = document.createElement("div");
+  
+
+  // Set classes & id
+  ourStory.classList.add("our-story-header");
+  beginningContainer.classList.add("beginning-container");
+  beginTextContainer.classList.add("beginning-text-container");
+  beginHeader.classList.add("beginning-header");
   beginningText.classList.add("beginning-text");
+  beginImgContainer.classList.add("beginning-img-container");
 
-  const beginningTextP = document.createElement("p");
-  beginningTextP.textContent = `Coffee, Tea, and Goodness are the very essence of what we serve. From the humble beginning in a small 1,100 square foot store located in the heart of Little Saigon, a band of brothers and close friends met in 2011.`;
+  missionSection.id = "mission-statement";
 
-  beginningText.append(beginningTextP);
+  // Set content
+  ourStory.innerHTML = `<h2>Our Story</h2>`;
+  beginHeader.innerHTML = `
+    <h3 class="accent">7 Leaves Cafe</h3>
+    <h2>Our Humble Beginning</h2>
+  `;
+  beginningText.innerHTML = `
+    <p>
+      Coffee, Tea, and Goodness are the very essence of what we serve. 
+      From the humble beginning in a small 1,100 square foot store located in 
+      the heart of Little Saigon, a band of brothers and close friends met in 2011.
+    </p>
+  `;
+
+  beginImgContainer.innerHTML = `
+  <img src=${beginningImg} alt="person holding a large cup of house coffee" />
+  `
+
+  
+  missionSection.innerHTML = `
+    <div class="mission-text-container">
+      <h2 class="accent">OUR MISSION</h2>
+      <div class="mission-text">
+        <p>To enrich the human experience by serving the very best coffee, tea and goodness in every cup, every community.</p>
+      </div>
+    </div>
+  `;
+  
+
+  // Combine elements
   beginTextContainer.append(beginHeader, beginningText);
-  beginningContainer.append(beginTextContainer);
-
-  home.append(ourStory, beginningContainer);
+  beginningContainer.append(beginTextContainer, beginImgContainer);
+  home.append(ourStory, beginningContainer, missionSection);
   content.append(home);
 }
 
+
 {
-  /* <section class="our-story-header">
-        <h2>Our Story</h2>
-      </section>
-
-      <section class="beginning-container">
-        <div class="beginning-text-container">
-          <div class="beginning-header">
-            <h3 class="accent">7 Leaves Cafe</h3>
-            <h2>Our Humble Beginning</h2>
-          </div>
-          <div class="beginning-text">
-            <p>
-              Coffee, Tea, and Goodness are the very essence of what we serve. From the humble beginning in a small 1,100 square foot store located in the heart of Little Saigon, a
-              band of brothers and close friends met in 2011.
-            </p>
-          </div>
-        </div>
-
-        <div class="beginning-img-container">
-          <img src="./assets/cold-drink-cart-business-background.jpg" alt="person holding a large cup of house coffee" />
-        </div>
-      </section>
-
+  /* 
       <section id="mission-statement">
         <div class="mission-text-container">
           <h2 class="accent">OUR MISSION</h2>
