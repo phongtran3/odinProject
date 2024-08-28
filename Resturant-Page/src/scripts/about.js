@@ -1,6 +1,6 @@
 import "../styles/about.css";
 import beginningImg from "../assets/cold-drink-cart-business-background.jpg";
-
+import changeImg from "../assets/be-the-change-wall-canvas.jpg"
 
 const createElement = (tag, className, id) => {
   const element = document.createElement(tag);
@@ -8,7 +8,6 @@ const createElement = (tag, className, id) => {
   if(id) element.id = id;
   return element;
 }
-
 
 export default function createAbout() {
   const content = document.getElementById("content");
@@ -22,9 +21,11 @@ export default function createAbout() {
   const beginningText = createElement("div", "beginning-text");
   const beginImgContainer = createElement("div", "beginning-img-container");
   const missionSection = createElement("section", null, "mission-statement");
-  const changeSection = createElement("section", "change");
+  const changeSection = createElement("section", "change-container");
   const changeTextContainer = createElement("div", "change-text-container");
-  
+  const changeHeader = createElement("div", "change-header");
+  const changeText = createElement("div", "change-text");
+  const changeImgContainer = createElement("div", "change-img-container");
 
   // Set content
   ourStory.innerHTML = `<h2>Our Story</h2>`;
@@ -53,37 +54,31 @@ export default function createAbout() {
       </div>
     </div>
   `;
-  
+
+  changeHeader.innerHTML = `
+    <div class="change-header">
+      <h2 class="accent">7 Leaves Cafe</h2>
+      <h2>Be the change you wish to see in the world.</h2>
+    </div>
+  `
+  changeText.innerHTML = `
+    <p>
+      Hanging on the wall of every 7 Leaves Cafe is a canvas of Gandhi’s famous quotation, “be the change you wish to see in the world.” It is a constant reminder and
+      symbol of everything that we do – from how we create our products to the way we serve our customers, it is the very principle that guides us forward.
+    </p>
+  `
+  changeImgContainer.innerHTML = `
+    <img src=${changeImg} alt="3 people holding a large cup of 7 leaves drinks, house coffee, jasmine milk tea, and assam milk tea" />
+  `
 
   // Combine elements
   beginTextContainer.append(beginHeader, beginningText);
   beginningContainer.append(beginTextContainer, beginImgContainer);
+  changeTextContainer.append(changeHeader, changeText);
 
-  home.append(ourStory, beginningContainer, missionSection);
+  changeSection.append(changeTextContainer, changeImgContainer);
+  home.append(ourStory, beginningContainer, missionSection, changeSection);
   content.append(home);
 }
 
 
-{
-  /* 
-      <section class="change">
-        <div class="change-text-container">
-
-          <div class="change-header">
-            <h2 class="accent">7 Leaves Cafe</h2>
-            <h2>Be the change you wish to see in the world.</h2>
-          </div>
-
-          <div class="change-text">
-            <p>
-              Hanging on the wall of every 7 Leaves Cafe is a canvas of Gandhi’s famous quotation, “be the change you wish to see in the world.” It is a constant reminder and
-              symbol of everything that we do – from how we create our products to the way we serve our customers, it is the very principle that guides us forward.
-            </p>
-          </div>
-          
-        </div>
-        <div class="change-img-container">
-          <img src="./assets/be-the-change-wall-canvas.jpg" alt="3 people holding a large cup of 7 leaves drinks, house coffee, jasmine milk tea, and assam milk tea" />
-        </div>
-      </section> */
-}
