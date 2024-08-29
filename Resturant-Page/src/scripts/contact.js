@@ -5,8 +5,14 @@ export default function createContact() {
   const content = document.getElementById("content");
   const home = document.createElement("div");
 
+  // Create element
   const contactContainer = createElement("section", "contact-container");
   const contactDiv = createElement("div", "contact");
+  const contactHeader = createElement("div", "contact-header");
+
+  // Set content
+
+  contactHeader.appendChild("h3", "accent", null, `CONTACT US`);
 }
 
 {
