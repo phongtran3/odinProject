@@ -1,15 +1,40 @@
-{
-  /* 
-  <section class="menu-header-container">
-    <h3 class="accent">DRINKS</h3>
-    <h2>Flavors that Bridge Continents</h2>
-    <p>
-      <strong>OUR WAY OF DOING THINGS</strong>
+import "../styles/menu.css";
+import { createElement } from "./helper";
+
+
+
+
+export default function createMenu() {
+  const content = document.getElementById("content");
+  const home = document.createElement("div");
+
+  // Create element
+  const menuHeaderContainer = createElement("section", "menu-header-container");
+
+
+  // Set content
+  menuHeaderContainer.appendChild(createElement("h3", "accent", null, `DRINKS`));
+  menuHeaderContainer.appendChild(createElement("h2", null , null, `Flavors that Bridge Continents`));
+  const menuHeaderP = document.createElement("p");
+  menuHeaderP.innerHTML = `
+    <strong>OUR WAY OF DOING THINGS.</strong>
       From our kitchen – we chop, peel, cook, stir, and press by hand in order to extract real flavors from raw ingredients such as fresh pandan leaves, mung bean, taro root,
       and passion fruit.
-    </p>
-  </section>
+  `
+  menuHeaderContainer.appendChild(menuHeaderP);
 
+
+  // Combine elements
+
+  home.append(menuHeaderContainer);
+  content.append(home);
+}
+
+
+
+
+{
+  /* 
   <section class="coffees-container">
 
     <div class="menu-item-header-container">

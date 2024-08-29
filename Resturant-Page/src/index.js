@@ -10,8 +10,8 @@ import { onOverlayClick } from "./scripts/helper";
 createHeader();
 // createHome();
 // createAbout();
-createContact();
-
+// createContact();
+createMenu();
 createFooter();
 
 const content = document.getElementById("content");
@@ -28,7 +28,7 @@ const menuBtn = document.getElementById("menu");
 menuBtn.addEventListener("click", (e) => {
   onOverlayClick();
   content.textContent = " ";
-
+  createMenu();
   createFooter();
 });
 
