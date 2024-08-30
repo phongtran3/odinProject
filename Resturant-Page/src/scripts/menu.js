@@ -1,6 +1,13 @@
 import "../styles/menu.css";
 import { createElement } from "./helper";
+import { coffeeMenu, teaMenu, milkTeaMenu, toppingMenu } from "./menuArrays";
 
+
+
+
+function createItemCard () {
+
+}
 
 
 
@@ -60,7 +67,7 @@ export default function createMenu() {
           <div class="item-card-description">
             <p>
               Perfected over the time span of a hundred years, Cafe Sua Da has become one of the world’s most refined and popular drinks. Using our secret brewing technique and
-              the finest coffee beans in the world
+              the finest coffee beans in the world.
             </p>
           </div>
 
