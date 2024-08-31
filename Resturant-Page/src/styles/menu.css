@@ -49,7 +49,7 @@
 .item-card-image {
   margin-bottom: .75rem;
   overflow: hidden;
-
+  cursor: pointer;
 }
 
 .item-card-description > p {
