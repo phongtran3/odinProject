@@ -8,10 +8,7 @@ import createFooter from "./scripts/footer";
 import { onOverlayClick } from "./scripts/helper";
 
 createHeader();
-// createHome();
-// createAbout();
-// createContact();
-createMenu();
+createHome();
 createFooter();
 
 const content = document.getElementById("content");
