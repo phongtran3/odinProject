@@ -42,7 +42,6 @@
 }
 
 .menu-item-card {
-  margin-bottom: 2rem;
   overflow: hidden;
 }
 
@@ -64,6 +63,9 @@
 
 .item-card-image img {
   transition: transform 1s ease; 
+  max-height: 264px;
+  width: 100%;
+  object-fit: cover;
 }
 
 .item-card-image:hover img,
@@ -81,5 +83,9 @@
 @media screen and (min-width: 900px) {
   .menu-item-card {
     width: calc(33% - .5rem);
+  }
+
+  .item-card-image img {
+    min-height: 215px;
   }
 }
