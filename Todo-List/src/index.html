@@ -4,10 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <link rel="stylesheet" href="./styles/main.css" />
+
 </head>
+
 <body>
     <div class="page-content">
+        <section class="side-bar">
+            <div class="side-bar-title">
+                <h1>TOP ToDos</h1>
+            </div>
 
+            <div class="add-task-btn">
+                <button class="add-task">
+                    <img class="icon-svg" src="./assets/svgs/addPlus2.svg" alt="plus icon to add new task">
+                    <h2>Add New Task</h2>
+                </button>
+            </div>
+
+            <nav class="nav-task-container">
+                <ul class="nav-task-items">
+
+                    <li class="nav-item">
+                        <img src="./assets/svgs/list-check.svg" alt="list check icon to display all tasks" class="icon-svg">
+                        <h3>All Tasks</h3>
+                    </li>
+                    <li class="nav-item">
+                        <img src="./assets/svgs/calendar-days.svg" alt="calendar day icon" class="icon-svg">
+                        <h3>Today</h3>
+                    </li>
+                    <li class="nav-item">
+                        <img src="./assets/svgs/calendar-week.svg" alt="calendar week icon" class="icon-svg">
+                        <h3>This Week</h3>
+                    </li>
+                    <li class="nav-item">
+                        <img src="./assets/svgs/calendar-month.svg" alt="calendar month icon" class="icon-svg">
+                        <h3>This Month</h3>
+                    </li>
+                    <li class="nav-item"></li>
+                        <img src="./assets/svgs/calendar-check.svg" alt="calendar checked icon" class="icon-svg">
+                        <h3>Completed Tasks</h3>
+                    </li>
+                </ul>
+
+            </nav>
+
+            <nav class="nav-project-container">
+                <ul class="nav-project-item">
+                    <li class="nav-item">
+                        <img src="./assets/svgs/bars-progress.svg" class="icon-svg" />
+                        <h3>Project</h3>
+                        <div class="project-btns">
+                            <button><img class="icon-svg" src="./assets/svgs/edit.svg"/></button>
+                            <button><img class="icon-svg" src="./assets/svgs/trash.svg"/></button>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+        </section>
+
+        <section class="main-content">
+
+        </section>
     </div>
 </body>
 </html>
