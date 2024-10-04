@@ -2,7 +2,14 @@
 
 
 :root {
-
+    --black: #050505;
+    --darkGray: #555555;
+    --gray: #A4A4A4;
+    --white: #ffffff;
+    --offWhite: #F4F4F4;
+    --darkSkyBlue: #86C5D8;
+    --waterBlue: #CAE9F5;
+    --powderBlue: #afdceb;
 
     --font-size-body: 16px;
     --font-family-heading: "Young Serif", sans-serif;
