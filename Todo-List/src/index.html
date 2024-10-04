@@ -103,44 +103,45 @@
 
         </section>
 
-        <div class="task-modal-container modal">
-            <div class="task-modal">
+        <dialog open class="task-dialog-container">
+            <div class="task-dialog-header">
+                <h2 class="task-dialog-title">Add New Task</h2>
+                <span class="task-close">x</span>
+            </div>
 
-                <div class="task-modal-title">
-                    <h2>Add New Tasks</h2>
-                    <span class="task-close">x</span>
+            <form action="" class="task-form" method="dialog" id="form">
+                <div class="text-input">
+                    <label for="title">Title</label>
+                    <input required type="text" name="title" id="title"/>
                 </div>
 
-                <form action="" class="task-form">
-                    <div class="title-input">
-                        <input type="text" placeholder="Task Title" required/>
-                    </div>
+                <div id="project-select" class="select">
+                    <select name="projects" required>
+                        <option value="">--Select a Project--</option>
+                        <option>Project 1</option>
+                        <option>Project 2</option>
+                    </select>
 
-                    <div class="select-project">
-                        <select name="projects" id="project-selection" required>
-                            <option value="">--Select a Project--</option>
-                            <option>Project 1</option>
-                            <option>Project 2</option>
-                        </select>
-                    </div>
+                </div>
 
-                    <div class="select-priority">
-                        <select name="priority" id="priority-selection" required>
-                            <option value="">--Select a Priority--</option>
-                            <option value="low">Low</option>
-                            <option value="medium">Medium</option>
-                            <option value="high">High</option>
-                        </select>
-                    </div>
+                <div class="select-priority">
+                    <select name="priority" id="priority-selection" required>
+                        <option value="">--Select a Priority--</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
 
-                    <div class="btn-container">
-                        <button class="cancelBtn">Cancel</button>
-                        <button class="addBtn">Add Task</button>
-                    </div>
-                </form>
+                <div class="form-btn-container">
+                    <button class="cancelBtn">Cancel</button>
+                    <button class="addBtn">Add Task</button>
+                </div>
 
-            </div>
-        </div>
+            </form>
+
+
+        </dialog>
 
     </div>
 </body>
