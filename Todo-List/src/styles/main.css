@@ -43,6 +43,12 @@ img {
     /* display: block; */
 }
 
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
 .icon-svg {
     width: 24px;
 }
@@ -52,4 +58,21 @@ body {
     margin: 0;
     font-family: var(--font-family-body);
     font-size: var(--font-size-body);
+}
+
+.header-nav-mobile {
+    padding: 1rem .5rem;
+    box-shadow: 0 0 10px #00000062;
+}
+
+
+.nav-mobile-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-mobile-menu-item:first-child  {
+    position: absolute;
+    left: 1rem;
 }
