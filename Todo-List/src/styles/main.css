@@ -7,8 +7,9 @@
     --gray: #A4A4A4;
     --white: #ffffff;
     --offWhite: #F4F4F4;
+    
     --darkSkyBlue: #86C5D8;
-    --waterBlue: #CAE9F5;
+    --lightBlue: #add8e6;
     --powderBlue: #afdceb;
 
     --font-size-body: 16px;
@@ -74,12 +75,15 @@ body {
     padding: 1rem .5rem;
     box-shadow: 0 0 10px #00000062;
     background: var(--white);
+    z-index: 102;
+    position: relative;
 }
 
 .nav-mobile-menu {
     display: flex;
     justify-content: center;
     align-items: center;
+   
 }
 
 .nav-mobile-menu-item:first-child  {
@@ -89,11 +93,58 @@ body {
 
 
 .side-bar {
-    border: 1px solid red;
     background-color: var(--offWhite);
     z-index: 101;
     transition: all 0.2s;
     position: absolute;
     width: 75%;
+    max-width: fit-content;
     height: 100%;
+    padding: 1.5rem 1rem;
 }
+
+.add-task-btn {
+    margin-bottom: 1rem;
+}
+
+.icon-svg path {
+    fill: blue; /* Change the icon color */
+}
+
+
+.add-task {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: .25rem 1rem;
+    border-radius: 8px;
+    background-color: var(--darkSkyBlue);
+}
+
+.add-task > h2 {
+    opacity: .75;
+}
+
+.add-task:hover,
+.add-task:focus {
+    background-color: var(--lightBlue);
+}
+
+.nav-task-items .nav-item {
+    border: 1px solid var(--darkSkyBlue);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: .5rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    gap: 1rem;
+    width: 100%;
+}
+
+.nav-task-items .nav-item:hover,
+.nav-task-items .nav-item:focus {
+    background-color: var(--darkSkyBlue);
+}
+
