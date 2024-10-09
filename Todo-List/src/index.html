@@ -23,7 +23,7 @@
         </ul>
       </nav>
 
-      <section class="side-bar">
+      <section class="side-bar side-bar-mobile">
         <div class="add-task-btn">
           <button class="add-task">
             <img class="icon-svg" src="./assets/svgs/addPlus2.svg" alt="plus icon to add new task" />
@@ -73,6 +73,8 @@
                 <button><img class="icon-svg" src="./assets/svgs/trash.svg" /></button>
               </div>
             </li>
+
+            <li class="nav-item view-more"><h3>View More...</h3></li>
           </ul>
           <form class="add-project-form">
             <input type="text" minlength="3" class="new-project" />
@@ -81,6 +83,9 @@
       </section>
 
       <section class="main-content">
+        <div class="main-header">
+          <h2>All Task</h2>
+        </div>
         <div class="header-container">
           <ul class="header">
             <li class="header-col">Completed</li>
@@ -97,14 +102,22 @@
         <div class="task-list-container">
           <li class="task-row">
             <ul class="task">
-              <li class="task-col">Completed</li>
+              <li class="task-col"><input type="checkbox" class="task-check" /></li>
               <li class="task-col">Title</li>
               <li class="task-col">Priority</li>
               <li class="task-col">Date Created</li>
               <li class="task-col">Due Date</li>
               <li class="task-col">X</li>
-              <li class="task-col">X</li>
-              <li class="task-col">X</li>
+              <li class="task-col">
+                <button>
+                  <img class="icon-svg" src="./assets/svgs/edit.svg" />
+                </button>
+              </li>
+              <li class="task-col">
+                <button>
+                  <img class="icon-svg" src="./assets/svgs/trash.svg" />
+                </button>
+              </li>
             </ul>
           </li>
         </div>
