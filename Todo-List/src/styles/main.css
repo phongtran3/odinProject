@@ -122,6 +122,7 @@ body {
     padding: .25rem 1rem;
     border-radius: 8px;
     background-color: var(--darkSkyBlue);
+    font-size: .7rem;
 }
 
 .add-task > h2 {
@@ -144,6 +145,7 @@ body {
     margin-bottom: 1rem;
     gap: 1rem;
     width: 100%;
+    font-size: .85rem;
 }
 
 .nav-task-items .nav-item:hover,
@@ -156,6 +158,14 @@ body {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1rem;
+}
+
+.add-project {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
 }
 
 .add-project:hover {
@@ -172,12 +182,30 @@ body {
     margin-bottom: 1.5rem;
 }
 
-.nav-project-item .nav-item h3 {
+.project-title {
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.project-title:hover,
+.project-title:focus {
+    color: var(--darkSkyBlue);
+}
+
+.project-title > h3 {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 }
 
 .nav-project-item .nav-item .project-btns {
+    width: 50%;
     display: flex;
+    justify-content: flex-end;
+    align-items: center;
 } 
+
+.project-btns button:hover,
+.project-btns button:focus {
+    opacity: .6;
+}
