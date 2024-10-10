@@ -250,7 +250,8 @@ button {
     padding: 1rem;
 }
 
-.main-header {
+.main-header,
+.task-dialog-header {
     margin-bottom: 1rem;;
 }
 
@@ -292,3 +293,58 @@ button {
     justify-content: space-between;
     align-items: center;
 }
+
+.task-dialog-container {
+    border: 1px solid var(--black);
+    border-radius: 4px;
+    width: 350px;
+    z-index: 100;
+    background-color: var(--offWhite);
+}
+
+.task-form div {
+    margin-bottom: .75rem;
+}
+
+.task-form label {
+    display: inline-block;
+    margin-bottom: .25rem;
+}
+
+.task-form input,
+.task-form select {
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid var(--black);
+    padding: .5rem;
+}
+
+.task-form select {
+    text-align: center;
+    margin-bottom: .5rem;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.form-btn-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.form-btn-container button {
+    border: 2px solid var(--darkSkyBlue);
+    padding: .5rem .7rem;
+    border-radius: 50px;
+    color: var(--black);
+    font-weight: bold;
+}
+
+.form-btn-container button:hover,
+.form-btn-container button:focus {
+    background-color: var(--darkSkyBlue);
+}
+
+
+
