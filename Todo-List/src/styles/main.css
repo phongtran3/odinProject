@@ -23,7 +23,8 @@
 
 h1,
 h2,
-h3 {
+h3,
+p {
     margin: 0;
 }
 
@@ -228,7 +229,9 @@ button {
 } 
 
 .project-btns button:hover,
-.project-btns button:focus {
+.project-btns button:focus,
+.task-btn  button:hover,
+.task-btn  button:focus {
     opacity: .6;
 }
 
@@ -251,6 +254,41 @@ button {
     margin-bottom: 1rem;;
 }
 
-.header-container {
-    display: none;
+.task-card{
+    padding: 1rem;
+    background-color: var(--offWhite);
+    color: var(--black);
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
+}
+
+.task-title input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+}
+
+.task-priority,
+.task-title {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin-bottom: .5rem;
+}
+
+.date-created {
+    margin-bottom: .25rem;
+}
+
+.task-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.task-right{ 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

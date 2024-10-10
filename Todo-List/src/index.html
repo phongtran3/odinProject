@@ -87,44 +87,39 @@
           <h2>All Task</h2>
         </div>
 
-        <div class="header-container">
-          <ul class="header">
-            <li class="header-col">Completed</li>
-            <li class="header-col">Title</li>
-            <li class="header-col">Priority</li>
-            <li class="header-col">Date Created</li>
-            <li class="header-col">Due Date</li>
-            <li class="header-col"></li>
-            <li class="header-col"></li>
-            <li class="header-col"></li>
-          </ul>
-        </div>
-
         <div class="task-list-container">
-          <li class="task-row">
-            <ul class="task">
-              <li class="task-col"><input type="checkbox" class="task-check" /></li>
-              <li class="task-col">Title</li>
-              <li class="task-col task-priority">
-                <div class="flag easy"></div>
-                <span>Easy</span>
-              </li>
-              <li class="task-col">Date Created</li>
-              <li class="task-col">Due Date</li>
-              <li class="task-col">X</li>
 
-              <li class="task-col">
-                <div class="task-btns">
-                  <button>
-                    <img class="icon-svg" src="./assets/svgs/edit.svg" />
-                  </button>
-                  <button>
-                    <img class="icon-svg" src="./assets/svgs/trash.svg" />
-                  </button>
+          <div class="task-card">
+            <div class="task-left">
+              <div class="task-header">
+
+                <div class="task-title">
+                  <input type="checkbox" />
+                  <h3>Task Title</h3>
+                </div>  
+
+                <div class="task-priority">
+                  <div class="flag easy"></div>
+                  <span>Easy</span>
                 </div>
-              </li>
-            </ul>
-          </li>
+                <div class="date-created"><p>Date Created: 10/10/2024</p></div>
+              </div>
+
+            </div>
+
+            <div class="task-right">
+              <div class="date-due"><p>Due: 10/24/2024</p></div>
+              <div class="task-btn">
+                <button>
+                  <img class="icon-svg" src="./assets/svgs/edit.svg" />
+                </button>
+                <button>
+                  <img class="icon-svg" src="./assets/svgs/trash.svg" />
+                </button>
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 
