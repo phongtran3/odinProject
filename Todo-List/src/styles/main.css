@@ -65,6 +65,17 @@ button {
     padding: 0;
 }
 
+
+.flag {
+    width: 15px;
+    height: 15px;
+    border-radius: 4px
+}
+
+.easy {
+    background-color: green;
+}
+
 #nav-overlay {
     position: fixed;
     top: 0;
