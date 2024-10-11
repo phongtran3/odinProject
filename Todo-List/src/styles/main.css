@@ -107,9 +107,6 @@ button {
     left: 1rem;
 }
 
-.side-bar-mobile {
-    left: -90%;
-}
 
 .side-bar {
     background-color: var(--offWhite);
@@ -118,9 +115,10 @@ button {
     position: absolute;
     width: 75%;
     max-width: fit-content;
-    height: 100%;
+    height: 100vh;
     padding: 1.5rem 1rem;
     box-shadow: 0 0 10px #00000062;
+    left: -90%
 }
 
 .add-task-btn,
@@ -350,3 +348,24 @@ button {
 
 
 
+@media screen and (min-width: 800px){
+    .page-content {
+        display: flex;
+        height: 100%;
+        width: 100%;
+    }
+
+    .side-bar {
+        position: relative;
+        left: unset;
+    }
+
+    .main-content {
+        max-width: 1024px;
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+    }
+
+
+}
