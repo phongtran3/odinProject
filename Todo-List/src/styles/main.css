@@ -73,11 +73,25 @@ button {
     border-radius: 4px
 }
 
-.easy {
+
+s.easy {
     background-color: green;
 }
 
-#nav-overlay {
+.medium {
+    background-color: orange;
+}
+
+.hard {
+    background-color: red;
+}
+
+.task-active {
+    background-color: var(--darkSkyBlue);
+}
+
+
+#overlay {
     position: fixed;
     top: 0;
     right: 0;
@@ -107,6 +121,9 @@ button {
     left: 1rem;
 }
 
+.side-bar.showOverlay {
+    left: 0;
+}
 
 .side-bar {
     background-color: var(--offWhite);
@@ -349,6 +366,10 @@ button {
 
 
 @media screen and (min-width: 800px){
+    #mobile-menu-btn{
+        display: none;
+    }
+
     .page-content {
         display: flex;
         height: 100%;

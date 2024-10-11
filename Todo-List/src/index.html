@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= htmlWebpackPlugin.options.title %></title>
     <link rel="stylesheet" href="./styles/main.css" />
+    <script src="./scripts/index.js" defer></script>
   </head>
 
   <body>
     <div class="page-conatiner">
-      <div id="nav-overlay" class="nav-menu-overlay mobile" style="display: none"></div>
+      <div id="overlay" class="nav-menu-overlay mobile" style="display: none"></div>
 
       <nav class="header-nav-mobile">
         <ul class="nav-mobile-menu">
           <li class="nav-mobile-menu-item">
-            <button id="mobile-menu"><img class="icon-svg" src="./assets/svgs/bars.svg" /></button>
+            <button id="mobile-menu-btn"><img class="icon-svg" src="./assets/svgs/bars.svg" /></button>
           </li>
 
           <li class="nav-mobile-menu-item">
@@ -24,7 +25,7 @@
       </nav>
 
       <div class="page-content">
-        <section class="side-bar">
+        <section id="side-bar-container" class="side-bar">
           <div class="add-task-btn">
             <button class="add-task">
               <img class="icon-svg" src="./assets/svgs/addPlus2.svg" alt="plus icon to add new task" />
