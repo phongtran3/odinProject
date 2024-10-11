@@ -74,7 +74,7 @@ button {
 }
 
 
-s.easy {
+.easy {
     background-color: green;
 }
 
@@ -169,7 +169,7 @@ s.easy {
 }
 
 
-.nav-task-items .nav-item {
+.nav-task-filter .filter-item {
     border: 1px solid var(--darkSkyBlue);
     cursor: pointer;
     display: flex;
@@ -182,8 +182,8 @@ s.easy {
     font-size: .85rem;
 }
 
-.nav-task-items .nav-item:hover,
-.nav-task-items .nav-item:focus {
+.nav-task-filter .filter-item:hover,
+.nav-task-filter .filter-item:focus {
     background-color: var(--darkSkyBlue);
 }
 
