@@ -265,7 +265,7 @@ button {
     padding: 1rem;
 }
 
-.main-header,
+.main-header-container,
 .task-dialog-header {
     margin-bottom: 1rem;;
 }
@@ -309,13 +309,14 @@ button {
     align-items: center;
 }
 
-.task-dialog-container,
-.delete-dialog-container {
+#task-dialog-container,
+#delete-dialog-container {
     border: 1px solid var(--black);
     border-radius: 4px;
     width: 75%;
-    max-width: 350px;
+    max-width: 400px;
     z-index: 100;
+    text-align: center;
     background-color: var(--offWhite);
 }
 
@@ -388,5 +389,7 @@ button {
         margin: 0 auto;
     }
 
-
+    #overlay {
+        z-index: 105;
+    }
 }
