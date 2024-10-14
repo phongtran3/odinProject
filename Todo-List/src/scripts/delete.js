@@ -12,12 +12,11 @@ const setUpDeleteDialog = () => {
       if (type === "project") {
         const project = btn.closest(".nav-item");
 
-        deleteDialog.querySelector("h4").textContent = `Are you sure you want to delete this ${type}?`;
       } else {
         const task = btn.closest(".task-card");
-        deleteDialog.querySelector("h4").textContent = `Are you sure you want to delete this ${type}?`;
       }
-
+      
+      deleteDialog.querySelector("h4").textContent = `Are you sure you want to delete this ${type}?`;
       deleteDialog.showModal();
       overlay.style.display = overlay.style.display === "none" ? "block" : "none";
     });
