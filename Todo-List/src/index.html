@@ -58,10 +58,10 @@
             </ul>
           </nav>
 
-          <nav class="nav-project-container">
+          <nav id="nav-project-container">
             <div class="nav-project-header">
               <h2>Projects</h2>
-              <button class="add-project"><img src="./assets/svgs/addPlus2.svg" alt="" class="icon-svg" /></button>
+              <button id="add-project-btn" class="add-project"><img src="./assets/svgs/addPlus2.svg" alt="" class="icon-svg" /></button>
             </div>
 
             <ul class="nav-project-item">
@@ -86,6 +86,7 @@
             <form class="add-project-form">
               <input type="text" minlength="3" class="new-project" />
             </form>
+
           </nav>
         </section>
 
@@ -174,6 +175,18 @@
           <button id="no-btn">No</button>
         </div>
       </dialog>
+
+      <dialog  id="new-project-dialog-container">
+        <h4>Add New Project</h4>
+        <form action="" class="add-project-form" method="dialog">
+          <input placeholder="Project Name..." type="text" minlength="3" class="new-project" />
+          <div class="form-btn-container">
+            <button class="cancel-btn">Cancel</button>
+            <button class="add-btn">Add Project</button>
+          </div>
+        </form>
+      </dialog>
+      
     </div>
   </body>
 </html>

@@ -6,12 +6,15 @@ const sideBarContainer = document.getElementById("side-bar-container");
 const navTaskFilters = document.querySelector(".nav-task-filter");
 const filterOptions = navTaskFilters.querySelectorAll(".filter-item");
 
+const navProjectContainer = document.getElementById("nav-project-container");
+const addProjectBtn = document.getElementById("add-project-btn");
 
 
 const addEventListeners = () => {
     handleMobileMenuBtn();
     handleOverlay();
     handleFilterSelect();
+    handleNewProject();
 }
 
 
@@ -47,6 +50,16 @@ const handleFilterSelect = () => {
     })
 }
 
+{/* <form class="add-project-form">
+    <input type="text" minlength="3" class="new-project" />
+</form> */}
+
+const handleNewProject = () => {
+    addProjectBtn.addEventListener("click", () => {
+        console.log("test");
+        
+    })
+}
 
 
 export default addEventListeners;
