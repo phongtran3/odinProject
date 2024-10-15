@@ -101,6 +101,11 @@ button {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+.full-overlay {
+    z-index: 105 !important;
+}
+
+
 .header-nav-mobile {
     padding: 1rem .5rem;
     box-shadow: 0 0 10px #00000062;
