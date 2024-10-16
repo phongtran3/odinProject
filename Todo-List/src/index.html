@@ -83,10 +83,9 @@
               <li class="nav-item view-more"><h3>View More...</h3></li>
             </ul>
 
-            <form class="add-project-form">
+            <!-- <form class="add-project-form">
               <input type="text" minlength="3" class="new-project" />
-            </form>
-
+            </form> -->
           </nav>
         </section>
 
@@ -176,17 +175,16 @@
         </div>
       </dialog>
 
-      <dialog  id="new-project-dialog-container">
+      <dialog id="new-project-dialog-container">
         <h4>Add New Project</h4>
-        <form action="" class="add-project-form" method="dialog">
-          <input placeholder="Project Name..." type="text" minlength="3" class="new-project" />
+        <form class="add-project-form">
+          <input name="project-name" placeholder="Project Name..." type="text" class="new-project" required />
           <div class="form-btn-container">
-            <button class="cancel-btn">Cancel</button>
-            <button class="add-btn">Add Project</button>
+            <button type="button" class="cancel-btn">Cancel</button>
+            <button type="submit" class="add-btn">Add Project</button>
           </div>
         </form>
       </dialog>
-      
     </div>
   </body>
 </html>
