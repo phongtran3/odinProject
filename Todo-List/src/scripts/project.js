@@ -7,6 +7,16 @@ export class Project {
         this.title = title;
     }
 
+    editProjectTitle(taskID, newTitle) {
+        if(!taskID && taskID !== 0) return;
+
+        let index = this.#tasks.findIndex(task => task.id === taskID);
+
+        if(index >= 0) {
+            this.#tasks[index] = {...this.#tasks[index], title: newTitle};
+        }
+
+    }
 
     addTask(task) {
         if(!task) return
