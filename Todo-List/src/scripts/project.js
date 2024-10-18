@@ -16,20 +16,30 @@ export class Project {
     }
 
     deleteTask(taskID) {
-        if(!taskID) return;
+        if(!taskID && taskID !== 0) return;
 
-        this.#tasks = this.#tasks.filter(id => id !== taskID); //Remove the task from the array
+        this.#tasks = this.#tasks.filter(task => task.id !== taskID); //Remove the task from the array
 
         //Shift ID down
         this.#tasks = this.#tasks.map(task => {
             if(task.id > taskID){
-                task = {...task, id: taskID - 1};
+                task = {...task, id: task.id - 1};
             }
-            
+
             return task;
         });
 
         this.#taskID--;
+    }
+
+    getTask(taskID) {
+        if(!taskID && taskID !== 0) return;
+
+        let index = this.#tasks.findIndex(task => task.id === taskID);
+
+        if(index < 0) return null;
+
+        return this.#tasks[index];
     }
 
     getTasks() {
