@@ -1,5 +1,5 @@
 
-export class Project {
+export default class Project {
     #tasks = [];
     #taskID = 1;
 

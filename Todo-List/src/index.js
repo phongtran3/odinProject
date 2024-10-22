@@ -1,5 +1,4 @@
-import { setUpDeleteDialog } from "./scripts/delete.js";
-import addEventListeners from "./scripts/eventListener.js";
+//import styling
+import screenManager from "./scripts/screenManager.js";
 
-setUpDeleteDialog();
-addEventListeners();
+screenManager();
