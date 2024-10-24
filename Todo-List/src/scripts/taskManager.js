@@ -22,7 +22,14 @@ export default function taskManager() {
     }
   };
 
-  const addProject = (projectName) => {};
+  const addProject = (projectName) => {
+    //Check if a project with name exist
+    //if exist display error to user
+    //else create new Project class
+    //add new Project class to array
+    //update local storage
+    //return project and update content
+  };
   const editProjectName = (projectName) => {};
   const deleteProject = (projectName) => {};
   const getProject = (projectName) => {};
