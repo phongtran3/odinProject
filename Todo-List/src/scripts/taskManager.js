@@ -23,16 +23,42 @@ export default function taskManager() {
   };
 
   const addProject = (projectName) => {
-    //Check if a project with name exist
+    //Check if a project with name exist in project array
     //if exist display error to user
     //else create new Project class
     //add new Project class to array
     //update local storage
     //return project and update content
   };
-  const editProjectName = (projectName) => {};
-  const deleteProject = (projectName) => {};
-  const getProject = (projectName) => {};
+  
+  const editProjectName = (projectName) => {
+    /*
+    Check if a project with name exist in project array
+    if exist, update project name
+    update local storage
+    update content
+    */
+  };
+
+  const deleteProject = (projectName) => {
+    /*
+    Check if a project with name exist in project array
+      search array (find index)
+      if found, remove from array
+    */
+  };
+
+
+  const getProject = (projectName) => {
+    /*
+    Check if a project with name exist in project array
+    if exist, return project
+    else display error
+    */
+
+  };
+
+  
   const getAllProjects = () => {
     return projects;
   };
