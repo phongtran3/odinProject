@@ -6,4 +6,6 @@ export default function screenManager() {
 
   const app = taskManager();
   app.initialLoad();
+
+  //update screen function?
 }

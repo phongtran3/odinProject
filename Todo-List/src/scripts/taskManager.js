@@ -30,7 +30,7 @@ export default function taskManager() {
     //update local storage
     //return project and update content
   };
-  
+
   const editProjectName = (projectName) => {
     /*
     Check if a project with name exist in project array
@@ -48,23 +48,44 @@ export default function taskManager() {
     */
   };
 
-
   const getProject = (projectName) => {
     /*
     Check if a project with name exist in project array
     if exist, return project
     else display error
     */
-
   };
 
-  
   const getAllProjects = () => {
     return projects;
   };
 
-  const addTask = (taskJson) => {};
-  const editTask = (projectName, taskID, updatedJson) => {};
+  const addTask = (taskJson) => {
+    /*
+    -title, dueDate, project, priority, done-
+    Check if taskJson isn't null
+    Check if project from taskJson exist
+    if exist, add task to the project task's array
+    update local storage
+    update content
+    */
+  };
+
+  const editTask = (projectName, taskID, updatedJson) => {
+    /*
+    Check if updatedJson isn't null
+    Get current task
+    Check if current project exist
+    If project exist, check if the project is the same as updated project
+      if same, update current project with updatedJson
+      else, 
+        current project needs to remove current task
+        new project needs to add updated project
+    update local storage
+    update content
+    */
+  };
+
   const deleteTask = (projectName, taskID) => {};
   const getTask = (projectName, taskID) => {};
   const getAllTasks = () => {};
