@@ -1,7 +1,7 @@
 import Task from "./task.js";
 import Project from "./project.js";
 import checkStorage from "./checkStorage.js";
-import { isToday, addWeeks, isWithinInterval, startOfDay, endOfDay } from "date-fns";
+import { isToday, addWeeks, isWithinInterval, startOfDay, endOfDay, startOfWeek, addDays, startOfMonth, endOfMonth } from "date-fns";
 
 export default function taskManager() {
   console.log("Task Manager");
@@ -86,13 +86,84 @@ export default function taskManager() {
     */
   };
 
-  const deleteTask = (projectName, taskID) => {};
-  const getTask = (projectName, taskID) => {};
-  const getAllTasks = () => {};
-  const getTodayTasks = () => {};
-  const getWeekTasks = () => {};
-  const getMonthTasks = () => {};
-  const getCompletedTasks = () => {};
+  const deleteTask = (projectName, taskID) => {
+    /*
+    Check if task and project exist and if task exist in project
+    if exist, find task in project tasks array and remove it
+    update local storage
+    update content
+    */
+  };
+
+  //Get current task for when user edit a task
+  //This is to populate the form fields
+  const getTask = (projectName, taskID) => {
+    /*
+    Check if task and project exist and if task exist in project
+    If exist, find task
+      find project task belong to
+      find task in project's tasks array
+      return task
+    */
+  };
+
+  const getAllTasks = () => {
+    /*
+    Since tasks are contain in project's tasks array, projects array. 
+    Create an array, tasks, to hold all the tasks.
+    For each projects, loop through their tasks array and add it into the 
+    tasks array. 
+    Return the tasks array that hold all the tasks
+    */
+  };
+
+  const getTodayTasks = () => {
+    /*
+    Simlar to getting all the tasks
+    filter by due date using isToday function from date-fns
+    */
+  };
+
+  //Grab tasks within the week (Monday - Sunday)
+  const getWeekTasks = () => {
+    /*
+      Grab all tasks
+      Create variable for Monday using startOfWeek function
+      Create variable for Sunday using addDays function
+      Filter through all task and see if the duedate is within the two variable
+        using isWithinInterval function
+      return tasks
+    */
+  };
+
+  //Grab task within the month (First day - last day)
+  const getMonthTasks = () => {
+    /*
+      Grab all tasks
+      Create variable for firstDay using startOfMonth function
+      Create variable for lastDay using endOfMonth function
+      Filter through all task and see if due date is within the two variables
+        using isWithinInterval function
+      return tasks
+    */
+  };
+
+  //Grab all completed task
+  const getCompletedTasks = () => {
+    /*
+      Grab all tasks
+      Filter through all tasks and return tasks that has done attributes as true.
+    */
+  };
+
+  const updateLocalStorage = () => {
+    /*
+      Grab all tasks
+      Grab all projects name
+      Set tasks in local storage (tasks, json.stringify(tasks))
+      Set project name in local storage (projectName, json.stringify(projectnames)
+    */
+  };
 
   return {
     initialLoad,
