@@ -10,6 +10,7 @@ export default function screenManager() {
   const sideBarContainer = document.getElementById("side-bar-container");
 
   const addProjectBtn = document.getElementById("add-project-btn");
+  const projectErrorMsg = document.getElementById("project-error");
 
   const app = taskManager();
   app.initialLoad();
@@ -20,6 +21,7 @@ export default function screenManager() {
     form.reset();
     dialog.close();
     overlay.style.display = "none";
+    projectErrorMsg.style.display = "none";
 
     if (sideBarContainer.classList.contains("showOverlay")) {
       sideBarContainer.classList.toggle("showOverlay");
@@ -41,6 +43,7 @@ export default function screenManager() {
     const newProjectDialog = document.getElementById("new-project-dialog-container");
     const newProjectForm = document.querySelector(".add-project-form");
     const projectCancelBtn = newProjectForm.querySelector(".cancel-btn");
+    const projectErrorMsg = document.getElementById("project-error");
 
     checkMobileOverlay();
 
@@ -53,9 +56,10 @@ export default function screenManager() {
       e.preventDefault();
 
       const projectTitle = newProjectForm.querySelector(".new-project").value.trim();
+
       if (app.getProject(projectTitle)) {
-        //display error
         console.log("Error");
+        projectErrorMsg.style.display = "block";
       } else {
         console.log("Submiting New Project...");
         app.addProject(projectTitle);
