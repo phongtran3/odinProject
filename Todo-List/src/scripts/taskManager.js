@@ -23,6 +23,7 @@ export default function taskManager() {
   };
 
   const addProject = (projectName) => {
+    console.log(`Adding New Project... ${projectName}`);
     //Check if a project with name exist in project array
     //if exist display error to user
     //else create new Project class
@@ -167,5 +168,6 @@ export default function taskManager() {
 
   return {
     initialLoad,
+    addProject,
   };
 }

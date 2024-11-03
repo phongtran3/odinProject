@@ -14,7 +14,7 @@ const addEventListeners = () => {
   handleMobileMenuBtn();
   handleOverlay();
   handleFilterSelect();
-  handleNewProject();
+  //handleNewProject();
 };
 
 const handleMobileMenuBtn = () => {
@@ -44,7 +44,7 @@ const handleFilterSelect = () => {
       const mainHeader = li.querySelector("h3").textContent;
       document.getElementById("main-header").innerHTML = mainHeader;
 
-      console.log("test");
+      console.log(`Selecting filter... ${mainHeader}`);
     });
   });
 };
@@ -55,10 +55,10 @@ const handleFilterSelect = () => {
 </form> */
 }
 
-const handleNewProject = () => {
-  addProjectBtn.addEventListener("click", () => {
-    setUpAddProject();
-  });
-};
+// const handleNewProject = () => {
+//   addProjectBtn.addEventListener("click", () => {
+//     setUpAddProject();
+//   });
+// };
 
 export default addEventListeners;
