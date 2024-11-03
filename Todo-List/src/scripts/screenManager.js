@@ -50,13 +50,17 @@ export default function screenManager() {
     };
 
     const sumbitNewProject = (e) => {
-      console.log("Submiting New Project...");
       e.preventDefault();
 
       const projectTitle = newProjectForm.querySelector(".new-project").value.trim();
-      app.addProject(projectTitle);
-
-      closeDialog(newProjectForm, newProjectDialog);
+      if (app.getProject(projectTitle)) {
+        //display error
+        console.log("Error");
+      } else {
+        console.log("Submiting New Project...");
+        app.addProject(projectTitle);
+        closeDialog(newProjectForm, newProjectDialog);
+      }
     };
 
     newProjectDialog.showModal();

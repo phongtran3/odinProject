@@ -5,7 +5,7 @@ import { isToday, addWeeks, isWithinInterval, startOfDay, endOfDay, startOfWeek,
 
 export default function taskManager() {
   console.log("Task Manager");
-  const projects = [];
+  const projects = [{ title: "BCS" }];
 
   const initialLoad = () => {
     if (checkStorage("localStorage")) {
@@ -50,6 +50,12 @@ export default function taskManager() {
   };
 
   const getProject = (projectName) => {
+    console.log(`Attempting to get project ${projectName}...`);
+
+    let index = projects.findIndex((project) => project.title === projectName);
+
+    if (index <= -1) return false;
+    return projects[index];
     /*
     Check if a project with name exist in project array
     if exist, return project
@@ -169,5 +175,6 @@ export default function taskManager() {
   return {
     initialLoad,
     addProject,
+    getProject,
   };
 }
