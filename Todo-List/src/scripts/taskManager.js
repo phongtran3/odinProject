@@ -24,12 +24,18 @@ export default function taskManager() {
 
   const addProject = (projectName) => {
     console.log(`Adding New Project... ${projectName}`);
+
+    let index = projects.findIndex((project) => project.title === projectName);
+    if (index !== -1) return false;
+
+    let project = new Project(projectName);
+    projects.push(project);
+    updateLocalStorage();
     //Check if a project with name exist in project array
-    //if exist display error to user
-    //else create new Project class
+    //create new Project class if doesn't
     //add new Project class to array
     //update local storage
-    //return project and update content
+    //update content
   };
 
   const editProjectName = (projectName) => {
@@ -164,6 +170,11 @@ export default function taskManager() {
   };
 
   const updateLocalStorage = () => {
+    let projectsName = projects.map((project) => project.title);
+    let tasks = getAllTasks();
+
+    localStorage.setItem("projectNames", JSON.stringify(projectsName));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
     /*
       Grab all tasks
       Grab all projects name
