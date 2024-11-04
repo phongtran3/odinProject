@@ -14,6 +14,8 @@ export default function screenManager() {
   const navProjects = document.getElementById("nav-project-items");
   const addProjectBtn = document.getElementById("add-project-btn");
 
+  const addTaskBtn = document.getElementById("add-task-btn");
+
   const app = taskManager();
   app.initialLoad();
 
@@ -95,5 +97,23 @@ export default function screenManager() {
     return navItem;
   };
 
+  //Handle Adding new Task
+  const handleNewTask = () => {
+    console.log("Adding new task...");
+    checkMobileOverlay();
+    const taskDialog = document.getElementById("task-dialog-container");
+    const taskForm = document.getElementById("task-form");
+    const taskCancelBtn = taskForm.querySelector(".cancel-btn");
+
+    const cancelNewTask = () => {
+      taskForm.setAttribute("novalidate", true);
+      closeDialog(taskForm, taskDialog);
+    };
+
+    taskDialog.showModal();
+    taskCancelBtn.addEventListener("click", cancelNewTask);
+  };
+
   addProjectBtn.addEventListener("click", handleNewProject);
+  addTaskBtn.addEventListener("click", handleNewTask);
 }
