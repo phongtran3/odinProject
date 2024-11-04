@@ -9,7 +9,6 @@ const addEventListeners = () => {
   handleMobileMenuBtn();
   handleOverlay();
   handleFilterSelect();
-  //handleNewProject();
 };
 
 const handleMobileMenuBtn = () => {

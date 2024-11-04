@@ -187,5 +187,6 @@ export default function taskManager() {
     initialLoad,
     addProject,
     getProject,
+    getAllProjects,
   };
 }
