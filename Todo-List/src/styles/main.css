@@ -322,7 +322,6 @@ button {
 #task-dialog-container,
 #delete-dialog-container,
 #new-project-dialog-container {
-    border: 1px solid var(--black);
     border-radius: 4px;
     width: 75%;
     max-width: 400px;
