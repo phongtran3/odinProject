@@ -13,7 +13,7 @@ export default function screenManager() {
   const overlay = document.getElementById("overlay");
 
   const newProjectDialog = document.getElementById("new-project-dialog-container");
-  const newProjectForm = document.querySelector(".add-project-form");
+  const newProjectForm = document.getElementById("add-project-form");
   const projectCancelBtn = newProjectForm.querySelector(".cancel-btn");
   const projectErrorMsg = document.getElementById("project-error");
   const projectDialogTitle = document.getElementById("project-dialog-title");
@@ -27,6 +27,7 @@ export default function screenManager() {
 
   //update screen function
   const updateScreen = () => {
+    console.log("Updating Screen...");
     navProjects.textContent = "";
     updateProjects();
   };
@@ -93,7 +94,7 @@ export default function screenManager() {
       <h3 title=${project.title}>${project.title}</h3>
     `;
 
-    editBtn.id = "edit-project";
+    editBtn.classList.add("edit-project");
     editBtn.innerHTML = `
       <img class="icon-svg" src="${editIcon}" />
     `;
@@ -133,4 +134,7 @@ export default function screenManager() {
   newProjectForm.addEventListener("submit", sumbitNewProject);
 
   addTaskBtn.addEventListener("click", handleNewTask);
+
+  //initial load
+  updateScreen();
 }

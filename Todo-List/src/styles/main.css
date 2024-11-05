@@ -259,11 +259,11 @@ button {
     opacity: .6;
 }
 
-.add-project-form {
+#add-project-form {
     width: 100%;
 }
 
-.add-project-form input {
+#add-project-form input {
     width: 100%;
     border-radius: 4px;
     padding: .5rem;

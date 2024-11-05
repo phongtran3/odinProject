@@ -71,10 +71,10 @@
                 </div>
 
                 <div class="project-btns">
-                  <button id="edit-project">
+                  <button class="edit-project">
                     <img class="icon-svg" src="./assets/svgs/edit.svg" />
                   </button>
-                  <button data-type="project" class="delete-btn">
+                  <button class="delete-btn">
                     <img class="icon-svg" src="./assets/svgs/trash.svg" />
                   </button>
                 </div>
@@ -113,10 +113,10 @@
               <div class="task-right">
                 <div class="date-due"><p>Due: 10/24/2024</p></div>
                 <div class="task-btn">
-                  <button>
+                  <button class="edit-task">
                     <img class="icon-svg" src="./assets/svgs/edit.svg" />
                   </button>
-                  <button data-type="task" class="delete-btn">
+                  <button class="delete-btn">
                     <img class="icon-svg" src="./assets/svgs/trash.svg" />
                   </button>
                 </div>
@@ -177,7 +177,7 @@
       <dialog id="new-project-dialog-container">
         <h4 id="project-dialog-title"></h4>
         <p id="project-error" style="color: red; display: none">A project with this name already exist. Please input a new name.</p>
-        <form class="add-project-form">
+        <form id="add-project-form">
           <input name="project-name" placeholder="Project Name..." type="text" class="new-project" required />
           <div class="form-btn-container">
             <button type="button" class="cancel-btn">Cancel</button>

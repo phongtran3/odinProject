@@ -9,7 +9,7 @@ export default function taskManager() {
 
   const initialLoad = () => {
     if (checkStorage("localStorage")) {
-      let projects = localStorage.getItem("projectName");
+      let projects = localStorage.getItem("projectNames");
       let tasks = localStorage.getItem("tasks");
 
       if (tasks && projects) {
@@ -171,8 +171,8 @@ export default function taskManager() {
   };
 
   const updateLocalStorage = () => {
-    let projectsName = projects.map((project) => project.title);
-    let tasks = getAllTasks();
+    let projectsName = projects.map((project) => project.title) || [];
+    let tasks = getAllTasks() || [];
 
     localStorage.setItem("projectNames", JSON.stringify(projectsName));
     localStorage.setItem("tasks", JSON.stringify(tasks));
