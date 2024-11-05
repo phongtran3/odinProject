@@ -5,7 +5,7 @@ import { isToday, addWeeks, isWithinInterval, startOfDay, endOfDay, startOfWeek,
 
 export default function taskManager() {
   console.log("Task Manager");
-  const projects = [{ title: "BCS" }];
+  const projects = [];
 
   const initialLoad = () => {
     if (checkStorage("localStorage")) {
@@ -30,6 +30,7 @@ export default function taskManager() {
 
     let project = new Project(projectName);
     projects.push(project);
+    console.log(projects);
     updateLocalStorage();
     //Check if a project with name exist in project array
     //create new Project class if doesn't

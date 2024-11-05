@@ -11,6 +11,12 @@ export default function screenManager() {
 
   addEventListeners();
   const overlay = document.getElementById("overlay");
+
+  const newProjectDialog = document.getElementById("new-project-dialog-container");
+  const newProjectForm = document.querySelector(".add-project-form");
+  const projectCancelBtn = newProjectForm.querySelector(".cancel-btn");
+  const projectErrorMsg = document.getElementById("project-error");
+  const projectDialogTitle = document.getElementById("project-dialog-title");
   const navProjects = document.getElementById("nav-project-items");
   const addProjectBtn = document.getElementById("add-project-btn");
 
@@ -21,6 +27,7 @@ export default function screenManager() {
 
   //update screen function
   const updateScreen = () => {
+    navProjects.textContent = "";
     updateProjects();
   };
 
@@ -33,39 +40,43 @@ export default function screenManager() {
   };
 
   //Handle adding/canceling new projects
-  const handleNewProject = () => {
-    console.log("Adding new project...");
-    const newProjectDialog = document.getElementById("new-project-dialog-container");
-    const newProjectForm = document.querySelector(".add-project-form");
-    const projectCancelBtn = newProjectForm.querySelector(".cancel-btn");
-    const projectErrorMsg = document.getElementById("project-error");
+  const cancelNewProject = () => {
+    console.log("Canceling New Project...");
+    closeDialog(newProjectForm, newProjectDialog);
+  };
 
-    checkMobileOverlay();
+  const sumbitNewProject = (e) => {
+    e.preventDefault();
 
-    const cancelNewProject = () => {
-      console.log("Canceling New Project...");
+    const projectTitle = newProjectForm.querySelector(".new-project").value.trim();
+    console.log(projectTitle);
+
+    if (app.getProject(projectTitle)) {
+      console.log("Error");
+      projectErrorMsg.style.display = "block";
+    } else {
+      console.log("Submiting New Project...");
+      app.addProject(projectTitle);
+      updateScreen();
       closeDialog(newProjectForm, newProjectDialog);
-    };
+    }
+  };
 
-    const sumbitNewProject = (e) => {
-      e.preventDefault();
-
-      const projectTitle = newProjectForm.querySelector(".new-project").value.trim();
-
-      if (app.getProject(projectTitle)) {
-        console.log("Error");
-        projectErrorMsg.style.display = "block";
-      } else {
-        console.log("Submiting New Project...");
-        app.addProject(projectTitle);
-        updateScreen();
-        closeDialog(newProjectForm, newProjectDialog);
-      }
-    };
-
+  const handleProjectDialog = (title, projectName) => {
+    checkMobileOverlay();
+    projectDialogTitle.textContent = title;
+    if (projectName) {
+      const projectNameInput = document.querySelector(".new-project");
+      projectNameInput.value = projectName;
+    }
     newProjectDialog.showModal();
-    projectCancelBtn.addEventListener("click", cancelNewProject);
-    newProjectForm.addEventListener("submit", sumbitNewProject);
+  };
+
+  const handleEditProject = () => {
+    console.log("Editing Project...");
+    projectDialogTitle.textContent = "Editing Project";
+    checkMobileOverlay();
+    newProjectDialog.showModal();
   };
 
   const createProjectElement = (project) => {
@@ -94,6 +105,8 @@ export default function screenManager() {
     projectBtnsDiv.classList.add("project-btns");
     projectBtnsDiv.append(editBtn, deleteBtn);
     navItem.append(projectTitleDiv, projectBtnsDiv);
+
+    editBtn.addEventListener("click", handleEditProject);
     return navItem;
   };
 
@@ -114,6 +127,10 @@ export default function screenManager() {
     taskCancelBtn.addEventListener("click", cancelNewTask);
   };
 
-  addProjectBtn.addEventListener("click", handleNewProject);
+  //Event Listener Declariations
+  addProjectBtn.addEventListener("click", () => handleProjectDialog("Adding New Project"));
+  projectCancelBtn.addEventListener("click", cancelNewProject);
+  newProjectForm.addEventListener("submit", sumbitNewProject);
+
   addTaskBtn.addEventListener("click", handleNewTask);
 }
