@@ -73,11 +73,12 @@ export default function screenManager() {
     newProjectDialog.showModal();
   };
 
-  const handleEditProject = () => {
+  const handleEditProject = (e) => {
     console.log("Editing Project...");
-    projectDialogTitle.textContent = "Editing Project";
-    checkMobileOverlay();
-    newProjectDialog.showModal();
+    const projectItem = this.closest('.nav-item');
+    const projectTitle = projectItem.querySelector('.project-title h3');
+    console.log(projectTitle);
+    handleProjectDialog("Editing Project", )
   };
 
   const createProjectElement = (project) => {
