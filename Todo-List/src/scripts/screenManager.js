@@ -22,6 +22,8 @@ export default function screenManager() {
 
   const addTaskBtn = document.getElementById("add-task-btn");
 
+  let currentProjectTitle = "";
+
   const app = taskManager();
   app.initialLoad();
 
@@ -40,29 +42,37 @@ export default function screenManager() {
     });
   };
 
-  //Handle adding/canceling new projects
+  //Canceling New/Edit Project
   const cancelNewProject = () => {
     console.log("Canceling New Project...");
     closeDialog(newProjectForm, newProjectDialog);
   };
 
+  //Submit New Project or Edit Existing Project Name
   const sumbitNewProject = (e) => {
     e.preventDefault();
-
     const projectTitle = newProjectForm.querySelector(".new-project").value.trim();
     console.log(projectTitle);
-
     if (app.getProject(projectTitle)) {
       console.log("Error");
       projectErrorMsg.style.display = "block";
-    } else {
+      return;
+    }
+
+    if (projectDialogTitle.textContent === "Adding New Project") {
       console.log("Submiting New Project...");
       app.addProject(projectTitle);
+      updateScreen();
+      closeDialog(newProjectForm, newProjectDialog);
+    } else {
+      console.log("Editing New Project...");
+      app.editProjectName(currentProjectTitle, projectTitle);
       updateScreen();
       closeDialog(newProjectForm, newProjectDialog);
     }
   };
 
+  //Handle Opening Project Dialog for Adding/Editing Project
   const handleProjectDialog = (title, projectName) => {
     checkMobileOverlay();
     projectDialogTitle.textContent = title;
@@ -73,14 +83,17 @@ export default function screenManager() {
     newProjectDialog.showModal();
   };
 
+  //Handle Opening Project for Editing
   const handleEditProject = (e) => {
     console.log("Editing Project...");
-    const projectItem = this.closest('.nav-item');
-    const projectTitle = projectItem.querySelector('.project-title h3');
-    console.log(projectTitle);
-    handleProjectDialog("Editing Project", )
+    const button = e.currentTarget;
+    const projectItem = button.closest(".nav-item");
+    const projectTitle = projectItem.querySelector(".project-title h3");
+    currentProjectTitle = projectTitle.textContent;
+    handleProjectDialog("Editing Project", projectTitle.textContent);
   };
 
+  //Creating Nav Project Element
   const createProjectElement = (project) => {
     const navItem = document.createElement("li");
     const projectTitleDiv = document.createElement("div");

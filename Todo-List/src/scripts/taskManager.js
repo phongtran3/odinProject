@@ -39,7 +39,13 @@ export default function taskManager() {
     //update content
   };
 
-  const editProjectName = (projectName) => {
+  const editProjectName = (currentProjectName, newProjectName) => {
+    console.log(`Editing New Project... ${currentProjectName} to ${newProjectName}`);
+
+    let index = projects.findIndex((project) => project.title === currentProjectName);
+    if (index <= -1) return false;
+    projects[index].title = newProjectName;
+    updateLocalStorage();
     /*
     Check if a project with name exist in project array
     if exist, update project name
@@ -189,5 +195,6 @@ export default function taskManager() {
     addProject,
     getProject,
     getAllProjects,
+    editProjectName,
   };
 }
