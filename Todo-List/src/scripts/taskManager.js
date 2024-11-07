@@ -55,6 +55,11 @@ export default function taskManager() {
   };
 
   const deleteProject = (projectName) => {
+    console.log(`Deleting ${projectName}...`)
+    let index = projects.findIndex((project) => project.title === projectName);
+    if (index <= -1) return false;
+    projects.splice(index, 1);
+    updateLocalStorage();
     /*
     Check if a project with name exist in project array
       search array (find index)
@@ -196,5 +201,6 @@ export default function taskManager() {
     getProject,
     getAllProjects,
     editProjectName,
+    deleteProject,
   };
 }

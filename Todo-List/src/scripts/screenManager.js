@@ -136,10 +136,19 @@ export default function screenManager() {
   //Delete Dialog
   const handleDeleteDialog = (type, name) => {
     console.log(`Attemping to delete ${type} ${name}`);
+    currentProjectTitle = name;
     checkMobileOverlay();
     deleteDialog.querySelector("h4").textContent = `Are you sure you want to delete this ${type}?`;
     deleteDialog.showModal();
   };
+
+  //Handle deleting project
+  const handleDeleteProject = () => {
+    app.deleteProject(currentProjectTitle);
+    updateScreen();
+    closeDeleteDialog(deleteDialog)
+  }
+
 
   //Handle Adding new Task
   const handleNewTask = () => {
@@ -165,6 +174,8 @@ export default function screenManager() {
 
   //deleteBtns.forEach((btn) => btn.addEventListener("click", handleDeleteDialog));
   noBtn.addEventListener("click", () => closeDeleteDialog(deleteDialog));
+  yesBtn.addEventListener("click", handleDeleteProject);
+
   addTaskBtn.addEventListener("click", handleNewTask);
 
   //initial load
