@@ -1,6 +1,6 @@
 import taskManager from "./taskManager.js";
 import addEventListeners from "./eventListener.js";
-import { closeDialog, checkMobileOverlay } from "./screenHelper.js";
+import { closeProjectDialog, checkMobileOverlay, closeDeleteDialog } from "./screenHelper.js";
 import trashIcon from "../assets/svgs/trash.svg";
 import editIcon from "../assets/svgs/edit.svg";
 
@@ -21,6 +21,11 @@ export default function screenManager() {
   const addProjectBtn = document.getElementById("add-project-btn");
 
   const addTaskBtn = document.getElementById("add-task-btn");
+
+  const deleteDialog = document.getElementById("delete-dialog-container");
+  const deleteBtns = document.querySelectorAll(".delete-btn");
+  const yesBtn = document.getElementById("yes-btn");
+  const noBtn = document.getElementById("no-btn");
 
   let currentProjectTitle = "";
 
@@ -45,7 +50,7 @@ export default function screenManager() {
   //Canceling New/Edit Project
   const cancelNewProject = () => {
     console.log("Canceling New Project...");
-    closeDialog(newProjectForm, newProjectDialog);
+    closeProjectDialog(newProjectForm, newProjectDialog);
   };
 
   //Submit New Project or Edit Existing Project Name
@@ -63,12 +68,12 @@ export default function screenManager() {
       console.log("Submiting New Project...");
       app.addProject(projectTitle);
       updateScreen();
-      closeDialog(newProjectForm, newProjectDialog);
+      closeProjectDialog(newProjectForm, newProjectDialog);
     } else {
       console.log("Editing New Project...");
       app.editProjectName(currentProjectTitle, projectTitle);
       updateScreen();
-      closeDialog(newProjectForm, newProjectDialog);
+      closeProjectDialog(newProjectForm, newProjectDialog);
     }
   };
 
@@ -114,15 +119,26 @@ export default function screenManager() {
     `;
 
     deleteBtn.classList.add("delete-btn");
+    deleteBtn.setAttribute("data-type", "project");
     deleteBtn.innerHTML = `
       <img class="icon-svg" src="${trashIcon}">
     `;
+
     projectBtnsDiv.classList.add("project-btns");
     projectBtnsDiv.append(editBtn, deleteBtn);
     navItem.append(projectTitleDiv, projectBtnsDiv);
 
     editBtn.addEventListener("click", handleEditProject);
+    deleteBtn.addEventListener("click", () => handleDeleteDialog("project", project.title));
     return navItem;
+  };
+
+  //Delete Dialog
+  const handleDeleteDialog = (type, name) => {
+    console.log(`Attemping to delete ${type} ${name}`);
+    checkMobileOverlay();
+    deleteDialog.querySelector("h4").textContent = `Are you sure you want to delete this ${type}?`;
+    deleteDialog.showModal();
   };
 
   //Handle Adding new Task
@@ -135,7 +151,7 @@ export default function screenManager() {
 
     const cancelNewTask = () => {
       taskForm.setAttribute("novalidate", true);
-      closeDialog(taskForm, taskDialog);
+      closeProjectDialog(taskForm, taskDialog);
     };
 
     taskDialog.showModal();
@@ -147,6 +163,8 @@ export default function screenManager() {
   projectCancelBtn.addEventListener("click", cancelNewProject);
   newProjectForm.addEventListener("submit", sumbitNewProject);
 
+  //deleteBtns.forEach((btn) => btn.addEventListener("click", handleDeleteDialog));
+  noBtn.addEventListener("click", () => closeDeleteDialog(deleteDialog));
   addTaskBtn.addEventListener("click", handleNewTask);
 
   //initial load
