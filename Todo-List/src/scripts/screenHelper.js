@@ -1,7 +1,8 @@
 const sideBarContainer = document.getElementById("side-bar-container");
 const projectErrorMsg = document.getElementById("project-error");
 
-export const closeProjectDialog = (form, dialog) => {
+export const cancelFormDialogs = (form, dialog) => {
+  console.log("Closing Dilaog...");
   form.reset();
   dialog.close();
   overlay.style.display = "none";

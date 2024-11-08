@@ -1,6 +1,6 @@
 import taskManager from "./taskManager.js";
 import addEventListeners from "./eventListener.js";
-import { closeProjectDialog, checkMobileOverlay, closeDeleteDialog } from "./screenHelper.js";
+import { cancelFormDialogs, checkMobileOverlay, closeDeleteDialog } from "./screenHelper.js";
 import trashIcon from "../assets/svgs/trash.svg";
 import editIcon from "../assets/svgs/edit.svg";
 
@@ -20,7 +20,10 @@ export default function screenManager() {
   const navProjects = document.getElementById("nav-project-items");
   const addProjectBtn = document.getElementById("add-project-btn");
 
-  const addTaskBtn = document.getElementById("add-task-btn");
+  const newTaskDialog = document.getElementById("task-dialog-container");
+  const newTaskForm = document.getElementById("task-form");
+  const taskCancelBtn = newTaskForm.querySelector(".cancel-btn");
+  const addNewTaskBtn = document.getElementById("add-task-btn");
 
   const deleteDialog = document.getElementById("delete-dialog-container");
   const deleteBtns = document.querySelectorAll(".delete-btn");
@@ -47,12 +50,6 @@ export default function screenManager() {
     });
   };
 
-  //Canceling New/Edit Project
-  const cancelNewProject = () => {
-    console.log("Canceling New Project...");
-    closeProjectDialog(newProjectForm, newProjectDialog);
-  };
-
   //Submit New Project or Edit Existing Project Name
   const sumbitNewProject = (e) => {
     e.preventDefault();
@@ -68,17 +65,17 @@ export default function screenManager() {
       console.log("Submiting New Project...");
       app.addProject(projectTitle);
       updateScreen();
-      closeProjectDialog(newProjectForm, newProjectDialog);
+      cancelFormDialogs(newProjectForm, newProjectDialog);
     } else {
       console.log("Editing New Project...");
       app.editProjectName(currentProjectTitle, projectTitle);
       updateScreen();
-      closeProjectDialog(newProjectForm, newProjectDialog);
+      cancelFormDialogs(newProjectForm, newProjectDialog);
     }
   };
 
   //Handle Opening Project Dialog for Adding/Editing Project
-  const handleProjectDialog = (title, projectName) => {
+  const openProjectDialog = (title, projectName) => {
     checkMobileOverlay();
     projectDialogTitle.textContent = title;
     if (projectName) {
@@ -95,7 +92,7 @@ export default function screenManager() {
     const projectItem = button.closest(".nav-item");
     const projectTitle = projectItem.querySelector(".project-title h3");
     currentProjectTitle = projectTitle.textContent;
-    handleProjectDialog("Editing Project", projectTitle.textContent);
+    openProjectDialog("Editing Project", projectTitle.textContent);
   };
 
   //Creating Nav Project Element
@@ -129,12 +126,12 @@ export default function screenManager() {
     navItem.append(projectTitleDiv, projectBtnsDiv);
 
     editBtn.addEventListener("click", handleEditProject);
-    deleteBtn.addEventListener("click", () => handleDeleteDialog("project", project.title));
+    deleteBtn.addEventListener("click", () => openDeleteProjectDialog("project", project.title));
     return navItem;
   };
 
   //Delete Dialog
-  const handleDeleteDialog = (type, name) => {
+  const openDeleteProjectDialog = (type, name) => {
     console.log(`Attemping to delete ${type} ${name}`);
     currentProjectTitle = name;
     checkMobileOverlay();
@@ -146,37 +143,29 @@ export default function screenManager() {
   const handleDeleteProject = () => {
     app.deleteProject(currentProjectTitle);
     updateScreen();
-    closeDeleteDialog(deleteDialog)
-  }
-
+    closeDeleteDialog(deleteDialog);
+  };
 
   //Handle Adding new Task
-  const handleNewTask = () => {
+  const openNewTaskDialog = () => {
     console.log("Adding new task...");
     checkMobileOverlay();
-    const taskDialog = document.getElementById("task-dialog-container");
-    const taskForm = document.getElementById("task-form");
-    const taskCancelBtn = taskForm.querySelector(".cancel-btn");
-
-    const cancelNewTask = () => {
-      taskForm.setAttribute("novalidate", true);
-      closeProjectDialog(taskForm, taskDialog);
-    };
-
-    taskDialog.showModal();
-    taskCancelBtn.addEventListener("click", cancelNewTask);
+    newTaskDialog.showModal();
   };
 
   //Event Listener Declariations
-  addProjectBtn.addEventListener("click", () => handleProjectDialog("Adding New Project"));
-  projectCancelBtn.addEventListener("click", cancelNewProject);
+  addProjectBtn.addEventListener("click", () => openProjectDialog("Adding New Project"));
+  projectCancelBtn.addEventListener("click", () => cancelFormDialogs(newProjectForm, newProjectDialog));
+
   newProjectForm.addEventListener("submit", sumbitNewProject);
 
   //deleteBtns.forEach((btn) => btn.addEventListener("click", handleDeleteDialog));
   noBtn.addEventListener("click", () => closeDeleteDialog(deleteDialog));
   yesBtn.addEventListener("click", handleDeleteProject);
 
-  addTaskBtn.addEventListener("click", handleNewTask);
+  addNewTaskBtn.addEventListener("click", openNewTaskDialog);
+  taskCancelBtn.addEventListener("click", () => cancelFormDialogs(newTaskForm, newTaskDialog));
+  //newTaskForm.addEventListener("submit", )
 
   //initial load
   updateScreen();
