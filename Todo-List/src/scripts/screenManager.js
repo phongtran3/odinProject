@@ -24,6 +24,8 @@ export default function screenManager() {
   const newTaskForm = document.getElementById("task-form");
   const taskCancelBtn = newTaskForm.querySelector(".cancel-btn");
   const addNewTaskBtn = document.getElementById("add-task-btn");
+  const projectOptions = document.querySelector('select[name="projects"]');
+
 
   const deleteDialog = document.getElementById("delete-dialog-container");
   const deleteBtns = document.querySelectorAll(".delete-btn");
@@ -47,6 +49,10 @@ export default function screenManager() {
     let projects = app.getAllProjects();
     projects.forEach((project) => {
       navProjects.appendChild(createProjectElement(project));
+      let option = document.createElement("option");
+      option.value = project.title;
+      option.textContent = project.title;
+      projectOptions.appendChild(option);
     });
   };
 
