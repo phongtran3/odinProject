@@ -90,17 +90,18 @@ export default function taskManager() {
     return projects;
   };
 
-  const addTask = ({title, dueDate, project, priority, done}) => {
+  const addTask = (formJSON) => {
     console.log(`Adding Task...`);
-    console.log(title);
-    console.log(project);
+
+    let projectIndex = projects.findIndex((p) => p.title === formJSON.project);
+    if (projectIndex <= -1) return false;
+
+    let task = new Task(formJSON);
+    console.log(task);
+
+    projects[projectIndex].addTask(task);
+    updateLocalStorage();
     console.log(projects);
-
-    let index = projects.findIndex((p) => p.title === project);
-    console.log(index);
-    if (index <= -1) return false;
-    if(project[index] !== title) console.log(title);
-
 
     /*
     -title, dueDate, project, priority, done-
@@ -138,7 +139,16 @@ export default function taskManager() {
 
   //Get current task for when user edit a task
   //This is to populate the form fields
-  const getTask = (projectName, taskID) => {
+  const getTask = (projectName, title) => {
+    console.log(projectName);
+    console.log(title);
+    let projectIndex = projects.findIndex((project) => project.title === projectName);
+    if(projectIndex <= -1) return;
+
+    let tasksArr = projects[projectIndex].getTasks();
+    let taskIndex = tasksArr.findIndex((task) => task.title === title);
+    if(taskIndex !== -1) return tasksArr[taskIndex];
+
     /*
     Check if task and project exist and if task exist in project
     If exist, find task
@@ -149,6 +159,7 @@ export default function taskManager() {
   };
 
   const getAllTasks = () => {
+    
     /*
     Since tasks are contain in project's tasks array, projects array. 
     Create an array, tasks, to hold all the tasks.
@@ -219,5 +230,6 @@ export default function taskManager() {
     editProjectName,
     deleteProject,
     addTask,
+    getTask,
   };
 }

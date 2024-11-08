@@ -1,12 +1,14 @@
 const sideBarContainer = document.getElementById("side-bar-container");
 const projectErrorMsg = document.getElementById("project-error");
+const taskErrorMsg = document.getElementById("project-error");
 
-export const cancelFormDialogs = (form, dialog) => {
+export const closeFormDialog = (form, dialog) => {
   console.log("Closing Dilaog...");
   form.reset();
   dialog.close();
   overlay.style.display = "none";
   projectErrorMsg.style.display = "none";
+  taskErrorMsg.style.display = "none";
 
   if (sideBarContainer.classList.contains("showOverlay")) {
     sideBarContainer.classList.toggle("showOverlay");
