@@ -50,15 +50,16 @@ export default function screenManager() {
   const updateProjects = () => {
     console.log("Updating projects...");
     let projects = app.getAllProjects();
-    let option = document.createElement("option");
-    option.value = "";
-    option.textContent = "--Select a Priority--";
-    projectOptions.appendChild(option);
+    let defaultOption = document.createElement("option");
+    defaultOption.value = "";
+    defaultOption.textContent = "--Select a Priority--";
+    projectOptions.appendChild(defaultOption);
 
     projects.forEach((project) => {
       navProjects.appendChild(createProjectElement(project));
       option.value = project.title;
       option.textContent = project.title;
+      console.log(project);
       projectOptions.appendChild(option);
     });
   };

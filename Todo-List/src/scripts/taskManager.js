@@ -159,7 +159,15 @@ export default function taskManager() {
   };
 
   const getAllTasks = () => {
-    
+    let allTasks = [];
+    projects.forEach((project) => {
+      let projectTaskArr = project.getTasks();
+      projectTaskArr.forEach((task) => {
+        allTasks.push(task);
+      })
+    })
+
+    return allTasks
     /*
     Since tasks are contain in project's tasks array, projects array. 
     Create an array, tasks, to hold all the tasks.
