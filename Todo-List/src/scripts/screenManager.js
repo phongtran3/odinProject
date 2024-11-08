@@ -146,11 +146,18 @@ export default function screenManager() {
     closeDeleteDialog(deleteDialog);
   };
 
-  //Handle Adding new Task
+  //Handle Opening New Task Dialog
   const openNewTaskDialog = () => {
-    console.log("Adding new task...");
+    console.log("Adding New Task...");
     checkMobileOverlay();
     newTaskDialog.showModal();
+  };
+
+  const handleNewTask = (e) => {
+    console.log("Submiting New Task...");
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    console.log(formData.get("title"));
   };
 
   //Event Listener Declariations
@@ -165,7 +172,7 @@ export default function screenManager() {
 
   addNewTaskBtn.addEventListener("click", openNewTaskDialog);
   taskCancelBtn.addEventListener("click", () => cancelFormDialogs(newTaskForm, newTaskDialog));
-  //newTaskForm.addEventListener("submit", )
+  newTaskForm.addEventListener("submit", handleNewTask);
 
   //initial load
   updateScreen();
