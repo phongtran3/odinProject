@@ -227,7 +227,8 @@ button {
     cursor: pointer;
 }
 
-#project-error {
+#project-error,
+#task-error {
     margin-bottom: 1rem;
 }
 

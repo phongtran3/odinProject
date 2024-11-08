@@ -8,6 +8,11 @@ export default function taskManager() {
   const projects = [];
 
   const initialLoad = () => {
+    //Prevent user selecting past dates
+    const dueDateInput = document.querySelector('input[name="task-due-date"]');
+    const today = new Date().toISOString().split('T')[0];
+    dueDateInput.setAttribute('min', today);
+
     if (checkStorage("localStorage")) {
       let projects = localStorage.getItem("projectNames");
       let tasks = localStorage.getItem("tasks");
@@ -85,7 +90,18 @@ export default function taskManager() {
     return projects;
   };
 
-  const addTask = (taskJson) => {
+  const addTask = ({title, dueDate, project, priority, done}) => {
+    console.log(`Adding Task...`);
+    console.log(title);
+    console.log(project);
+    console.log(projects);
+
+    let index = projects.findIndex((p) => p.title === project);
+    console.log(index);
+    if (index <= -1) return false;
+    if(project[index] !== title) console.log(title);
+
+
     /*
     -title, dueDate, project, priority, done-
     Check if taskJson isn't null
@@ -202,5 +218,6 @@ export default function taskManager() {
     getAllProjects,
     editProjectName,
     deleteProject,
+    addTask,
   };
 }

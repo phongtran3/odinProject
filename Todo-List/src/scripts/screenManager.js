@@ -24,8 +24,9 @@ export default function screenManager() {
   const newTaskForm = document.getElementById("task-form");
   const taskCancelBtn = newTaskForm.querySelector(".cancel-btn");
   const addNewTaskBtn = document.getElementById("add-task-btn");
-  const projectOptions = document.querySelector('select[name="projects"]');
+  const projectOptions = document.querySelector('select[name="project"]');
 
+  
 
   const deleteDialog = document.getElementById("delete-dialog-container");
   const deleteBtns = document.querySelectorAll(".delete-btn");
@@ -154,17 +155,29 @@ export default function screenManager() {
 
   //Handle Opening New Task Dialog
   const openNewTaskDialog = () => {
-    console.log("Adding New Task...");
     checkMobileOverlay();
     newTaskDialog.showModal();
   };
 
-  const handleNewTask = (e) => {
+  const submiteNewTask = (e) => {
     console.log("Submiting New Task...");
     e.preventDefault();
     const formData = new FormData(e.target);
-    console.log(formData.get("title"));
+    const formJSON = {
+      title: formData.get("title"),
+      dueDate: formData.get('task-due-date'),
+      project: formData.get("project"),
+      priority: formData.get("priority"),
+      done: false,
+    }
+    app.addTask(formJSON);
   };
+
+  const createTaskElement = (taskJson) => {
+
+
+
+  }
 
   //Event Listener Declariations
   addProjectBtn.addEventListener("click", () => openProjectDialog("Adding New Project"));
@@ -178,7 +191,7 @@ export default function screenManager() {
 
   addNewTaskBtn.addEventListener("click", openNewTaskDialog);
   taskCancelBtn.addEventListener("click", () => cancelFormDialogs(newTaskForm, newTaskDialog));
-  newTaskForm.addEventListener("submit", handleNewTask);
+  newTaskForm.addEventListener("submit", submiteNewTask);
 
   //initial load
   updateScreen();
