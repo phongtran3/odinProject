@@ -28,8 +28,6 @@ export default function screenManager() {
 
   const projectOptions = document.querySelector('select[name="project"]');
 
-  
-
   const deleteDialog = document.getElementById("delete-dialog-container");
   const deleteBtns = document.querySelectorAll(".delete-btn");
   const yesBtn = document.getElementById("yes-btn");
@@ -44,6 +42,7 @@ export default function screenManager() {
   const updateScreen = () => {
     console.log("Updating Screen...");
     navProjects.textContent = "";
+    projectOptions.textContent = "";
     updateProjects();
   };
 
@@ -57,9 +56,9 @@ export default function screenManager() {
 
     projects.forEach((project) => {
       navProjects.appendChild(createProjectElement(project));
+      let option = document.createElement("option");
       option.value = project.title;
       option.textContent = project.title;
-      console.log(project);
       projectOptions.appendChild(option);
     });
   };
@@ -173,28 +172,24 @@ export default function screenManager() {
 
     const formJSON = {
       title: formData.get("title"),
-      dueDate: formData.get('task-due-date'),
+      dueDate: formData.get("task-due-date"),
       project: formData.get("project"),
       priority: formData.get("priority"),
       done: false,
-    }
+    };
 
-    if(app.getTask(formJSON.project, formJSON.title)){
+    if (app.getTask(formJSON.project, formJSON.title)) {
       console.log("Task Error");
       taskErrorMsg.style.display = "block";
       return;
     }
-    
+
     app.addTask(formJSON);
     closeFormDialog(newTaskForm, newTaskDialog);
     updateScreen();
   };
 
-  const createTaskElement = (taskJson) => {
-
-
-
-  }
+  const createTaskElement = (taskJson) => {};
 
   //Event Listener Declariations
   addProjectBtn.addEventListener("click", () => openProjectDialog("Adding New Project"));
