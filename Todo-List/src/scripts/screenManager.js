@@ -189,7 +189,69 @@ export default function screenManager() {
     updateScreen();
   };
 
-  const createTaskElement = (taskJson) => {};
+  const createTaskElement = (taskJson) => {
+    const taskCard = document.createElement("div");
+    const taskLeft = document.createElement("div");
+    const taskRight = document.createElement("div");
+    const taskBtns = document.createElement("div");
+    const header = document.createElement("div");
+    const title = document.createElement("div");
+    const priority = document.createElement("div");
+    const createdDate = document.createElement("div");
+    const dueDate = document.createElement("div");
+    const deleteBtn = document.createElement("button");
+    const editBtn = document.createElement("button");
+
+    taskCard.classList.add("task-card");
+    taskLeft.classList.add("task-left");
+    taskRight.classList.add("task-right");
+    taskBtns.classList.add("task-btn");
+    header.classList.add("task-header");
+    title.classList.add("task-title");
+    priority.classList.add("task-priority");
+    createdDate.classList.add("date-created");
+    dueDate.classList.add("date-due");
+    editBtn.classList.add("edit-task");
+    deleteBtn.classList.add("delete-btn");
+
+    title.innerHTML = `
+      <input type="checkbox" />
+      <h3 data="task">${taskJson.title}</h3>
+    `;
+
+    priority.innerHTML = `
+      <div class="flag ${taskJson.priority.toLowerCase()}"></div>
+      <span>${taskJson.priority}</span>
+    
+    `;
+
+    let formattedDate = format(taskJson.createDate, "MM/dd/yyyy");
+    createdDate.innerHTML = `
+      <p>Date Created: ${formattedDate}</p>
+    `;
+
+    header.append(title, priority, createdDate);
+    taskLeft.appendChild(header);
+
+    formattedDate = format(taskJson.dueDate, "MM/dd/yyyy");
+    dueDate.innerHTML = `
+      <p>Due: ${formattedDate}</p>
+    `;
+
+    editBtn.innerHTML = `
+      <img class="icon-svg" src="${editIcon}" />
+    `;
+
+    deleteBtn.innerHTML = `
+      <img class="icon-svg" src="${trashIcon}" />  
+    `;
+
+    taskBtns.append(editBtn, deleteBtn);
+    taskRight.append(dueDate, taskBtns);
+
+    taskCard.append(taskLeft, taskRight);
+    return taskCard;
+  };
 
   //Event Listener Declariations
   addProjectBtn.addEventListener("click", () => openProjectDialog("Adding New Project"));
