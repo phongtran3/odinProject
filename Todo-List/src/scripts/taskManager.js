@@ -10,8 +10,8 @@ export default function taskManager() {
   const initialLoad = () => {
     //Prevent user selecting past dates
     const dueDateInput = document.querySelector('input[name="task-due-date"]');
-    const today = new Date().toISOString().split('T')[0];
-    dueDateInput.setAttribute('min', today);
+    const today = new Date().toISOString().split("T")[0];
+    dueDateInput.setAttribute("min", today);
 
     if (checkStorage("localStorage")) {
       let projects = localStorage.getItem("projectNames");
@@ -60,7 +60,7 @@ export default function taskManager() {
   };
 
   const deleteProject = (projectName) => {
-    console.log(`Deleting ${projectName}...`)
+    console.log(`Deleting ${projectName}...`);
     let index = projects.findIndex((project) => project.title === projectName);
     if (index <= -1) return false;
     projects.splice(index, 1);
@@ -143,11 +143,11 @@ export default function taskManager() {
     console.log(projectName);
     console.log(title);
     let projectIndex = projects.findIndex((project) => project.title === projectName);
-    if(projectIndex <= -1) return;
+    if (projectIndex <= -1) return;
 
     let tasksArr = projects[projectIndex].getTasks();
     let taskIndex = tasksArr.findIndex((task) => task.title === title);
-    if(taskIndex !== -1) return tasksArr[taskIndex];
+    if (taskIndex !== -1) return tasksArr[taskIndex];
 
     /*
     Check if task and project exist and if task exist in project
@@ -164,10 +164,10 @@ export default function taskManager() {
       let projectTaskArr = project.getTasks();
       projectTaskArr.forEach((task) => {
         allTasks.push(task);
-      })
-    })
+      });
+    });
 
-    return allTasks
+    return allTasks;
     /*
     Since tasks are contain in project's tasks array, projects array. 
     Create an array, tasks, to hold all the tasks.
@@ -239,5 +239,10 @@ export default function taskManager() {
     deleteProject,
     addTask,
     getTask,
+    getAllTasks,
+    getTodayTasks,
+    getWeekTasks,
+    getMonthTasks,
+    getCompletedTasks,
   };
 }

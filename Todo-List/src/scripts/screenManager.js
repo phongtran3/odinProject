@@ -75,7 +75,32 @@ export default function screenManager() {
     mainHeader.textContent = header;
   };
 
-  const updateTaskContainer = () => {};
+  const updateTaskContainer = () => {
+    let taskArr;
+
+    switch (selectedNavFilter) {
+      case NavFilter.ALL:
+        taskArr = app.getAllTasks();
+        break;
+      case NavFilter.TODAY:
+        taskArr = app.getTodayTasks();
+        break;
+      case NavFilter.WEEK:
+        taskArr = app.getWeekTasks();
+        break;
+      case NavFilter.MONTH:
+        taskArr = app.getMonthTasks();
+        break;
+      case NavFilter.COMPLETED:
+        taskArr = app.getCompletedTasks();
+        break;
+      case NavFilter.PROJECT:
+        taskArr = app.getProject(currentProjectTitle).getTasks();
+        break;
+      default:
+        return;
+    }
+  };
 
   const updateProjects = () => {
     console.log("Updating projects...");
@@ -313,7 +338,6 @@ export default function screenManager() {
   };
 
   const handleCompletedTasks = () => {
-    console.log(selectedNavFilter);
     selectedNavFilter = NavFilter.COMPLETED;
     toggleShowOverlay();
     updateScreen();
