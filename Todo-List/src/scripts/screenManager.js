@@ -1,6 +1,6 @@
 import taskManager from "./taskManager.js";
 import addEventListeners from "./eventListener.js";
-import { closeFormDialog, checkMobileOverlay, closeDeleteDialog } from "./screenHelper.js";
+import { NavFilter, closeFormDialog, checkMobileOverlay, toggleShowOverlay, closeDeleteDialog } from "./screenHelper.js";
 import trashIcon from "../assets/svgs/trash.svg";
 import editIcon from "../assets/svgs/edit.svg";
 
@@ -10,7 +10,6 @@ export default function screenManager() {
   console.log("Screen Manager");
 
   addEventListeners();
-  const overlay = document.getElementById("overlay");
 
   const newProjectDialog = document.getElementById("new-project-dialog-container");
   const newProjectForm = document.getElementById("add-project-form");
@@ -25,7 +24,6 @@ export default function screenManager() {
   const taskCancelBtn = newTaskForm.querySelector(".cancel-btn");
   const addNewTaskBtn = document.getElementById("add-task-btn");
   const taskErrorMsg = document.getElementById("task-error");
-
   const projectOptions = document.querySelector('select[name="project"]');
 
   const deleteDialog = document.getElementById("delete-dialog-container");
@@ -33,7 +31,16 @@ export default function screenManager() {
   const yesBtn = document.getElementById("yes-btn");
   const noBtn = document.getElementById("no-btn");
 
+  const mainHeader = document.getElementById("main-header");
+
+  const allTasks = document.getElementById("all-tasks");
+  const todayTasks = document.getElementById("today-tasks");
+  const weekTasks = document.getElementById("week-tasks");
+  const monthTasks = document.getElementById("month-tasks");
+  const completedTasks = document.getElementById("completed-tasks");
+
   let currentProjectTitle = "";
+  let selectedNavFilter = NavFilter.ALL;
 
   const app = taskManager();
   app.initialLoad();
@@ -44,7 +51,31 @@ export default function screenManager() {
     navProjects.textContent = "";
     projectOptions.textContent = "";
     updateProjects();
+    updateMainHeader();
   };
+
+  const updateMainHeader = () => {
+    let header = "";
+    mainHeader.textContent = "";
+
+    switch (selectedNavFilter) {
+      case NavFilter.ALL:
+      case NavFilter.TODAY:
+      case NavFilter.WEEK:
+      case NavFilter.MONTH:
+      case NavFilter.COMPLETED:
+        header = Symbol.keyFor(selectedNavFilter);
+        break;
+      case NavFilter.PROJECT:
+        header = currentProjectTitle ? currentProjectTitle : "";
+        break;
+      default:
+        return;
+    }
+    mainHeader.textContent = header;
+  };
+
+  const updateTaskContainer = () => {};
 
   const updateProjects = () => {
     console.log("Updating projects...");
@@ -253,6 +284,41 @@ export default function screenManager() {
     return taskCard;
   };
 
+  const handleAllTasks = () => {
+    selectedNavFilter = NavFilter.ALL;
+    console.log(selectedNavFilter);
+    toggleShowOverlay();
+    updateScreen();
+  };
+
+  const handleTodayTasks = () => {
+    console.log(selectedNavFilter);
+    selectedNavFilter = NavFilter.TODAY;
+    toggleShowOverlay();
+    updateScreen();
+  };
+
+  const handleWeekTasks = () => {
+    console.log(selectedNavFilter);
+    selectedNavFilter = NavFilter.WEEK;
+    toggleShowOverlay();
+    updateScreen();
+  };
+
+  const handleMonthasks = () => {
+    console.log(selectedNavFilter);
+    selectedNavFilter = NavFilter.MONTH;
+    toggleShowOverlay();
+    updateScreen();
+  };
+
+  const handleCompletedTasks = () => {
+    console.log(selectedNavFilter);
+    selectedNavFilter = NavFilter.COMPLETED;
+    toggleShowOverlay();
+    updateScreen();
+  };
+
   //Event Listener Declariations
   addProjectBtn.addEventListener("click", () => openProjectDialog("Adding New Project"));
   projectCancelBtn.addEventListener("click", () => closeFormDialog(newProjectForm, newProjectDialog));
@@ -266,6 +332,12 @@ export default function screenManager() {
   addNewTaskBtn.addEventListener("click", openNewTaskDialog);
   taskCancelBtn.addEventListener("click", () => closeFormDialog(newTaskForm, newTaskDialog));
   newTaskForm.addEventListener("submit", submitNewTask);
+
+  allTasks.addEventListener("click", handleAllTasks);
+  todayTasks.addEventListener("click", handleTodayTasks);
+  weekTasks.addEventListener("click", handleWeekTasks);
+  monthTasks.addEventListener("click", handleMonthasks);
+  completedTasks.addEventListener("click", handleCompletedTasks);
 
   //initial load
   updateScreen();

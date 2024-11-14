@@ -8,7 +8,7 @@ const filterOptions = navTaskFilters.querySelectorAll(".filter-item");
 const addEventListeners = () => {
   handleMobileMenuBtn();
   handleOverlay();
-  handleFilterSelect();
+  // handleFilterSelect();
 };
 
 const handleMobileMenuBtn = () => {
@@ -26,21 +26,21 @@ const handleOverlay = () => {
 };
 
 //Selecting new filter
-const handleFilterSelect = () => {
-  filterOptions.forEach((li) => {
-    li.addEventListener("click", () => {
-      filterOptions.forEach((option) => option.classList.remove("task-active"));
-      li.classList.toggle("task-active");
+// const handleFilterSelect = () => {
+//   filterOptions.forEach((li) => {
+//     li.addEventListener("click", () => {
+//       filterOptions.forEach((option) => option.classList.remove("task-active"));
+//       li.classList.toggle("task-active");
 
-      sideBarContainer.classList.toggle("showOverlay");
-      overlay.style.display = "none";
+//       sideBarContainer.classList.toggle("showOverlay");
+//       overlay.style.display = "none";
 
-      const mainHeader = li.querySelector("h3").textContent;
-      document.getElementById("main-header").innerHTML = mainHeader;
+//       const mainHeader = li.querySelector("h3").textContent;
+//       document.getElementById("main-header").innerHTML = mainHeader;
 
-      console.log(`Selecting filter... ${mainHeader}`);
-    });
-  });
-};
+//       console.log(`Selecting filter... ${mainHeader}`);
+//     });
+//   });
+// };
 
 export default addEventListeners;
