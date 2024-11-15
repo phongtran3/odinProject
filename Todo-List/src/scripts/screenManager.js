@@ -31,6 +31,7 @@ export default function screenManager() {
   const yesBtn = document.getElementById("yes-btn");
   const noBtn = document.getElementById("no-btn");
 
+  const taskListContainer = document.getElementById("task-list-container");
   const mainHeader = document.getElementById("main-header");
 
   const allTasks = document.getElementById("all-tasks");
@@ -50,8 +51,10 @@ export default function screenManager() {
     console.log("Updating Screen...");
     navProjects.textContent = "";
     projectOptions.textContent = "";
+    //taskListContainer.textContent = "";
     updateProjects();
     updateMainHeader();
+    updateTaskContainer();
   };
 
   const updateMainHeader = () => {
@@ -100,6 +103,18 @@ export default function screenManager() {
       default:
         return;
     }
+
+    taskArr.sort((a, b) => {
+      if (a.done !== b.done) {
+        return a.done - b.done;
+      }
+
+      return a.createdDate - b.createDate;
+    });
+
+    taskArr.forEach((task) => {
+      taskListContainer.appendChild(createTaskElement(task));
+    });
   };
 
   const updateProjects = () => {
@@ -107,7 +122,7 @@ export default function screenManager() {
     let projects = app.getAllProjects();
     let defaultOption = document.createElement("option");
     defaultOption.value = "";
-    defaultOption.textContent = "--Select a Priority--";
+    defaultOption.textContent = "--Select a Project--";
     projectOptions.appendChild(defaultOption);
 
     projects.forEach((project) => {
@@ -233,7 +248,7 @@ export default function screenManager() {
       priority: formData.get("priority"),
       done: false,
     };
-
+    console.log(formJSON.priority);
     if (app.getTask(formJSON.project, formJSON.title)) {
       console.log("Task Error");
       taskErrorMsg.style.display = "block";
@@ -252,6 +267,7 @@ export default function screenManager() {
     const taskBtns = document.createElement("div");
     const header = document.createElement("div");
     const title = document.createElement("div");
+    const project = document.createElement("div");
     const priority = document.createElement("div");
     const createdDate = document.createElement("div");
     const dueDate = document.createElement("div");
@@ -264,6 +280,7 @@ export default function screenManager() {
     taskBtns.classList.add("task-btn");
     header.classList.add("task-header");
     title.classList.add("task-title");
+    project.classList.add("task-project");
     priority.classList.add("task-priority");
     createdDate.classList.add("date-created");
     dueDate.classList.add("date-due");
@@ -273,6 +290,10 @@ export default function screenManager() {
     title.innerHTML = `
       <input type="checkbox" />
       <h3 data="task">${taskJson.title}</h3>
+    `;
+
+    project.innerHTML = `
+      <h3>${taskJson.project}</h3>
     `;
 
     priority.innerHTML = `
@@ -286,8 +307,8 @@ export default function screenManager() {
       <p>Date Created: ${formattedDate}</p>
     `;
 
-    header.append(title, priority, createdDate);
-    taskLeft.appendChild(header);
+    header.append(title, project);
+    taskLeft.append(header, priority, createdDate);
 
     formattedDate = format(taskJson.dueDate, "MM/dd/yyyy");
     dueDate.innerHTML = `

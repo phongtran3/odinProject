@@ -287,13 +287,24 @@ button {
     color: var(--black);
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    
+    margin-bottom: 2rem;
 }
 
 .task-title input {
     margin: 0;
     width: 15px;
     height: 15px;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-project:hover,
+.task-project:focus {
+    color: var(--darkSkyBlue);
+    cursor: pointer;
 }
 
 .task-priority,

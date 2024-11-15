@@ -93,7 +93,7 @@
             <h2 id="main-header">All Tasks</h2>
           </div>
 
-          <div class="task-list-container">
+          <div id="task-list-container">
             <div data="task" class="task-card">
               <div class="task-left">
                 <div class="task-header">
@@ -101,13 +101,15 @@
                     <input type="checkbox" />
                     <h3 data="task">Task Title</h3>
                   </div>
-
-                  <div class="task-priority">
-                    <div class="flag low"></div>
-                    <span>Easy</span>
+                  <div class="task-project">
+                    <h3>BCS</h3>
                   </div>
-                  <div class="date-created"><p>Date Created: 10/10/2024</p></div>
                 </div>
+                <div class="task-priority">
+                  <div class="flag low"></div>
+                  <span>Easy</span>
+                </div>
+                <div class="date-created"><p>Date Created: 10/10/2024</p></div>
               </div>
 
               <div class="task-right">
@@ -153,9 +155,9 @@
           <div class="select-priority">
             <select name="priority" id="priority-selection" required>
               <option value="">--Select a Priority--</option>
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
             </select>
           </div>
 
