@@ -1,7 +1,7 @@
 import Task from "./task.js";
 import Project from "./project.js";
 import checkStorage from "./checkStorage.js";
-import { isToday, addWeeks, isWithinInterval, startOfDay, endOfDay, startOfWeek, addDays, startOfMonth, endOfMonth } from "date-fns";
+import { isToday, addWeeks, isWithinInterval, startOfDay, endOfDay, startOfWeek, addDays, startOfMonth, endOfMonth, endOfWeek } from "date-fns";
 
 export default function taskManager() {
   console.log("Task Manager");
@@ -178,6 +178,9 @@ export default function taskManager() {
   };
 
   const getTodayTasks = () => {
+    let allTasks = getAllTasks();
+    let todayTasks = allTasks.filter((task) => isToday(task.dueDate));
+    return todayTasks;
     /*
     Simlar to getting all the tasks
     filter by due date using isToday function from date-fns
@@ -186,10 +189,16 @@ export default function taskManager() {
 
   //Grab tasks within the week (Monday - Sunday)
   const getWeekTasks = () => {
+    let allTasks = getAllTasks();
+    let monday = startOfWeek(new Date(), { weekStartsOn: 1 });
+    let sunday = endOfDay(endOfWeek(new Date(), { weekStartsOn: 1 }));
+    let weekTasks = allTasks.filter((task) => isWithinInterval(task.dueDate, { start: monday, end: sunday }));
+
+    return weekTasks;
     /*
       Grab all tasks
       Create variable for Monday using startOfWeek function
-      Create variable for Sunday using addDays function
+      Create variable for Sunday using endOfDay, endOfWeek function
       Filter through all task and see if the duedate is within the two variable
         using isWithinInterval function
       return tasks
@@ -198,6 +207,13 @@ export default function taskManager() {
 
   //Grab task within the month (First day - last day)
   const getMonthTasks = () => {
+    let allTasks = getAllTasks();
+    let firstDay = startOfMonth(new Date());
+    let lastDay = endOfMonth(new Date());
+    console.log(firstDay);
+    console.log(lastDay);
+    let monthTasks = allTasks.filter((task) => isWithinInterval(task.dueDate, { start: firstDay, end: lastDay }));
+    return monthTasks;
     /*
       Grab all tasks
       Create variable for firstDay using startOfMonth function
@@ -210,6 +226,9 @@ export default function taskManager() {
 
   //Grab all completed task
   const getCompletedTasks = () => {
+    let allTasks = getAllTasks();
+    let completedTasks = allTasks.filter((task) => task.done === true);
+    return completedTasks;
     /*
       Grab all tasks
       Filter through all tasks and return tasks that has done attributes as true.

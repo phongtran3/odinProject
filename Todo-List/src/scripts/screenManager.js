@@ -51,7 +51,7 @@ export default function screenManager() {
     console.log("Updating Screen...");
     navProjects.textContent = "";
     projectOptions.textContent = "";
-    //taskListContainer.textContent = "";
+    taskListContainer.textContent = "";
     updateProjects();
     updateMainHeader();
     updateTaskContainer();
