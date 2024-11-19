@@ -40,6 +40,6 @@ export const NavFilter = Object.freeze({
   TODAY: Symbol.for("Today"),
   WEEK: Symbol.for("This Week"),
   MONTH: Symbol.for("This Month"),
-  COMPLETED: Symbol.for("Completed"),
+  COMPLETED: Symbol.for("Completed Tasks"),
   PROJECT: Symbol.for("Project"),
 });

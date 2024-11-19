@@ -179,6 +179,13 @@ export default function screenManager() {
     openProjectDialog("Editing Project", projectTitle.textContent);
   };
 
+  const handleProjectClick = (e) => {
+    const title = e.currentTarget.querySelector("h3").textContent.trim();
+    selectedNavFilter = NavFilter.PROJECT;
+    currentProjectTitle = title;
+    updateScreen();
+  };
+
   //Creating Nav Project Element
   const createProjectElement = (project) => {
     const navItem = document.createElement("li");
@@ -193,6 +200,8 @@ export default function screenManager() {
     projectTitleDiv.innerHTML = `
       <h3 title=${project.title}>${project.title}</h3>
     `;
+
+    projectTitleDiv.addEventListener("click", handleProjectClick);
 
     editBtn.classList.add("edit-project");
     editBtn.innerHTML = `
@@ -266,20 +275,22 @@ export default function screenManager() {
     const taskRight = document.createElement("div");
     const taskBtns = document.createElement("div");
     const header = document.createElement("div");
-    const title = document.createElement("div");
+    const titleDiv = document.createElement("div");
     const project = document.createElement("div");
     const priority = document.createElement("div");
     const createdDate = document.createElement("div");
     const dueDate = document.createElement("div");
     const deleteBtn = document.createElement("button");
     const editBtn = document.createElement("button");
+    const checkBox = document.createElement("input");
+    const title = document.createElement("h3");
 
     taskCard.classList.add("task-card");
     taskLeft.classList.add("task-left");
     taskRight.classList.add("task-right");
     taskBtns.classList.add("task-btn");
     header.classList.add("task-header");
-    title.classList.add("task-title");
+    titleDiv.classList.add("task-title");
     project.classList.add("task-project");
     priority.classList.add("task-priority");
     createdDate.classList.add("date-created");
@@ -287,10 +298,14 @@ export default function screenManager() {
     editBtn.classList.add("edit-task");
     deleteBtn.classList.add("delete-btn");
 
+    checkBox.setAttribute("type", "checkbox");
+    checkBox.checked = taskJson.done;
+    checkBox.addEventListener("change", handleTaskStatusChange);
     title.innerHTML = `
-      <input type="checkbox" />
       <h3 data="task">${taskJson.title}</h3>
     `;
+
+    titleDiv.append(checkBox, title);
 
     project.innerHTML = `
       <h3>${taskJson.project}</h3>
@@ -307,7 +322,7 @@ export default function screenManager() {
       <p>Date Created: ${formattedDate}</p>
     `;
 
-    header.append(title, project);
+    header.append(titleDiv, project);
     taskLeft.append(header, priority, createdDate);
 
     formattedDate = format(taskJson.dueDate, "MM/dd/yyyy");
@@ -328,6 +343,10 @@ export default function screenManager() {
 
     taskCard.append(taskLeft, taskRight);
     return taskCard;
+  };
+
+  const handleTaskStatusChange = (e) => {
+    console.log("Status Change");
   };
 
   const handleAllTasks = () => {

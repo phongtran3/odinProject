@@ -1,7 +1,7 @@
 import Task from "./task.js";
 import Project from "./project.js";
 import checkStorage from "./checkStorage.js";
-import { isToday, addWeeks, isWithinInterval, startOfDay, endOfDay, startOfWeek, addDays, startOfMonth, endOfMonth, endOfWeek } from "date-fns";
+import { isToday, isWithinInterval, endOfDay, startOfWeek, startOfMonth, endOfMonth, endOfWeek } from "date-fns";
 
 export default function taskManager() {
   console.log("Task Manager");
@@ -263,5 +263,6 @@ export default function taskManager() {
     getWeekTasks,
     getMonthTasks,
     getCompletedTasks,
+    editTask,
   };
 }
