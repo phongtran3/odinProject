@@ -210,8 +210,6 @@ export default function taskManager() {
     let allTasks = getAllTasks();
     let firstDay = startOfMonth(new Date());
     let lastDay = endOfMonth(new Date());
-    console.log(firstDay);
-    console.log(lastDay);
     let monthTasks = allTasks.filter((task) => isWithinInterval(task.dueDate, { start: firstDay, end: lastDay }));
     return monthTasks;
     /*
