@@ -90,6 +90,9 @@ button {
     background-color: var(--darkSkyBlue);
 }
 
+.project-active {
+    color: var(--darkSkyBlue);
+}
 
 #overlay {
     position: fixed;

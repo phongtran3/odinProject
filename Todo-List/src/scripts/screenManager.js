@@ -42,6 +42,9 @@ export default function screenManager() {
 
   let currentProjectTitle = "";
   let selectedNavFilter = NavFilter.ALL;
+  let activeNavItem = allTasks;
+  let activeProject = "";
+  activeNavItem.classList.add("task-active");
 
   const app = taskManager();
   app.initialLoad();
@@ -179,10 +182,12 @@ export default function screenManager() {
     openProjectDialog("Editing Project", projectTitle.textContent);
   };
 
+  //Handle clicking project on nav container
   const handleProjectClick = (e) => {
-    const title = e.currentTarget.querySelector("h3").textContent.trim();
+    activeNavItem.classList.remove("task-active");
+    const title = e.currentTarget.querySelector("h3");
     selectedNavFilter = NavFilter.PROJECT;
-    currentProjectTitle = title;
+    currentProjectTitle = title.textContent.trim();
     updateScreen();
   };
 
@@ -349,10 +354,17 @@ export default function screenManager() {
     console.log("Status Change");
   };
 
+  const applyActiveState = (newFilter) => {
+    activeNavItem.classList.remove("task-active");
+    activeNavItem = newFilter;
+    activeNavItem.classList.add("task-active");
+  };
+
   const handleAllTasks = () => {
     selectedNavFilter = NavFilter.ALL;
     console.log(selectedNavFilter);
     toggleShowOverlay();
+    applyActiveState(allTasks);
     updateScreen();
   };
 
@@ -360,6 +372,7 @@ export default function screenManager() {
     console.log(selectedNavFilter);
     selectedNavFilter = NavFilter.TODAY;
     toggleShowOverlay();
+    applyActiveState(todayTasks);
     updateScreen();
   };
 
@@ -367,6 +380,7 @@ export default function screenManager() {
     console.log(selectedNavFilter);
     selectedNavFilter = NavFilter.WEEK;
     toggleShowOverlay();
+    applyActiveState(weekTasks);
     updateScreen();
   };
 
@@ -374,12 +388,14 @@ export default function screenManager() {
     console.log(selectedNavFilter);
     selectedNavFilter = NavFilter.MONTH;
     toggleShowOverlay();
+    applyActiveState(monthTasks);
     updateScreen();
   };
 
   const handleCompletedTasks = () => {
     selectedNavFilter = NavFilter.COMPLETED;
     toggleShowOverlay();
+    applyActiveState(completedTasks);
     updateScreen();
   };
 
