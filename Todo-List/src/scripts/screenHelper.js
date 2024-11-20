@@ -1,6 +1,6 @@
 const sideBarContainer = document.getElementById("side-bar-container");
 const projectErrorMsg = document.getElementById("project-error");
-const taskErrorMsg = document.getElementById("project-error");
+const taskErrorMsg = document.getElementById("task-error");
 
 export const toggleShowOverlay = () => {
   if (sideBarContainer.classList.contains("showOverlay")) {

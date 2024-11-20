@@ -274,6 +274,13 @@ export default function screenManager() {
     updateScreen();
   };
 
+  const handleDeleteTask = (e) => {
+    let id = e.target.closest(".task-card").getAttribute("task-id")
+    let project = e.target.closest(".task-card").getAttribute("project")
+    app.deleteTask(project, id);
+    updateScreen();
+  }
+
   const createTaskElement = (taskJson) => {
     const taskCard = document.createElement("div");
     const taskLeft = document.createElement("div");
@@ -347,6 +354,11 @@ export default function screenManager() {
     taskRight.append(dueDate, taskBtns);
 
     taskCard.append(taskLeft, taskRight);
+    taskCard.setAttribute("task-id", taskJson.id);
+    taskCard.setAttribute("project", taskJson.project);
+
+    deleteBtn.addEventListener("click", handleDeleteTask);
+    
     return taskCard;
   };
 

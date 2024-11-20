@@ -129,6 +129,7 @@ export default function taskManager() {
   };
 
   const deleteTask = (projectName, taskID) => {
+    console.log(`Deleting project... ${projectName}`);
     /*
     Check if task and project exist and if task exist in project
     if exist, find task in project tasks array and remove it
@@ -265,5 +266,6 @@ export default function taskManager() {
     getMonthTasks,
     getCompletedTasks,
     editTask,
+    deleteTask,
   };
 }
