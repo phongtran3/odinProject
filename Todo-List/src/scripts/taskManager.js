@@ -1,7 +1,7 @@
 import Task from "./task.js";
 import Project from "./project.js";
 import checkStorage from "./checkStorage.js";
-import { isToday, isWithinInterval, endOfDay, startOfWeek, startOfMonth, endOfMonth, endOfWeek } from "date-fns";
+import { parseISO, isToday, isWithinInterval, endOfDay, startOfWeek, startOfMonth, endOfMonth, endOfWeek } from "date-fns";
 
 export default function taskManager() {
   console.log("Task Manager");
@@ -179,7 +179,10 @@ export default function taskManager() {
 
   const getTodayTasks = () => {
     let allTasks = getAllTasks();
-    let todayTasks = allTasks.filter((task) => isToday(task.dueDate));
+    console.log(allTasks);
+
+    let todayTasks = allTasks.filter((task) => isToday(parseISO(task.dueDate)));
+    console.log(todayTasks);
     return todayTasks;
     /*
     Simlar to getting all the tasks
@@ -192,7 +195,7 @@ export default function taskManager() {
     let allTasks = getAllTasks();
     let monday = startOfWeek(new Date(), { weekStartsOn: 1 });
     let sunday = endOfDay(endOfWeek(new Date(), { weekStartsOn: 1 }));
-    let weekTasks = allTasks.filter((task) => isWithinInterval(task.dueDate, { start: monday, end: sunday }));
+    let weekTasks = allTasks.filter((task) => isWithinInterval(parseISO(task.dueDate), { start: monday, end: sunday }));
 
     return weekTasks;
     /*
@@ -210,7 +213,7 @@ export default function taskManager() {
     let allTasks = getAllTasks();
     let firstDay = startOfMonth(new Date());
     let lastDay = endOfMonth(new Date());
-    let monthTasks = allTasks.filter((task) => isWithinInterval(task.dueDate, { start: firstDay, end: lastDay }));
+    let monthTasks = allTasks.filter((task) => isWithinInterval(parseISO(task.dueDate), { start: firstDay, end: lastDay }));
     return monthTasks;
     /*
       Grab all tasks

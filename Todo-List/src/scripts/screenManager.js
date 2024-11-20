@@ -4,7 +4,7 @@ import { NavFilter, closeFormDialog, checkMobileOverlay, toggleShowOverlay, clos
 import trashIcon from "../assets/svgs/trash.svg";
 import editIcon from "../assets/svgs/edit.svg";
 
-import { format } from "date-fns";
+import { parseISO, format } from "date-fns";
 
 export default function screenManager() {
   console.log("Screen Manager");
@@ -112,9 +112,8 @@ export default function screenManager() {
         return a.done - b.done;
       }
 
-      return a.createdDate - b.createDate;
+      return parseISO(a.dueDate) - parseISO(b.dueDate);
     });
-
     taskArr.forEach((task) => {
       taskListContainer.appendChild(createTaskElement(task));
     });
@@ -262,7 +261,8 @@ export default function screenManager() {
       priority: formData.get("priority"),
       done: false,
     };
-    console.log(formJSON.priority);
+
+    console.log(parseISO(formJSON.dueDate));
     if (app.getTask(formJSON.project, formJSON.title)) {
       console.log("Task Error");
       taskErrorMsg.style.display = "block";
@@ -330,7 +330,7 @@ export default function screenManager() {
     header.append(titleDiv, project);
     taskLeft.append(header, priority, createdDate);
 
-    formattedDate = format(taskJson.dueDate, "MM/dd/yyyy");
+    formattedDate = format(parseISO(taskJson.dueDate), "MM/dd/yyyy");
     dueDate.innerHTML = `
       <p>Due: ${formattedDate}</p>
     `;
