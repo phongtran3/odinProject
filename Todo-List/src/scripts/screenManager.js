@@ -43,8 +43,9 @@ export default function screenManager() {
   let currentProjectTitle = "";
   let selectedNavFilter = NavFilter.ALL;
   let activeNavItem = allTasks;
-  let activeProject = "";
   activeNavItem.classList.add("task-active");
+  let deleteType = "";
+  let currentTaskTitle = "";
 
   const app = taskManager();
   app.initialLoad();
@@ -223,22 +224,28 @@ export default function screenManager() {
     navItem.append(projectTitleDiv, projectBtnsDiv);
 
     editBtn.addEventListener("click", handleEditProject);
-    deleteBtn.addEventListener("click", () => openDeleteProjectDialog("project", project.title));
+    deleteBtn.addEventListener("click", () => openDeleteDialog("project", project.title));
     return navItem;
   };
 
   //Delete Dialog
-  const openDeleteProjectDialog = (type, name) => {
+  const openDeleteDialog = (type, name) => {
+    if (type === "project") currentProjectTitle = name;
+
     console.log(`Attemping to delete ${type} ${name}`);
-    currentProjectTitle = name;
+    deleteDialog.querySelector("h4").textContent = `Are you sure you want to delete this ${type} (${name})?`;
     checkMobileOverlay();
-    deleteDialog.querySelector("h4").textContent = `Are you sure you want to delete this ${type}?`;
     deleteDialog.showModal();
   };
 
   //Handle deleting project
-  const handleDeleteProject = () => {
-    app.deleteProject(currentProjectTitle);
+  const handleDelete = () => {
+    if (deleteType === "project") app.deleteProject(currentProjectTitle);
+    else {
+      //let id = e.target.closest(".task-card").getAttribute("task-id");
+      //let project = e.target.closest(".task-card").getAttribute("project");
+      //app.deleteTask(project, id);
+    }
     updateScreen();
     closeDeleteDialog(deleteDialog);
   };
@@ -273,13 +280,6 @@ export default function screenManager() {
     closeFormDialog(newTaskForm, newTaskDialog);
     updateScreen();
   };
-
-  const handleDeleteTask = (e) => {
-    let id = e.target.closest(".task-card").getAttribute("task-id")
-    let project = e.target.closest(".task-card").getAttribute("project")
-    app.deleteTask(project, id);
-    updateScreen();
-  }
 
   const createTaskElement = (taskJson) => {
     const taskCard = document.createElement("div");
@@ -357,8 +357,9 @@ export default function screenManager() {
     taskCard.setAttribute("task-id", taskJson.id);
     taskCard.setAttribute("project", taskJson.project);
 
-    deleteBtn.addEventListener("click", handleDeleteTask);
-    
+    //deleteBtn.addEventListener("click", handleDeleteTask);
+    deleteBtn.addEventListener("click", () => openDeleteDialog("task", taskJson.title));
+
     return taskCard;
   };
 
@@ -419,7 +420,7 @@ export default function screenManager() {
 
   //deleteBtns.forEach((btn) => btn.addEventListener("click", handleDeleteDialog));
   noBtn.addEventListener("click", () => closeDeleteDialog(deleteDialog));
-  yesBtn.addEventListener("click", handleDeleteProject);
+  yesBtn.addEventListener("click", handleDelete);
 
   addNewTaskBtn.addEventListener("click", openNewTaskDialog);
   taskCancelBtn.addEventListener("click", () => closeFormDialog(newTaskForm, newTaskDialog));
