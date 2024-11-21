@@ -129,7 +129,13 @@ export default function taskManager() {
   };
 
   const deleteTask = (projectName, taskID) => {
-    console.log(`Deleting project... ${projectName}`);
+    console.log(`Deleting task... with ${taskID} from project ${projectName}`);
+    let projectIndex = projects.findIndex((p) => p.title === projectName);
+    console.log(projectIndex);
+    if (projectIndex <= -1) return false;
+
+    projects[projectIndex].deleteTask(taskID);
+    updateLocalStorage();
     /*
     Check if task and project exist and if task exist in project
     if exist, find task in project tasks array and remove it

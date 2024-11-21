@@ -41,11 +41,12 @@ export default function screenManager() {
   const completedTasks = document.getElementById("completed-tasks");
 
   let currentProjectTitle = "";
+  let currentTaskTitle = "";
+  let currentTaskID = "";
+  let deleteType = "";
   let selectedNavFilter = NavFilter.ALL;
   let activeNavItem = allTasks;
   activeNavItem.classList.add("task-active");
-  let deleteType = "";
-  let currentTaskTitle = "";
 
   const app = taskManager();
   app.initialLoad();
@@ -230,9 +231,8 @@ export default function screenManager() {
 
   //Delete Dialog
   const openDeleteDialog = (type, name) => {
+    deleteType = type;
     if (type === "project") currentProjectTitle = name;
-
-    console.log(`Attemping to delete ${type} ${name}`);
     deleteDialog.querySelector("h4").textContent = `Are you sure you want to delete this ${type} (${name})?`;
     checkMobileOverlay();
     deleteDialog.showModal();
@@ -242,9 +242,7 @@ export default function screenManager() {
   const handleDelete = () => {
     if (deleteType === "project") app.deleteProject(currentProjectTitle);
     else {
-      //let id = e.target.closest(".task-card").getAttribute("task-id");
-      //let project = e.target.closest(".task-card").getAttribute("project");
-      //app.deleteTask(project, id);
+      app.deleteTask(currentProjectTitle, currentTaskID);
     }
     updateScreen();
     closeDeleteDialog(deleteDialog);
@@ -358,7 +356,12 @@ export default function screenManager() {
     taskCard.setAttribute("project", taskJson.project);
 
     //deleteBtn.addEventListener("click", handleDeleteTask);
-    deleteBtn.addEventListener("click", () => openDeleteDialog("task", taskJson.title));
+    deleteBtn.addEventListener("click", (e) => {
+      currentProjectTitle = taskJson.project;
+      currentTaskID = taskJson.id;
+      currentTaskTitle = taskJson.title;
+      openDeleteDialog("task", currentTaskTitle)
+    });
 
     return taskCard;
   };
