@@ -1,59 +1,47 @@
-
 export default class Project {
-    #tasks = [];
-    #taskID = 1;
+  #tasks = [];
+  #taskID = 1;
 
-    constructor(title) {
-        this.title = title;
-    }
+  constructor(title) {
+    this.title = title;
+  }
 
-    editProjectTitle(taskID, newTitle) {
-        if(!taskID && taskID !== 0) return;
+  addTask(task) {
+    if (!task) return;
+    task.id = this.#taskID++;
 
-        let index = this.#tasks.findIndex(task => task.id === taskID);
+    console.log(task);
+    this.#tasks.push(task);
+  }
 
-        if(index >= 0) {
-            this.#tasks[index] = {...this.#tasks[index], title: newTitle};
-        }
+  deleteTask(taskID) {
+    if (!taskID && taskID !== 0) return;
 
-    }
+    this.#tasks = this.#tasks.filter((task) => task.id !== taskID); //Remove the task from the array
 
-    addTask(task) {
-        if(!task) return
-        const taskWithID = { ...task, id: this.#taskID++ };
+    //Shift ID down
+    this.#tasks = this.#tasks.map((task) => {
+      if (task.id > taskID) {
+        task = { ...task, id: task.id - 1 };
+      }
 
-        this.#tasks.push(taskWithID)
-    }
+      return task;
+    });
 
-    deleteTask(taskID) {
-        if(!taskID && taskID !== 0) return;
+    this.#taskID--;
+  }
 
-        this.#tasks = this.#tasks.filter(task => task.id !== taskID); //Remove the task from the array
+  getTask(taskID) {
+    if (!taskID && taskID !== 0) return;
 
-        //Shift ID down
-        this.#tasks = this.#tasks.map(task => {
-            if(task.id > taskID){
-                task = {...task, id: task.id - 1};
-            }
+    let index = this.#tasks.findIndex((task) => task.id === Number(taskID));
 
-            return task;
-        });
+    if (index < 0) return null;
 
-        this.#taskID--;
-    }
+    return this.#tasks[index];
+  }
 
-    getTask(taskID) {
-        if(!taskID && taskID !== 0) return;
-
-        let index = this.#tasks.findIndex(task => task.id === taskID);
-
-        if(index < 0) return null;
-
-        return this.#tasks[index];
-    }
-
-    getTasks() {
-        return this.#tasks;
-    }
-
+  getTasks() {
+    return this.#tasks;
+  }
 }

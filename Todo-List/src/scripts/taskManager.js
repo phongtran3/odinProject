@@ -97,7 +97,6 @@ export default function taskManager() {
     if (projectIndex <= -1) return false;
 
     let task = new Task(formJSON);
-    console.log(task);
 
     projects[projectIndex].addTask(task);
     updateLocalStorage();
@@ -114,8 +113,19 @@ export default function taskManager() {
   };
 
   const editTask = (projectName, taskID, updatedJson) => {
+    console.log(`Editing Task...`);
+    let currentProject = getProject(projectName);
+    let currentTask = currentProject.getTask(taskID);
+    console.log(currentTask instanceof Task);
+
+    if (!currentTask) return;
+
+    if (projectName && projectName !== currentTask.project) {
+    } else {
+      currentTask.editTask(updatedJson);
+    }
+    updateLocalStorage();
     /*
-    Check if updatedJson isn't null
     Get current task
     Check if current project exist
     If project exist, check if the project is the same as updated project

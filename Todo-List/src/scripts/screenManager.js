@@ -360,7 +360,7 @@ export default function screenManager() {
       currentProjectTitle = taskJson.project;
       currentTaskID = taskJson.id;
       currentTaskTitle = taskJson.title;
-      openDeleteDialog("task", currentTaskTitle)
+      openDeleteDialog("task", currentTaskTitle);
     });
 
     return taskCard;
@@ -368,6 +368,10 @@ export default function screenManager() {
 
   const handleTaskStatusChange = (e) => {
     console.log("Status Change");
+    let taskId = e.currentTarget.closest(".task-card").getAttribute("task-id");
+    let projectName = e.currentTarget.closest(".task-card").getAttribute("project");
+    app.editTask(projectName, taskId, { done: e.currentTarget.checked });
+    updateScreen();
   };
 
   const applyActiveState = (newFilter) => {
