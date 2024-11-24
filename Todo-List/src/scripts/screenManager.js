@@ -19,7 +19,7 @@ export default function screenManager() {
   const navProjects = document.getElementById("nav-project-items");
   const addProjectBtn = document.getElementById("add-project-btn");
 
-  const newTaskDialog = document.getElementById("task-dialog-container");
+  const taskDialog = document.getElementById("task-dialog-container");
   const newTaskForm = document.getElementById("task-form");
   const taskCancelBtn = newTaskForm.querySelector(".cancel-btn");
   const addNewTaskBtn = document.getElementById("add-task-btn");
@@ -255,7 +255,7 @@ export default function screenManager() {
     dialogTitle.textContent = "Adding New Task";
     checkMobileOverlay();
     editTask = false;
-    newTaskDialog.showModal();
+    taskDialog.showModal();
   };
   const openEditTaskDialog = (taskJson) => {
     console.log(taskJson);
@@ -273,7 +273,8 @@ export default function screenManager() {
 
     checkMobileOverlay();
     editTask = true;
-    newTaskDialog.showModal();
+    taskDialog.setAttribute("task-id", taskJson.id);
+    taskDialog.showModal();
   };
 
   const submitNewTask = (e) => {
@@ -290,20 +291,23 @@ export default function screenManager() {
     };
 
     console.log(parseISO(formJSON.dueDate));
-    if (app.getTask(formJSON.project, formJSON.title)) {
-      console.log("Task Error");
-      taskErrorMsg.style.display = "block";
-      return;
-    }
 
     if (!editTask) {
+      if (app.getTask(formJSON.project, formJSON.title)) {
+        console.log("Task Error");
+        taskErrorMsg.style.display = "block";
+        return;
+      }
       console.log("Submiting New Task...");
       app.addTask(formJSON);
     } else {
       console.log("Submiting editing task");
+      let taskId = taskDialog.getAttribute("task-id");
+      //console.log(formJSON);
+      app.editTask(formJSON.project, taskId, formJSON);
     }
 
-    closeFormDialog(newTaskForm, newTaskDialog);
+    closeFormDialog(newTaskForm, taskDialog);
     updateScreen();
   };
 
@@ -462,7 +466,7 @@ export default function screenManager() {
   yesBtn.addEventListener("click", handleDelete);
 
   addNewTaskBtn.addEventListener("click", openNewTaskDialog);
-  taskCancelBtn.addEventListener("click", () => closeFormDialog(newTaskForm, newTaskDialog));
+  taskCancelBtn.addEventListener("click", () => closeFormDialog(newTaskForm, taskDialog));
   newTaskForm.addEventListener("submit", submitNewTask);
 
   allTasks.addEventListener("click", handleAllTasks);
