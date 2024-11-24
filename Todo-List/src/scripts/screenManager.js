@@ -44,6 +44,7 @@ export default function screenManager() {
   let currentTaskTitle = "";
   let currentTaskID = "";
   let deleteType = "";
+  let editTask = false;
   let selectedNavFilter = NavFilter.ALL;
   let activeNavItem = allTasks;
   activeNavItem.classList.add("task-active");
@@ -250,13 +251,34 @@ export default function screenManager() {
 
   //Handle Opening New Task Dialog
   const openNewTaskDialog = () => {
+    let dialogTitle = document.getElementById("task-dialog-title");
+    dialogTitle.textContent = "Adding New Task";
     checkMobileOverlay();
+    editTask = false;
+    newTaskDialog.showModal();
+  };
+  const openEditTaskDialog = (taskJson) => {
+    console.log(taskJson);
+    const dialogTitle = document.getElementById("task-dialog-title");
+    const title = document.querySelector("#title");
+    const dueDate = document.querySelector('input[name="task-due-date"]');
+    const project = document.querySelector("select[name='project']");
+    const priority = document.querySelector("select[name='priority']");
+
+    dialogTitle.textContent = `Editing ${taskJson.title} task`;
+    title.value = taskJson.title;
+    dueDate.value = taskJson.dueDate;
+    project.value = taskJson.project;
+    priority.value = taskJson.priority;
+
+    checkMobileOverlay();
+    editTask = true;
     newTaskDialog.showModal();
   };
 
   const submitNewTask = (e) => {
-    console.log("Submiting New Task...");
     e.preventDefault();
+
     const formData = new FormData(e.target);
 
     const formJSON = {
@@ -274,7 +296,13 @@ export default function screenManager() {
       return;
     }
 
-    app.addTask(formJSON);
+    if (!editTask) {
+      console.log("Submiting New Task...");
+      app.addTask(formJSON);
+    } else {
+      console.log("Submiting editing task");
+    }
+
     closeFormDialog(newTaskForm, newTaskDialog);
     updateScreen();
   };
@@ -361,6 +389,10 @@ export default function screenManager() {
       currentTaskID = taskJson.id;
       currentTaskTitle = taskJson.title;
       openDeleteDialog("task", currentTaskTitle);
+    });
+
+    editBtn.addEventListener("click", () => {
+      openEditTaskDialog(taskJson);
     });
 
     return taskCard;
