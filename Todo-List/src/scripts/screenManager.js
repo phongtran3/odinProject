@@ -304,9 +304,17 @@ export default function screenManager() {
     } else {
       console.log("Submiting editing task");
       let taskId = taskDialog.getAttribute("task-id");
-      let currentProject = taskDialog.getAttribute("current-project");
-      //console.log(formJSON);
-      app.editTask(currentProject, taskId, formJSON);
+      let currentProjectName = taskDialog.getAttribute("current-project");
+      const targetProjectObj = app.getProject(formJSON.project);
+      const targetProjectTasks = targetProjectObj.getTasks();
+      const hasDuplicate = targetProjectTasks.some((task) => task.title === formJSON.title);
+      if (hasDuplicate && currentProjectName !== targetProjectObj.title) {
+        console.log("Task Error");
+        taskErrorMsg.style.display = "block";
+        return;
+      } else {
+        app.editTask(currentProjectName, taskId, formJSON);
+      }
     }
 
     closeFormDialog(newTaskForm, taskDialog);
