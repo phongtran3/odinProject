@@ -409,6 +409,7 @@ export default function screenManager() {
       openEditTaskDialog(taskJson);
     });
 
+    project.addEventListener("click", handleProjectClick);
     return taskCard;
   };
 
