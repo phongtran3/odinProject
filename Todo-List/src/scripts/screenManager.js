@@ -379,15 +379,9 @@ export default function screenManager() {
 
     formattedDate = format(parseISO(taskJson.dueDate), "MM/dd/yyyy");
     let isDueDatePast = isDatePast(formattedDate);
-    if (isDueDatePast){
-      dueDate.innerHTML = `
-      <p class="overdue">Due: ${formattedDate}</p>
+    dueDate.innerHTML = `
+      <p class="${isDueDatePast ? 'overdue' : ''}">Due: ${formattedDate}</p>
     `;
-    }else {
-      dueDate.innerHTML = `
-      <p>Due: ${formattedDate}</p>
-    `;
-    }
     
 
     editBtn.innerHTML = `
