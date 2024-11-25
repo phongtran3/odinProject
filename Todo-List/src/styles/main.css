@@ -94,6 +94,11 @@ button {
     color: var(--darkSkyBlue);
 }
 
+
+.overdue {
+    color: red;
+}
+
 #overlay {
     position: fixed;
     top: 0;

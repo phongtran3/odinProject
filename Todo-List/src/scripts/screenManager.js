@@ -1,6 +1,6 @@
 import taskManager from "./taskManager.js";
 import addEventListeners from "./eventListener.js";
-import { NavFilter, closeFormDialog, checkMobileOverlay, toggleShowOverlay, closeDeleteDialog } from "./screenHelper.js";
+import { NavFilter, closeFormDialog, checkMobileOverlay, toggleShowOverlay, closeDeleteDialog, isDatePast } from "./screenHelper.js";
 import trashIcon from "../assets/svgs/trash.svg";
 import editIcon from "../assets/svgs/edit.svg";
 
@@ -378,9 +378,17 @@ export default function screenManager() {
     taskLeft.append(header, priority, createdDate);
 
     formattedDate = format(parseISO(taskJson.dueDate), "MM/dd/yyyy");
-    dueDate.innerHTML = `
+    let isDueDatePast = isDatePast(formattedDate);
+    if (isDueDatePast){
+      dueDate.innerHTML = `
+      <p class="overdue">Due: ${formattedDate}</p>
+    `;
+    }else {
+      dueDate.innerHTML = `
       <p>Due: ${formattedDate}</p>
     `;
+    }
+    
 
     editBtn.innerHTML = `
       <img class="icon-svg" src="${editIcon}" />

@@ -1,3 +1,4 @@
+import { parse, isBefore } from "date-fns";
 const sideBarContainer = document.getElementById("side-bar-container");
 const projectErrorMsg = document.getElementById("project-error");
 const taskErrorMsg = document.getElementById("task-error");
@@ -43,3 +44,12 @@ export const NavFilter = Object.freeze({
   COMPLETED: Symbol.for("Completed Tasks"),
   PROJECT: Symbol.for("Project"),
 });
+
+
+export const isDatePast = (dueDate) => {
+  const today = new Date();
+  let parseDueDate = parse(dueDate, "MM/dd/yyyy", new Date());
+
+  const isPast = isBefore(parseDueDate, today);
+  return isPast;
+}
