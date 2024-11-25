@@ -10,14 +10,14 @@ export default class Project {
     if (!task) return;
     task.id = this.#taskID++;
 
-    console.log(task);
     this.#tasks.push(task);
   }
 
   deleteTask(taskID) {
+    console.log("deleting tasks");
     if (!taskID && taskID !== 0) return;
 
-    this.#tasks = this.#tasks.filter((task) => task.id !== taskID); //Remove the task from the array
+    this.#tasks = this.#tasks.filter((task) => task.id !== Number(taskID)); //Remove the task from the array
 
     //Shift ID down
     this.#tasks = this.#tasks.map((task) => {

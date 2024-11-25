@@ -274,6 +274,7 @@ export default function screenManager() {
     checkMobileOverlay();
     editTask = true;
     taskDialog.setAttribute("task-id", taskJson.id);
+    taskDialog.setAttribute("current-project", taskJson.project);
     taskDialog.showModal();
   };
 
@@ -303,8 +304,9 @@ export default function screenManager() {
     } else {
       console.log("Submiting editing task");
       let taskId = taskDialog.getAttribute("task-id");
+      let currentProject = taskDialog.getAttribute("current-project");
       //console.log(formJSON);
-      app.editTask(formJSON.project, taskId, formJSON);
+      app.editTask(currentProject, taskId, formJSON);
     }
 
     closeFormDialog(newTaskForm, taskDialog);

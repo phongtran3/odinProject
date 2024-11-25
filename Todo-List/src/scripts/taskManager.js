@@ -116,11 +116,18 @@ export default function taskManager() {
     console.log(`Editing Task...`);
     let currentProject = getProject(projectName);
     let currentTask = currentProject.getTask(taskID);
-    console.log(currentTask instanceof Task);
 
     if (!currentTask) return;
+    let newProject = updatedJson.project;
+    if (newProject && newProject !== currentTask.project) {
+      console.log("Project change...");
+      const targetProjectObj = getProject(newProject);
 
-    if (projectName && projectName !== currentTask.project) {
+      if (!targetProjectObj || !currentProject) return;
+
+      currentProject.deleteTask(taskID);
+      currentTask.editTask(updatedJson);
+      targetProjectObj.addTask(currentTask);
     } else {
       currentTask.editTask(updatedJson);
     }
