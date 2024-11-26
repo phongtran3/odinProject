@@ -2,6 +2,7 @@ import { parse, isBefore } from "date-fns";
 const sideBarContainer = document.getElementById("side-bar-container");
 const projectErrorMsg = document.getElementById("project-error");
 const taskErrorMsg = document.getElementById("task-error");
+const deleteDialog = document.getElementById("delete-dialog-container");
 
 export const toggleShowOverlay = () => {
   if (sideBarContainer.classList.contains("showOverlay")) {
@@ -12,7 +13,6 @@ export const toggleShowOverlay = () => {
 };
 
 export const closeFormDialog = (form, dialog) => {
-  console.log("Closing Dilaog...");
   form.reset();
   dialog.close();
   overlay.style.display = "none";
@@ -25,6 +25,9 @@ export const closeFormDialog = (form, dialog) => {
 export const closeDeleteDialog = (form) => {
   form.close();
   overlay.style.display = "none";
+  deleteDialog.removeAttribute("type");
+    deleteDialog.removeAttribute("title");
+    deleteDialog.removeAttribute("task-id");
   toggleShowOverlay();
 };
 

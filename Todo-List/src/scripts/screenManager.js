@@ -7,8 +7,6 @@ import editIcon from "../assets/svgs/edit.svg";
 import { parseISO, format } from "date-fns";
 
 export default function screenManager() {
-  console.log("Screen Manager");
-
   addEventListeners();
 
   const newProjectDialog = document.getElementById("new-project-dialog-container");
@@ -27,7 +25,6 @@ export default function screenManager() {
   const projectOptions = document.querySelector('select[name="project"]');
 
   const deleteDialog = document.getElementById("delete-dialog-container");
-  const deleteBtns = document.querySelectorAll(".delete-btn");
   const yesBtn = document.getElementById("yes-btn");
   const noBtn = document.getElementById("no-btn");
 
@@ -41,9 +38,6 @@ export default function screenManager() {
   const completedTasks = document.getElementById("completed-tasks");
 
   let currentProjectTitle = "";
-  let currentTaskTitle = "";
-  let currentTaskID = "";
-  let deleteType = "";
   let editTask = false;
   let selectedNavFilter = NavFilter.ALL;
   let activeNavItem = allTasks;
@@ -54,7 +48,6 @@ export default function screenManager() {
 
   //update screen function
   const updateScreen = () => {
-    console.log("Updating Screen...");
     navProjects.textContent = "";
     projectOptions.textContent = "";
     taskListContainer.textContent = "";
@@ -123,7 +116,6 @@ export default function screenManager() {
   };
 
   const updateProjects = () => {
-    console.log("Updating projects...");
     let projects = app.getAllProjects();
     let defaultOption = document.createElement("option");
     defaultOption.value = "";
@@ -143,20 +135,16 @@ export default function screenManager() {
   const sumbitNewProject = (e) => {
     e.preventDefault();
     const projectTitle = newProjectForm.querySelector(".new-project").value.trim();
-    console.log(projectTitle);
     if (app.getProject(projectTitle)) {
-      console.log("Error");
       projectErrorMsg.style.display = "block";
       return;
     }
 
     if (projectDialogTitle.textContent === "Adding New Project") {
-      console.log("Submiting New Project...");
       app.addProject(projectTitle);
       updateScreen();
       closeFormDialog(newProjectForm, newProjectDialog);
     } else {
-      console.log("Editing New Project...");
       app.editProjectName(currentProjectTitle, projectTitle);
       updateScreen();
       closeFormDialog(newProjectForm, newProjectDialog);
@@ -176,7 +164,6 @@ export default function screenManager() {
 
   //Handle Opening Project for Editing
   const handleEditProject = (e) => {
-    console.log("Editing Project...");
     const button = e.currentTarget;
     const projectItem = button.closest(".nav-item");
     const projectTitle = projectItem.querySelector(".project-title h3");
@@ -226,24 +213,33 @@ export default function screenManager() {
     navItem.append(projectTitleDiv, projectBtnsDiv);
 
     editBtn.addEventListener("click", handleEditProject);
-    deleteBtn.addEventListener("click", () => openDeleteDialog("project", project.title));
+    deleteBtn.addEventListener("click", () => {
+      deleteDialog.setAttribute("type", "project");
+      deleteDialog.setAttribute("title", project.title);
+      openDeleteDialog()
+    });
     return navItem;
   };
 
   //Delete Dialog
-  const openDeleteDialog = (type, name) => {
-    deleteType = type;
-    if (type === "project") currentProjectTitle = name;
-    deleteDialog.querySelector("h4").textContent = `Are you sure you want to delete this ${type} (${name})?`;
+  const openDeleteDialog = () => {
+    let type = deleteDialog.getAttribute("type");
+    let title = deleteDialog.getAttribute("title");
+    if (type === "project") currentProjectTitle = title;
+
+    deleteDialog.querySelector("h4").textContent = `Are you sure you want to delete this ${type} (${title})?`;
     checkMobileOverlay();
     deleteDialog.showModal();
   };
 
   //Handle deleting project
   const handleDelete = () => {
-    if (deleteType === "project") app.deleteProject(currentProjectTitle);
+    let type = deleteDialog.getAttribute("type");
+
+    if (type === "project") app.deleteProject(currentProjectTitle);
     else {
-      app.deleteTask(currentProjectTitle, currentTaskID);
+      let taskID = deleteDialog.getAttribute("task-id");
+      app.deleteTask(currentProjectTitle, taskID);
     }
     updateScreen();
     closeDeleteDialog(deleteDialog);
@@ -257,8 +253,8 @@ export default function screenManager() {
     editTask = false;
     taskDialog.showModal();
   };
+
   const openEditTaskDialog = (taskJson) => {
-    console.log(taskJson);
     const dialogTitle = document.getElementById("task-dialog-title");
     const title = document.querySelector("#title");
     const dueDate = document.querySelector('input[name="task-due-date"]');
@@ -272,9 +268,6 @@ export default function screenManager() {
     priority.value = taskJson.priority;
 
     checkMobileOverlay();
-    editTask = true;
-    taskDialog.setAttribute("task-id", taskJson.id);
-    taskDialog.setAttribute("current-project", taskJson.project);
     taskDialog.showModal();
   };
 
@@ -282,7 +275,6 @@ export default function screenManager() {
     e.preventDefault();
 
     const formData = new FormData(e.target);
-
     const formJSON = {
       title: formData.get("title"),
       dueDate: formData.get("task-due-date"),
@@ -291,25 +283,19 @@ export default function screenManager() {
       done: false,
     };
 
-    console.log(parseISO(formJSON.dueDate));
-
     if (!editTask) {
       if (app.getTask(formJSON.project, formJSON.title)) {
-        console.log("Task Error");
         taskErrorMsg.style.display = "block";
         return;
       }
-      console.log("Submiting New Task...");
       app.addTask(formJSON);
     } else {
-      console.log("Submiting editing task");
       let taskId = taskDialog.getAttribute("task-id");
       let currentProjectName = taskDialog.getAttribute("current-project");
       const targetProjectObj = app.getProject(formJSON.project);
       const targetProjectTasks = targetProjectObj.getTasks();
       const hasDuplicate = targetProjectTasks.some((task) => task.title === formJSON.title);
       if (hasDuplicate && currentProjectName !== targetProjectObj.title) {
-        console.log("Task Error");
         taskErrorMsg.style.display = "block";
         return;
       } else {
@@ -401,13 +387,17 @@ export default function screenManager() {
 
     //deleteBtn.addEventListener("click", handleDeleteTask);
     deleteBtn.addEventListener("click", (e) => {
+      deleteDialog.setAttribute("type", "task");
+      deleteDialog.setAttribute("title", taskJson.title);
+      deleteDialog.setAttribute("task-id", taskJson.id);
       currentProjectTitle = taskJson.project;
-      currentTaskID = taskJson.id;
-      currentTaskTitle = taskJson.title;
-      openDeleteDialog("task", currentTaskTitle);
+      openDeleteDialog("task", taskJson.title);
     });
 
     editBtn.addEventListener("click", () => {
+      editTask = true;
+      taskDialog.setAttribute("task-id", taskJson.id);
+      taskDialog.setAttribute("current-project", taskJson.project);
       openEditTaskDialog(taskJson);
     });
 
@@ -416,7 +406,6 @@ export default function screenManager() {
   };
 
   const handleTaskStatusChange = (e) => {
-    console.log("Status Change");
     let taskId = e.currentTarget.closest(".task-card").getAttribute("task-id");
     let projectName = e.currentTarget.closest(".task-card").getAttribute("project");
     app.editTask(projectName, taskId, { done: e.currentTarget.checked });
@@ -431,14 +420,12 @@ export default function screenManager() {
 
   const handleAllTasks = () => {
     selectedNavFilter = NavFilter.ALL;
-    console.log(selectedNavFilter);
     toggleShowOverlay();
     applyActiveState(allTasks);
     updateScreen();
   };
 
   const handleTodayTasks = () => {
-    console.log(selectedNavFilter);
     selectedNavFilter = NavFilter.TODAY;
     toggleShowOverlay();
     applyActiveState(todayTasks);
@@ -446,7 +433,6 @@ export default function screenManager() {
   };
 
   const handleWeekTasks = () => {
-    console.log(selectedNavFilter);
     selectedNavFilter = NavFilter.WEEK;
     toggleShowOverlay();
     applyActiveState(weekTasks);
@@ -454,7 +440,6 @@ export default function screenManager() {
   };
 
   const handleMonthasks = () => {
-    console.log(selectedNavFilter);
     selectedNavFilter = NavFilter.MONTH;
     toggleShowOverlay();
     applyActiveState(monthTasks);
@@ -474,7 +459,6 @@ export default function screenManager() {
 
   newProjectForm.addEventListener("submit", sumbitNewProject);
 
-  //deleteBtns.forEach((btn) => btn.addEventListener("click", handleDeleteDialog));
   noBtn.addEventListener("click", () => closeDeleteDialog(deleteDialog));
   yesBtn.addEventListener("click", handleDelete);
 
