@@ -213,11 +213,13 @@ export default function screenManager() {
     navItem.append(projectTitleDiv, projectBtnsDiv);
 
     editBtn.addEventListener("click", handleEditProject);
+
     deleteBtn.addEventListener("click", () => {
       deleteDialog.setAttribute("type", "project");
       deleteDialog.setAttribute("title", project.title);
       openDeleteDialog()
     });
+    
     return navItem;
   };
 
@@ -352,7 +354,6 @@ export default function screenManager() {
     priority.innerHTML = `
       <div class="flag ${taskJson.priority.toLowerCase()}"></div>
       <span>${taskJson.priority}</span>
-    
     `;
 
     let formattedDate = format(taskJson.createDate, "MM/dd/yyyy");
@@ -368,7 +369,6 @@ export default function screenManager() {
     dueDate.innerHTML = `
       <p class="${isDueDatePast ? 'overdue' : ''}">Due: ${formattedDate}</p>
     `;
-    
 
     editBtn.innerHTML = `
       <img class="icon-svg" src="${editIcon}" />
