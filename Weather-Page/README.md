@@ -2,6 +2,7 @@
 
 - Receive weather data from Visual Crossing API
 - Google Place Search API?
+- Browser Geolocation?
 - Icons from : https://github.com/basmilius/weather-icons
 
 ## User stories
@@ -12,7 +13,7 @@
   - Humidity
   - Sunrise
   - Sunset
-  - Chance of Rain
+  - Chance of Rain (precip)
   - Feels like
 - As a user, I am able to view the hourly forcast up to 5 hours ahead.
 - As a user, I am able to view the week forecast up to 5 days ahead.
