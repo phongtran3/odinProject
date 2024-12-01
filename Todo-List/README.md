@@ -1,4 +1,4 @@
-# odinProject Todo - List
+# Odin Project Todo - List
 
 Each Todo contains
 
