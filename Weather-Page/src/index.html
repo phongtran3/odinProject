@@ -4,6 +4,87 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <script type="module" src="./index.js"></script>
+    <link rel="stylesheet" href="./styles/main.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <div class="setting-container">
+        <button type="button" id="setting-btn">
+          <img src="./assets/svgs/weather-details/setting.svg" alt="setting icon" />
+        </button>
+      </div>
+
+      <div class="search-area">
+        <form autocomplete="off" spellcheck="false" id="search-form">
+          <input type="text" name="search-input" id="search-input" />
+          <button type="submit" id="search-btn">
+            <img src="./assets/svgs/weather-details/search.svg" alt="search button icon" />
+          </button>
+        </form>
+      </div>
+
+      <div id="main-content">
+        <section class="header-container">
+          <div class="header-text">
+            <h2 class="current-city">Dallas, TX, United States</h2>
+            <p class="current-description">Partly cloudy throughout the day.</p>
+          </div>
+          <div class="header-temp">
+            <h2 class="current-temp">9.3&#176;F</h2>
+            <img class="current-temp-icon" style="width: 150px; height: 150px" src="./assets/svgs/weather-types/clear-night.svg" alt="" />
+          </div>
+        </section>
+        <section class="detail-container">
+          <div class="detail-item">
+            <img class="detail-icon" src="./assets/svgs/weather-details/humidity.svg" style="width: 150px; height: 150px" />
+            <div class="detail-text">
+              <p class="detail-title">Humidity</p>
+              <p class="detail-value">70.5%</p>
+            </div>
+          </div>
+          <div class="detail-item">
+            <img class="detail-icon" src="./assets/svgs/weather-details/wind.svg" style="width: 150px; height: 150px" />
+            <div class="detail-text">
+              <p class="detail-title">Wind Speed</p>
+              <p class="detail-value">14.8 km/h</p>
+            </div>
+          </div>
+
+          <div class="detail-item">
+            <img class="detail-icon" src="./assets/svgs/weather-details/raindrop.svg" style="width: 150px; height: 150px" />
+            <div class="detail-text">
+              <p class="detail-title">Rain Chance</p>
+              <p class="detail-value">0%</p>
+            </div>
+          </div>
+
+          <div class="detail-item">
+            <img class="detail-icon" src="./assets/svgs/weather-details/snowflake.svg" style="width: 150px; height: 150px" />
+            <div class="detail-text">
+              <p class="detail-title">Snow Chance</p>
+              <p class="detail-value">0%</p>
+            </div>
+          </div>
+          <div class="detail-item">
+            <img class="detail-icon" src="./assets/svgs/weather-details/sunrise.svg" style="width: 150px; height: 150px" />
+            <div class="detail-text">
+              <p class="detail-title">Sunrise</p>
+              <p class="detail-value">5:55 AM</p>
+            </div>
+          </div>
+
+          <div class="detail-item">
+            <img class="detail-icon" src="./assets/svgs/weather-details/sunset.svg" style="width: 150px; height: 150px" />
+            <div class="detail-text">
+              <p class="detail-title">Sunset</p>
+              <p class="detail-value">6:20 PM</p>
+            </div>
+          </div>
+        </section>
+        <section class="hourly-container"></section>
+        <section class="daily-container"></section>
+      </div>
+    </div>
+  </body>
 </html>
