@@ -6,6 +6,7 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
     <script type="module" src="./index.js"></script>
     <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   </head>
   <body>
     <div class="container">
@@ -82,8 +83,102 @@
             </div>
           </div>
         </section>
-        <section class="hourly-container"></section>
-        <section class="daily-container"></section>
+        <section class="hourly-section">
+          <div class="section-title">
+            <h3>Hourly Forecast</h3>
+          </div>
+          <div class="hourly-container">
+            <div class="hourly-forecast">
+              <p class="hour-time">12:00 AM</p>
+              <img style="width: 150px; height: 150px" src="./assets/svgs/weather-types/clear-day.svg" alt="" class="hour-icon" />
+              <p class="hour-forecast">51.1&#176;</p>
+            </div>
+
+            <div class="hourly-forecast">
+              <p class="hour-time">12:00 AM</p>
+              <img style="width: 150px; height: 150px" src="./assets/svgs/weather-types/cloudy.svg" alt="" class="hour-icon" />
+              <p class="hour-forecast">51.1&#176;</p>
+            </div>
+
+            <div class="hourly-forecast">
+              <p class="hour-time">12:00 AM</p>
+              <img style="width: 150px; height: 150px" src="./assets/svgs/weather-types/fog-night.svg" alt="" class="hour-icon" />
+              <p class="hour-forecast">51.1&#176;</p>
+            </div>
+
+            <div class="hourly-forecast">
+              <p class="hour-time">12:00 AM</p>
+              <img style="width: 150px; height: 150px" src="./assets/svgs/weather-types/thunder-rain.svg" alt="" class="hour-icon" />
+              <p class="hour-forecast">51.1&#176;</p>
+            </div>
+
+            <div class="hourly-forecast">
+              <p class="hour-time">12:00 AM</p>
+              <img style="width: 150px; height: 150px" src="./assets/svgs/weather-types/snow-showers-night.svg" alt="" class="hour-icon" />
+              <p class="hour-forecast">51.1&#176;</p>
+            </div>
+
+            <div class="hourly-forecast">
+              <p class="hour-time">12:00 AM</p>
+              <img style="width: 150px; height: 150px" src="./assets/svgs/weather-types/thunder-showers-night.svg" alt="" class="hour-icon" />
+              <p class="hour-forecast">51.1&#176;</p>
+            </div>
+          </div>
+        </section>
+        <section class="daily-section">
+          <div class="section-title">
+            <h3>Daily Forecast</h3>
+          </div>
+          <div class="daily-container">
+            <div class="daily-forecast">
+              <p class="daily-time">Today</p>
+              <img style="width: 150px; height: 150px" src="./assets/svgs/weather-types/clear-day.svg" alt="" class="daily-icon" />
+              <p class="daily-forecast">51.1&#176;</p>
+            </div>
+
+            <div class="daily-forecast">
+              <p class="daily-time">Tomorrow</p>
+              <img style="width: 150px; height: 150px" src="./assets/svgs/weather-types/cloudy.svg" alt="" class="daily-icon" />
+              <p class="daily-forecast">51.1&#176;</p>
+            </div>
+
+            <div class="daily-forecast">
+              <p class="daily-time">Thursday</p>
+              <img style="width: 150px; height: 150px" src="./assets/svgs/weather-types/fog-night.svg" alt="" class="daily-icon" />
+              <p class="daily-forecast">51.1&#176;</p>
+            </div>
+
+            <div class="daily-forecast">
+              <p class="daily-time">Friday</p>
+              <img style="width: 150px; height: 150px" src="./assets/svgs/weather-types/thunder-rain.svg" alt="" class="daily-icon" />
+              <p class="daily-forecast">51.1&#176;</p>
+            </div>
+
+            <div class="daily-forecast">
+              <p class="daily-time">Saturday</p>
+              <img style="width: 150px; height: 150px" src="./assets/svgs/weather-types/snow-showers-night.svg" alt="" class="daily-icon" />
+              <p class="daily-forecast">51.1&#176;</p>
+            </div>
+
+            <div class="daily-forecast">
+              <p class="daily-time">Sunday</p>
+              <img style="width: 150px; height: 150px" src="./assets/svgs/weather-types/thunder-showers-night.svg" alt="" class="daily-icon" />
+              <p class="daily-forecast">51.1&#176;</p>
+            </div>
+          </div>
+        </section>
+        <section class="footer-section">
+          <div class="copyright">&copy; Phong Tran</div>
+          <div class="footer-text">
+            <p class="footer-title">The Oden Project: Weather Page</p>
+            <p class="disclaimer">Disclaimer: All images and SVGs are courtesy of Meteocons</p>
+          </div>
+          <div class="social-media-links">
+            <a href="https://github.com/phongtran3" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/phongtran_3/" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/phong-tran230/" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </section>
       </div>
     </div>
   </body>

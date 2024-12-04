@@ -15,5 +15,5 @@
   - Sunset
   - Chance of Rain (precip)
   - Feels like
-- As a user, I am able to view the hourly forcast up to 5 hours ahead.
-- As a user, I am able to view the week forecast up to 5 days ahead.
+- As a user, I am able to view the hourly forcast up to 6 hours ahead.
+- As a user, I am able to view the week forecast up to 6 days ahead.
