@@ -32,6 +32,19 @@ body {
   margin: 0;
   font-family: var(--font-family-body);
   font-size: var(--font-size-body);
+  background-color: rgba(46, 45, 45, .3);
+  color: var(--white);
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover,
+button:focus {
+  opacity: .7;
 }
 
 
@@ -39,20 +52,41 @@ body {
   padding: .5rem;
 }
 
-
 .setting-container {
   position: absolute;
   right: 0;
-  top: 1rem;
 }
 
-#setting-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
+#setting-btn > img{
+  width: 25px;
+  height: 25px;
 }
 
-#setting-btn:hover,
-#setting-btn:focus {
-  opacity: .7;
+
+#search-form {
+  display: flex;
+  margin: 1rem 0;
+  justify-content: center;
 }
+
+
+#search-input {
+  border: 2px solid var(--white);
+  color: var(--white);
+  border-radius: 50px;
+  background-color: transparent;
+  width: 70%;
+  padding: .25rem .75rem;
+  font-weight: bold;
+}
+
+
+#search-input:focus {
+  outline: none;
+}
+
+#search-btn > img {
+  width: 25px;
+  height: 25px;
+}
+
