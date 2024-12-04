@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Young+Serif&display=swap');
+
+
+:root {
+  --black: #000000;
+  --white: #FFFFFF;
+
+  --font-size-body: 16px;
+  --font-family-heading: "Young Serif", sans-serif;
+  --font-family-body: "Outfit", sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+h2,
+h3 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+}
+
+
+.container {
+  padding: .5rem;
+}
+
+
+.setting-container {
+  position: absolute;
+  right: 0;
+  top: 1rem;
+}
+
+#setting-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#setting-btn:hover,
+#setting-btn:focus {
+  opacity: .7;
+}
