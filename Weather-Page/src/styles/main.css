@@ -33,7 +33,7 @@ body {
   margin: 0;
   font-family: var(--font-family-body);
   font-size: var(--font-size-body);
-  background-color: rgba(46, 45, 45, .5);
+  background-color: rgba(46, 45, 45, .25);
   color: var(--white);
 }
 
@@ -65,6 +65,7 @@ button:focus {
 .search-area {
   margin: 1rem 0 2rem 0;
 }
+
 #search-form {
   display: flex;
   justify-content: center;
@@ -79,7 +80,6 @@ button:focus {
   padding: .25rem .75rem;
   font-weight: bold;
 }
-
 
 #search-input:focus {
   outline: none;
@@ -113,6 +113,14 @@ button:focus {
 .current-temp-icon {
   width: 150px;
   height: 150px;
+}
+
+.detail-icon,
+.hour-icon,
+.daily-icon
+{
+  width: 125px;
+  height: 125px;
 }
 
 .detail-container,
@@ -189,6 +197,13 @@ button:focus {
     height: 200px;
   }
 
+  .detail-icon,
+  .hour-icon,
+  .daily-icon
+  {
+    width: 150px;
+    height: 150px;
+  }
   .current-description {
     font-size: 1.25rem;
   }
@@ -211,7 +226,7 @@ button:focus {
   }
 
   #search-input {
-    padding: .75rem;
+    padding: .75rem 1rem;
     font-size: 1.25rem;
   }
 
