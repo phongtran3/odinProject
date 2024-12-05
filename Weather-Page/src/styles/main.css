@@ -63,10 +63,11 @@ button:focus {
   height: 25px;
 }
 
-
+.search-area {
+  margin: 1rem 0 2rem 0;
+}
 #search-form {
   display: flex;
-  margin: 1rem 0;
   justify-content: center;
 }
 
@@ -97,14 +98,14 @@ button:focus {
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin: 0 auto;
 }
 
 .header-temp {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  padding-left: 1.5rem;
+  padding-left: 1rem;
 }
 
 .current-city {
@@ -117,7 +118,6 @@ button:focus {
 .daily-container {
   text-align: center;
   display: grid;
-  row-gap: 2rem;
   grid-template-columns: repeat(2, 1fr);
   margin-bottom: 1rem;
 }
@@ -149,4 +149,59 @@ button:focus {
 .disclaimer > a:hover,
 .disclaimer > a:focus {
   opacity: .5;
+}
+
+
+@media screen and (min-width: 600px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .detail-container,
+  .hourly-container,
+  .daily-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .header-text {
+    width: 55%;
+  }
+
+  .header-container {
+    flex-direction: row;
+    text-align: start;
+  }
+
+  .current-city {
+    font-size: 2rem;
+  }
+
+  .footer-section {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    text-align: center;
+    font-size: 1rem;
+    gap: .25rem;
+  }
+
+}
+
+@media screen and (min-width: 1040px) {
+  .container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .header-container {
+    margin-bottom: 2rem;
+  }
+
+  .detail-container,
+  .hourly-container,
+  .daily-container {
+    grid-template-columns: repeat(6, 1fr);
+    margin-bottom: 5rem;
+  }
+
 }
