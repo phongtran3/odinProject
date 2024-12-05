@@ -48,7 +48,6 @@ button:focus {
   opacity: .7;
 }
 
-
 .container {
   padding: .5rem;
 }
@@ -70,7 +69,6 @@ button:focus {
   display: flex;
   justify-content: center;
 }
-
 
 #search-input {
   border: 2px solid var(--white);
@@ -112,6 +110,10 @@ button:focus {
   font-size: 1.75rem;
 }
 
+.current-temp-icon {
+  width: 150px;
+  height: 150px;
+}
 
 .detail-container,
 .hourly-container,
@@ -157,6 +159,10 @@ button:focus {
     padding: 1rem;
   }
 
+  .setting-container {
+    right: .5rem;
+  }
+
   .detail-container,
   .hourly-container,
   .daily-container {
@@ -170,10 +176,21 @@ button:focus {
   .header-container {
     flex-direction: row;
     text-align: start;
+    margin-bottom: 2rem;
+    padding: 2rem 0;
   }
 
   .current-city {
-    font-size: 2rem;
+    font-size: 2.5rem;
+  }
+
+  .current-temp-icon {
+    width: 200px;
+    height: 200px;
+  }
+
+  .current-description {
+    font-size: 1.25rem;
   }
 
   .footer-section {
@@ -193,8 +210,18 @@ button:focus {
     margin: 0 auto;
   }
 
-  .header-container {
-    margin-bottom: 2rem;
+  #search-input {
+    padding: .75rem;
+    font-size: 1.25rem;
+  }
+
+  .current-city {
+    font-size: 3rem;
+  }
+
+  .current-temp-icon {
+    width: 250px;
+    height: 250px;
   }
 
   .detail-container,
