@@ -1,5 +1,8 @@
 console.log("Weather Page")
 
+import checkStorage from "./scripts/checkStorage.js";
+
+
 const overlay = document.getElementById("overlay");
 const settingBtn = document.getElementById("setting-btn");
 const settingDialog = document.getElementById("setting-dialog");
@@ -17,3 +20,11 @@ closeBtn.addEventListener("click", () => {
 })
 
 
+//Load units from storage
+const initialLoad = () => {
+
+}
+
+const updateLocalStorage = () => {
+
+}
