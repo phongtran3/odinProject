@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <script type="module" src="./index.js"></script>
+    <script defer type="module" src="./index.js"></script>
     <link rel="stylesheet" href="./styles/main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   </head>
@@ -194,7 +194,8 @@
         <a href="https://www.linkedin.com/in/phong-tran230/" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-linkedin-in"></i></a>
       </div>
     </section>
-    <dialog open class="setting-dialog">
+    <dialog open id="setting-dialog">
+      <button id="close-button">&times;</button>
       <div class="setting-dialog-container">
         <h2 class="dialog-header">Unit Preferences</h2>
         <div class="switch-container">
