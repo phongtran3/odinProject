@@ -10,6 +10,8 @@
   </head>
   <body>
     <div class="container">
+      <div id="overlay" style="display: none"></div>
+
       <div class="setting-container">
         <button type="button" id="setting-btn">
           <img src="./assets/svgs/weather-details/white-setting.svg" alt="setting icon" />
@@ -192,5 +194,31 @@
         <a href="https://www.linkedin.com/in/phong-tran230/" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-linkedin-in"></i></a>
       </div>
     </section>
+    <dialog open class="setting-dialog">
+      <div class="setting-dialog-container">
+        <h2 class="dialog-header">Unit Preferences</h2>
+        <div class="switch-container">
+          <h3>Temperature</h3>
+          <div class="toggle-switch">
+            <input type="radio" id="celsius" name="temperature" />
+            <label for="celsius">Celsius</label>
+
+            <input type="radio" id="fahrenheit" name="temperature" />
+            <label for="fahrenheit">Fahrenheit</label>
+          </div>
+        </div>
+
+        <div class="switch-container">
+          <h3>Wind Speed</h3>
+          <div class="toggle-switch">
+            <input type="radio" id="km-hour" name="wind" />
+            <label for="km-hour">km/h</label>
+
+            <input type="radio" id="miles-hour" name="wind" />
+            <label for="miles-hour">mph</label>
+          </div>
+        </div>
+      </div>
+    </dialog>
   </body>
 </html>
