@@ -2,19 +2,24 @@ import "./styles/main.css";
 import checkStorage from "./scripts/checkStorage.js";
 import addEventListeners from "./scripts/screenHelper.js";
 import axios from "axios";
+import { displayHeaderInfo } from "./scripts/screenController.js";
 
 const loaderContainer = document.getElementById("loader-container");
 const container = document.getElementById("container");
 
 document.querySelectorAll('input[name="temperature"]').forEach((input) => {
   input.addEventListener("click", (event) => {
+    if (localStorage.getItem("temperature") === event.target.id) return;
     localStorage.setItem("temperature", event.target.id);
+    //update page
   });
 });
 
 document.querySelectorAll('input[name="wind"]').forEach((input) => {
   input.addEventListener("click", (event) => {
+    if (localStorage.getItem("wind") === event.target.id) return;
     localStorage.setItem("wind", event.target.id);
+    //update page
   });
 });
 
@@ -61,6 +66,7 @@ const getData = async (location) => {
 
 function displayData(forecast) {
   console.log(forecast);
+  displayHeaderInfo(forecast);
 }
 
 initialLoad();
