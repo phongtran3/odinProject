@@ -3,7 +3,7 @@ import checkStorage from "./scripts/checkStorage.js";
 import addEventListeners from "./scripts/screenHelper.js";
 import axios from "axios";
 
-const loader = document.getElementById("loader");
+const loaderContainer = document.getElementById("loader-container");
 
 document.querySelectorAll('input[name="temperature"]').forEach((input) => {
   input.addEventListener("click", (event) => {
@@ -20,6 +20,8 @@ document.querySelectorAll('input[name="wind"]').forEach((input) => {
 //Load units from storage
 const initialLoad = () => {
   console.log("Weather Page");
+  loaderContainer.style.display = loaderContainer.style.display === "none" ? "flex" : "none";
+
   if (checkStorage("localStorage")) {
     let temperature = localStorage.getItem("temperature");
     let wind = localStorage.getItem("wind");
@@ -41,11 +43,18 @@ const initialLoad = () => {
 const getData = async (location) => {
   try {
     const response = await axios.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=4X4VD83KBP5K2S4VAULDEVYS8`);
-    console.log(response);
+    displayData(response.data);
+    loaderContainer.style.display = loaderContainer.style.display === "none" ? "flex" : "none";
   } catch (error) {
     console.log(error);
+    loaderContainer.style.display = loaderContainer.style.display === "none" ? "flex" : "none";
+    alert("Location not found. Try adding a City/County/Zip Code");
   }
 };
+
+function displayData(forecast) {
+  console.log(forecast);
+}
 
 initialLoad();
 addEventListeners();

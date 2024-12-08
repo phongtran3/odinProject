@@ -57,7 +57,7 @@ button:focus {
   opacity: .7;
 }
 
-.container {
+#container {
   padding: .5rem;
 }
 
@@ -234,6 +234,13 @@ button:focus {
 
 #close-button:hover {
   color: #86C5D8;
+}
+
+#loader-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #loader {

@@ -9,7 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   </head>
   <body>
-    <div class="container">
+    <div id="loader-container" style="display: none">
+      <div id="loader"></div>
+    </div>
+
+    <div id="container">
       <div id="overlay" style="display: none"></div>
 
       <div class="setting-container">
@@ -28,8 +32,6 @@
       </div>
 
       <div id="main-content">
-        <div id="loader" style="display: none"></div>
-
         <section class="header-container">
           <div class="header-text">
             <h1 class="current-city">Cebu City, Central Visayas, Philippines</h1>
