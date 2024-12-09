@@ -2,7 +2,7 @@ import "./styles/main.css";
 import checkStorage from "./scripts/checkStorage.js";
 import addEventListeners from "./scripts/screenHelper.js";
 import axios from "axios";
-import { displayHeaderInfo } from "./scripts/screenController.js";
+import { displayHeaderInfo, displayCurrentInfo } from "./scripts/screenController.js";
 
 const loaderContainer = document.getElementById("loader-container");
 const container = document.getElementById("container");
@@ -53,7 +53,7 @@ const initialLoad = () => {
 
 const getData = async (location) => {
   try {
-    const response = await axios.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=4X4VD83KBP5K2S4VAULDEVYS8`);
+    const response = await axios.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=us&key=4X4VD83KBP5K2S4VAULDEVYS8`);
     displayData(response.data);
     loaderContainer.style.display = "none";
     container.style.display = "block";
@@ -67,6 +67,7 @@ const getData = async (location) => {
 function displayData(forecast) {
   console.log(forecast);
   displayHeaderInfo(forecast);
+  displayCurrentInfo(forecast.currentConditions);
 }
 
 initialLoad();

@@ -32,7 +32,7 @@ body {
   margin: 0;
   font-family: var(--font-family-body);
   font-size: var(--font-size-body);
-  background-color: rgba(46, 45, 45, .25);
+  background-color: rgba(46, 45, 45, .85);
   color: var(--white);
 }
 
@@ -59,6 +59,8 @@ button:focus {
 
 #container {
   padding: .5rem;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .setting-container {
