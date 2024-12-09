@@ -3,6 +3,7 @@ import checkStorage from "./scripts/checkStorage.js";
 import addEventListeners from "./scripts/screenHelper.js";
 import axios from "axios";
 import { displayHeaderInfo, displayCurrentInfo } from "./scripts/screenController.js";
+import { changeWindSpeed } from "./scripts/unitConversion.js";
 
 const loaderContainer = document.getElementById("loader-container");
 const container = document.getElementById("container");
@@ -19,18 +20,18 @@ document.querySelectorAll('input[name="wind"]').forEach((input) => {
   input.addEventListener("click", (event) => {
     if (localStorage.getItem("wind") === event.target.id) return;
     localStorage.setItem("wind", event.target.id);
-    //update page
+    changeWindSpeed(event.target.id);
   });
 });
 
 //Load units from storage
 const initialLoad = () => {
-  console.log("Weather Page");
   loaderContainer.style.display = loaderContainer.style.display === "none" ? "flex" : "none";
 
   if (checkStorage("localStorage")) {
     let temperature = localStorage.getItem("temperature");
     let wind = localStorage.getItem("wind");
+    let location = localStorage.getItem("location");
 
     if (temperature) {
       const currentTemp = document.getElementById(temperature);
@@ -47,8 +48,14 @@ const initialLoad = () => {
       localStorage.setItem("wind", "miles");
       document.getElementById("miles").checked = true;
     }
+
+    if (location) {
+      getData(location);
+    } else {
+      localStorage.setItem("city", "Dallas");
+      getData("Dallas");
+    }
   }
-  getData("Dallas");
 };
 
 const getData = async (location) => {

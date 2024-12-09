@@ -1,12 +1,20 @@
 import { addDays, format, parse } from "date-fns";
 import { setWeatherIcon } from "./iconHandler";
+
 import coolWeather from "../assets/images/cool-weather.jpg";
 import warmWeather from "../assets/images/warm-weather.jpg";
 
 export const displayHeaderInfo = (forecast) => {
   document.querySelector(".current-city").textContent = forecast.resolvedAddress;
   document.querySelector(".current-description").textContent = forecast.description;
-  document.querySelector(".current-temp").textContent = forecast.currentConditions.temp + "°";
+
+  if (localStorage.getItem("temperature") === "fahrenheit") {
+    document.querySelector(".current-temp").textContent = forecast.currentConditions.temp + "°";
+  } else {
+    let celsius = ((forecast.currentConditions.temp - 32) / 1.8).toFixed(1);
+    document.querySelector(".current-temp").textContent = celsius + "°";
+  }
+
   setWeatherIcon(forecast.currentConditions.icon, "current-temp-icon");
   document.getElementById("current-temp-icon").alt = `${forecast.currentConditions.icon} icon`;
   //setBackgroundImg(forecast.currentConditions.temp);
