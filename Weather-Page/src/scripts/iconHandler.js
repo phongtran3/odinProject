@@ -15,59 +15,39 @@ import thunderShowersDay from "../assets/svgs/weather-types/thunder-showers-day.
 import thunderShowersNight from "../assets/svgs/weather-types/thunder-showers-night.svg";
 import wind from "../assets/svgs/weather-types/wind.svg";
 
-export const setWeatherIcon = (iconName, id) => {
+export const getWeatherIcon = (iconName) => {
   switch (iconName) {
     case "clear-day":
-      addIcon(clearDay, id);
-      break;
+      return clearDay;
     case "clear-night":
-      addIcon(clearNight, id);
-      break;
+      return clearNight;
     case "cloudy":
-      addIcon(cloudy, id);
-      break;
+      return cloudy;
     case "fog":
-      addIcon(fog, id);
-      break;
+      return fog;
     case "partly-cloudy-day":
-      addIcon(partlyCloudyDay, id);
-      break;
+      return partlyCloudyDay;
     case "partly-cloudy-night":
-      addIcon(partlyCloudyNight, id);
-      break;
+      return partlyCloudyNight;
     case "rain":
-      addIcon(rain, id);
-      break;
+      return rain;
     case "showers-day":
-      addIcon(showersDay, id);
-      break;
+      return showersDay;
     case "showers-night":
-      addIcon(showersNight, id);
-      break;
+      return showersNight;
     case "snow":
-      addIcon(snow, id);
-      break;
+      return snow;
     case "snow-showers-day":
-      addIcon(snowShowersDay, id);
-      break;
+      return snowShowersDay;
     case "snow-showers-night":
-      addIcon(snowShowersNight, id);
-      break;
+      return snowShowersNight;
     case "thunder-rain":
-      addIcon(thunderRain, id);
-      break;
+      return thunderRain;
     case "thunder-showers-day":
-      addIcon(thunderShowersDay, id);
-      break;
+      return thunderShowersDay;
     case "thunder-showers-night":
-      addIcon(thunderShowersNight, id);
-      break;
+      return thunderShowersNight;
     case "wind":
-      addIcon(wind, id);
-      break;
+      return wind;
   }
-};
-
-const addIcon = (icon, id) => {
-  document.getElementById(id).src = icon;
 };

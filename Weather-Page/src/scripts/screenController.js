@@ -1,5 +1,5 @@
-import { addDays, format, parse } from "date-fns";
-import { setWeatherIcon } from "./iconHandler";
+import { getHours, format, parse } from "date-fns";
+import { getWeatherIcon } from "./iconHandler";
 
 import coolWeather from "../assets/images/cool-weather.jpg";
 import warmWeather from "../assets/images/warm-weather.jpg";
@@ -15,7 +15,9 @@ export const displayHeaderInfo = (forecast) => {
     document.querySelector(".current-temp").textContent = celsius + "°";
   }
 
-  setWeatherIcon(forecast.currentConditions.icon, "current-temp-icon");
+  let weatherIcon = getWeatherIcon(forecast.currentConditions.icon);
+  document.getElementById("current-temp-icon").src = weatherIcon;
+
   document.getElementById("current-temp-icon").alt = `${forecast.currentConditions.icon} icon`;
   //setBackgroundImg(forecast.currentConditions.temp);
 };
@@ -40,6 +42,35 @@ export const displayCurrentInfo = (forecast) => {
   }
 };
 
+export const displayHourlyInfo = (forecast) => {
+  let currentHr = getHours(new Date());
+  let currentDay = 0;
+
+  const hourlyForecasts = document.querySelectorAll(".hourly-forecast");
+
+  hourlyForecasts.forEach((forecastDiv) => {
+    if (currentHr === 24) {
+      currentHr = 1;
+      currentDay = 1;
+    }
+
+    let formattedTime = formatTime(forecast.days[currentDay].hours[currentHr].datetime);
+    forecastDiv.querySelector(".hour-time").textContent = formattedTime;
+
+    forecastDiv.querySelector(".hour-icon").src = getWeatherIcon(forecast.days[currentDay].hours[currentHr].icon);
+
+    let foreCastTemp = forecast.days[currentDay].hours[currentHr].temp;
+    if (localStorage.getItem("temperature") === "fahrenheit") {
+      forecastDiv.querySelector(".hour-forecast").textContent = foreCastTemp + "°";
+    } else {
+      let celsius = ((foreCastTemp - 32) / 1.8).toFixed(1);
+      forecastDiv.querySelector(".hour-forecast").textContent = celsius + "°";
+    }
+
+    currentHr++;
+  });
+};
+
 const setBackgroundImg = (temp) => {
   console.log(temp);
   const container = document.getElementById("container");
@@ -48,4 +79,9 @@ const setBackgroundImg = (temp) => {
   } else {
     container.style.backgroundImage = `url(${warmWeather})`;
   }
+};
+
+const formatTime = (time) => {
+  let parseTime = parse(time, "HH:mm:ss", new Date());
+  return format(parseTime, "h:mm a");
 };
