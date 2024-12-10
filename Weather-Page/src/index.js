@@ -2,7 +2,7 @@ import "./styles/main.css";
 import checkStorage from "./scripts/checkStorage.js";
 import addEventListeners from "./scripts/screenHelper.js";
 import axios from "axios";
-import { displayHeaderInfo, displayCurrentInfo, displayHourlyInfo } from "./scripts/screenController.js";
+import { displayHeaderInfo, displayCurrentInfo, displayHourlyInfo, displayDailyInfo } from "./scripts/screenController.js";
 import { updateWindSpeed, updateTemperature } from "./scripts/unitConversion.js";
 
 const loaderContainer = document.getElementById("loader-container");
@@ -77,6 +77,7 @@ function displayData(forecast) {
   displayHeaderInfo(forecast);
   displayCurrentInfo(forecast.currentConditions);
   displayHourlyInfo(forecast);
+  displayDailyInfo(forecast);
 }
 
 initialLoad();

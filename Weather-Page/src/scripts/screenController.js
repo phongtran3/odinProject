@@ -1,5 +1,6 @@
 import { getHours, format, parse } from "date-fns";
 import { getWeatherIcon } from "./iconHandler";
+import { fahrenheitToCelsius } from "./unitConversion";
 
 import coolWeather from "../assets/images/cool-weather.jpg";
 import warmWeather from "../assets/images/warm-weather.jpg";
@@ -62,18 +63,17 @@ export const displayHourlyInfo = (forecast) => {
     forecastDiv.querySelector(".hour-icon").src = getWeatherIcon(forecast.days[currentDay].hours[currentHr].icon);
 
     let foreCastTemp = forecast.days[currentDay].hours[currentHr].temp;
-    if (localStorage.getItem("temperature") === "fahrenheit") {
-      forecastDiv.querySelector(".hour-forecast").textContent = foreCastTemp + "°";
-      forecastDiv.querySelector(".hour-forecast").setAttribute("data-temp", foreCastTemp);
-    } else {
-      let celsius = ((foreCastTemp - 32) / 1.8).toFixed(1);
-      forecastDiv.querySelector(".hour-forecast").setAttribute("data-temp", celsius);
-      forecastDiv.querySelector(".hour-forecast").textContent = celsius + "°";
-    }
+    let toCelsius = localStorage.getItem("temperature") !== "fahrenheit";
+    let displayTemp = convertTemperature(foreCastTemp, toCelsius);
+
+    forecastDiv.querySelector(".hour-forecast").textContent = displayTemp + "°";
+    forecastDiv.querySelector(".hour-forecast").setAttribute("data-temp", displayTemp);
 
     currentHr++;
   });
 };
+
+export const displayDailyInfo = (forecast) => {};
 
 const setBackgroundImg = (temp) => {
   console.log(temp);
@@ -88,4 +88,8 @@ const setBackgroundImg = (temp) => {
 const formatTime = (time) => {
   let parseTime = parse(time, "HH:mm:ss", new Date());
   return format(parseTime, "h:mm a");
+};
+
+const convertTemperature = (temp, toCelsius) => {
+  return toCelsius ? ((temp - 32) / 1.8).toFixed(1) : temp;
 };
