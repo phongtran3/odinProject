@@ -3,7 +3,7 @@ import checkStorage from "./scripts/checkStorage.js";
 import addEventListeners from "./scripts/screenHelper.js";
 import axios from "axios";
 import { displayHeaderInfo, displayCurrentInfo, displayHourlyInfo } from "./scripts/screenController.js";
-import { changeWindSpeed } from "./scripts/unitConversion.js";
+import { updateWindSpeed, updateTemperature } from "./scripts/unitConversion.js";
 
 const loaderContainer = document.getElementById("loader-container");
 const container = document.getElementById("container");
@@ -13,6 +13,7 @@ document.querySelectorAll('input[name="temperature"]').forEach((input) => {
     if (localStorage.getItem("temperature") === event.target.id) return;
     localStorage.setItem("temperature", event.target.id);
     //update page
+    updateTemperature(event.target.id);
   });
 });
 
@@ -20,7 +21,7 @@ document.querySelectorAll('input[name="wind"]').forEach((input) => {
   input.addEventListener("click", (event) => {
     if (localStorage.getItem("wind") === event.target.id) return;
     localStorage.setItem("wind", event.target.id);
-    changeWindSpeed(event.target.id);
+    updateWindSpeed(event.target.id);
   });
 });
 
