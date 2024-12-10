@@ -10,8 +10,10 @@ export const displayHeaderInfo = (forecast) => {
 
   if (localStorage.getItem("temperature") === "fahrenheit") {
     document.querySelector(".current-temp").textContent = forecast.currentConditions.temp + "°";
+    document.querySelector(".current-temp").setAttribute("data-temp", forecast.currentConditions.temp);
   } else {
     let celsius = ((forecast.currentConditions.temp - 32) / 1.8).toFixed(1);
+    document.querySelector(".current-temp").setAttribute("data-temp", celsius);
     document.querySelector(".current-temp").textContent = celsius + "°";
   }
 
@@ -62,8 +64,10 @@ export const displayHourlyInfo = (forecast) => {
     let foreCastTemp = forecast.days[currentDay].hours[currentHr].temp;
     if (localStorage.getItem("temperature") === "fahrenheit") {
       forecastDiv.querySelector(".hour-forecast").textContent = foreCastTemp + "°";
+      forecastDiv.querySelector(".hour-forecast").setAttribute("data-temp", foreCastTemp);
     } else {
       let celsius = ((foreCastTemp - 32) / 1.8).toFixed(1);
+      forecastDiv.querySelector(".hour-forecast").setAttribute("data-temp", celsius);
       forecastDiv.querySelector(".hour-forecast").textContent = celsius + "°";
     }
 
