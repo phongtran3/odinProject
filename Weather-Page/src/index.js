@@ -12,7 +12,6 @@ document.querySelectorAll('input[name="temperature"]').forEach((input) => {
   input.addEventListener("click", (event) => {
     if (localStorage.getItem("temperature") === event.target.id) return;
     localStorage.setItem("temperature", event.target.id);
-    //update page
     updateTemperature(event.target.id);
   });
 });
@@ -32,7 +31,7 @@ const initialLoad = () => {
   if (checkStorage("localStorage")) {
     let temperature = localStorage.getItem("temperature");
     let wind = localStorage.getItem("wind");
-    let location = localStorage.getItem("location");
+    let location = localStorage.getItem("city");
 
     if (temperature) {
       const currentTemp = document.getElementById(temperature);
@@ -61,8 +60,7 @@ const initialLoad = () => {
 
 const getData = async (location) => {
   try {
-    loaderContainer.style.display = loaderContainer.style.display === "none" ? "flex" : "none";
-
+    loaderContainer.style.display = "flex";
     const response = await axios.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=us&key=4X4VD83KBP5K2S4VAULDEVYS8`);
 
     displayData(response.data);
@@ -82,6 +80,13 @@ function displayData(forecast) {
   displayHourlyInfo(forecast);
   displayDailyInfo(forecast);
 }
+
+document.getElementById("search-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const location = document.querySelector("#search-input").value;
+  localStorage.setItem("city", location);
+  getData(location);
+});
 
 initialLoad();
 addEventListeners();

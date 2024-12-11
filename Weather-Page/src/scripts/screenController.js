@@ -1,6 +1,5 @@
 import { getHours, format, parse, parseISO } from "date-fns";
 import { getWeatherIcon } from "./iconHandler";
-import { fahrenheitToCelsius } from "./unitConversion";
 
 import coolWeather from "../assets/images/cool-weather.jpg";
 import warmWeather from "../assets/images/warm-weather.jpg";
