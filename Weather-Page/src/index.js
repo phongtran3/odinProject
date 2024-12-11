@@ -74,7 +74,6 @@ const getData = async (location) => {
 };
 
 function displayData(forecast) {
-  console.log(forecast);
   displayHeaderInfo(forecast);
   displayCurrentInfo(forecast.currentConditions);
   displayHourlyInfo(forecast);
@@ -88,5 +87,7 @@ document.getElementById("search-form").addEventListener("submit", (e) => {
   getData(location);
 });
 
-initialLoad();
-addEventListeners();
+document.addEventListener("DOMContentLoaded", () => {
+  initialLoad();
+  addEventListeners();
+});

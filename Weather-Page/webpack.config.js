@@ -6,7 +6,6 @@ module.exports = {
   entry: path.resolve(__dirname, "./src/index.js"),
   plugins: [
     new HtmlWebpackPlugin({
-      title: "TOP Weather Page",
       template: "./src/index.html",
     }),
   ],
