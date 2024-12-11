@@ -269,7 +269,7 @@ button:focus {
 }
 
 @media screen and (min-width: 600px) {
-  .container {
+  #container {
     padding: 1rem;
   }
 
@@ -330,7 +330,12 @@ button:focus {
 }
 
 @media screen and (min-width: 1040px) {
-  .container {
+  #search-btn > img {
+    width: 50px;
+    height: 50px;
+  }
+
+  #container {
     max-width: 1440px;
     margin: 0 auto;
   }
