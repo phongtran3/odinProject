@@ -13,23 +13,19 @@ export const updateWindSpeed = (windSpeed) => {
 };
 
 export const updateTemperature = (temp) => {
-  const hourlyForecasts = document.querySelectorAll(".hour-forecast");
+  const hourlyForecasts = document.querySelectorAll(".hour-temp");
+  const dailyForecasts = document.querySelectorAll(".daily-temp");
+  const isCelsius = temp === "celsius";
 
   let currHeaderTemp = document.querySelector(".current-temp").getAttribute("data-temp");
-
-  let newHeaderTemp = updateTempDisplay(currHeaderTemp, temp === "celsius");
+  let newHeaderTemp = updateTemp(currHeaderTemp, temp === "celsius");
   document.querySelector(".current-temp").textContent = newHeaderTemp + "°";
   document.querySelector(".current-temp").setAttribute("data-temp", newHeaderTemp);
 
-  hourlyForecasts.forEach((forecast) => {
-    const forecastTemp = parseFloat(forecast.getAttribute("data-temp"));
-    let newTemp = updateTempDisplay(forecastTemp, temp === "celsius");
-    forecast.textContent = newTemp + "°";
-    forecast.setAttribute("data-temp", newTemp);
-  });
+  [...hourlyForecasts, ...dailyForecasts].forEach((forecast) => updateForecastTemp(forecast, isCelsius));
 };
 
-const updateTempDisplay = (temp, isCelsius) => {
+const updateTemp = (temp, isCelsius) => {
   const newTemp = isCelsius ? fahrenheitToCelsius(temp) : celsiusToFahrenheit(temp);
   return newTemp;
 };
@@ -40,4 +36,11 @@ const fahrenheitToCelsius = (fahrenheit) => {
 
 const celsiusToFahrenheit = (celsius) => {
   return (celsius * 1.8 + 32).toFixed(1);
+};
+
+const updateForecastTemp = (forecast, isCelsius) => {
+  const forecastTemp = parseFloat(forecast.getAttribute("data-temp"));
+  const newTemp = updateTemp(forecastTemp, isCelsius);
+  forecast.textContent = `${newTemp}°`;
+  forecast.setAttribute("data-temp", newTemp);
 };

@@ -1,4 +1,4 @@
-import { getHours, format, parse } from "date-fns";
+import { getHours, format, parse, parseISO } from "date-fns";
 import { getWeatherIcon } from "./iconHandler";
 import { fahrenheitToCelsius } from "./unitConversion";
 
@@ -66,14 +66,40 @@ export const displayHourlyInfo = (forecast) => {
     let toCelsius = localStorage.getItem("temperature") !== "fahrenheit";
     let displayTemp = convertTemperature(foreCastTemp, toCelsius);
 
-    forecastDiv.querySelector(".hour-forecast").textContent = displayTemp + "°";
-    forecastDiv.querySelector(".hour-forecast").setAttribute("data-temp", displayTemp);
+    forecastDiv.querySelector(".hour-temp").textContent = displayTemp + "°";
+    forecastDiv.querySelector(".hour-temp").setAttribute("data-temp", displayTemp);
 
     currentHr++;
   });
 };
 
-export const displayDailyInfo = (forecast) => {};
+export const displayDailyInfo = (forecast) => {
+  const dailyForecast = document.querySelectorAll(".daily-forecast");
+
+  dailyForecast.forEach((forecastDiv, index) => {
+    let day = "";
+
+    if (index === 0) {
+      day = "Today";
+    } else if (index === 1) {
+      day = "Tomorrow";
+    } else {
+      day = dateToDay(forecast.days[index].datetime);
+    }
+
+    forecastDiv.querySelector(".daily-day").textContent = day;
+    forecastDiv.querySelector(".daily-icon").src = getWeatherIcon(forecast.days[index].icon);
+
+    const foreCastTemp = forecast.days[index].temp;
+    const toCelsius = localStorage.getItem("temperature") !== "fahrenheit";
+    const displayTemp = convertTemperature(foreCastTemp, toCelsius);
+
+    forecastDiv.querySelector(".daily-temp").textContent = `${displayTemp}°`;
+    forecastDiv.querySelector(".daily-temp").setAttribute("data-temp", displayTemp);
+
+    index++;
+  });
+};
 
 const setBackgroundImg = (temp) => {
   console.log(temp);
@@ -92,4 +118,8 @@ const formatTime = (time) => {
 
 const convertTemperature = (temp, toCelsius) => {
   return toCelsius ? ((temp - 32) / 1.8).toFixed(1) : temp;
+};
+
+const dateToDay = (date) => {
+  return format(parseISO(date), "EEEE");
 };

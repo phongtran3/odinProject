@@ -61,7 +61,10 @@ const initialLoad = () => {
 
 const getData = async (location) => {
   try {
+    loaderContainer.style.display = loaderContainer.style.display === "none" ? "flex" : "none";
+
     const response = await axios.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=us&key=4X4VD83KBP5K2S4VAULDEVYS8`);
+
     displayData(response.data);
     loaderContainer.style.display = "none";
     container.style.display = "block";
