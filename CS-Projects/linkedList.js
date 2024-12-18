@@ -16,7 +16,7 @@ class LinkedList {
 		this.size = 0;
 	}
 
-	appened = (value) => {
+	append = (value) => {
 		const newNode = new Node(value);
 
 		if (this.head === null) {
