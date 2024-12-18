@@ -100,9 +100,62 @@ class LinkedList {
 		return output;
 	};
 
-	insertAt = (value, index) => {};
+	insertAt = (value, index) => {
+		if (index < 0 || index >= this.size) {
+			console.error("Index out of bound");
+			return;
+		}
 
-	removeAt = (index) => {};
+		if (index === 0) {
+			this.prepend(value);
+		}
+
+		let i = 0;
+		let current = this.head;
+		let newNode = new Node(value);
+
+		while (current) {
+			if (i === index - 1) {
+				newNode.next = current.next;
+				current.next = newNode;
+				this.size++;
+
+				if (newNode.next === null) {
+					this.tail = newNode;
+				}
+
+				return;
+			}
+			i++;
+			current = current.next;
+		}
+
+		return null;
+	};
+
+	removeAt = (index) => {
+		if (index < 0 || index >= this.size) {
+			console.error("Index out of bound");
+			return;
+		}
+
+		let i = 0;
+		let current = this.head;
+
+		while (current) {
+			if (i === index - 1) {
+				current.next = current.next.next;
+				this.size--;
+
+				if (current.next === null) {
+					this.tail = current;
+				}
+				return;
+			}
+			i++;
+			current = current.next;
+		}
+	};
 
 	getSize = () => {
 		return this.size;
@@ -116,20 +169,3 @@ class LinkedList {
 		return this.tail;
 	};
 }
-
-const list = new LinkedList();
-list.appened(0);
-list.appened(1);
-list.appened(2);
-list.appened(3);
-list.appened(4);
-list.appened(5);
-
-console.log(`Size: ` + list.getSize());
-console.log(list.toString());
-console.log(list.find(4));
-console.log(list.find(8));
-console.log(list.at(4));
-list.pop();
-console.log(list.toString());
-console.log(list.contains(4));
