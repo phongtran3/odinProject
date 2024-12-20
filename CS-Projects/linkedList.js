@@ -1,4 +1,4 @@
-class Node {
+export class Node {
 	value = null;
 	next = null;
 
@@ -9,7 +9,7 @@ class Node {
 
 //[ NODE(head) ] -> [ NODE ] -> [ NODE(tail) ] -> null
 
-class LinkedList {
+export class LinkedList {
 	constructor() {
 		this.head = null;
 		this.tail = null;
