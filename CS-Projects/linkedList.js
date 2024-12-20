@@ -1,9 +1,11 @@
 export class Node {
+	key = null;
 	value = null;
 	next = null;
 
-	constructor(value) {
+	constructor(key, value) {
 		this.value = value;
+		this.key = key;
 	}
 }
 
@@ -16,8 +18,8 @@ export class LinkedList {
 		this.size = 0;
 	}
 
-	append = (value) => {
-		const newNode = new Node(value);
+	append = (key, value) => {
+		const newNode = new Node(key, value);
 
 		if (this.head === null) {
 			this.head = newNode;
@@ -30,8 +32,8 @@ export class LinkedList {
 		this.size++;
 	};
 
-	prepend = (value) => {
-		const newNode = new Node(value);
+	prepend = (key, value) => {
+		const newNode = new Node(key, value);
 		newNode.next = this.head;
 		this.head = newNode;
 		if (!this.tail) {
