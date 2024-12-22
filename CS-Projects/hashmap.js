@@ -19,37 +19,23 @@ class Hashmap {
 		return hashCode;
 	};
 
-	/*
-    Create a hash with the given key
-    With the hash, find the corresponding bucket
-    If the bucket is empty:
-        Prepend the new node to the linkedlist
-    If the bucket is not empty:
-        Traverse through the linkedlist
-            If the current node key === the given key
-                update the current node's value
-            else
-                add the new node to the linkedlist
-            increase linkedlist size
-    Increase the hashmap size
-    Check if hashmap need to grow
-        if current size > (capacity * loadFactor) 
-            resize the hashmap
-        
-    */
 	set = (key, value) => {
 		let hash = this.hash(key);
+		//If the bucket is empty: Prepend the new node to the linkedlist
 		if (this.buckets[hash].head === null) {
 			this.buckets[hash].prepend(key, value);
 		} else {
+			//If head node === key, update value
 			if (this.buckets[hash].head.key === key) {
 				console.log("Same Key");
 				this.buckets[hash].head.value = value;
 			} else {
+				//If buckets contains a key, update the value
 				if (this.buckets[hash].contains(key)) {
 					let index = this.buckets[hash].find(key);
 					this.buckets[hash].at(index).value = value;
 				} else {
+					//If buckets does not contain a key, append it
 					this.buckets[hash].append(key, value);
 				}
 			}
@@ -57,6 +43,7 @@ class Hashmap {
 
 		console.log(this.buckets[hash].toString());
 		this.size++;
+		//Resize buckets
 		if (this.size > this.capacity * this.loadFactor) {
 			this.resize();
 		}
@@ -76,7 +63,6 @@ class Hashmap {
 				current = current.next;
 			}
 		});
-
 		console.log("Resizing Done.");
 	};
 
