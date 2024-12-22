@@ -47,28 +47,26 @@ export class LinkedList {
 		let i = 0;
 		while (current) {
 			if (i === index) return current;
-			else {
-				i++;
-				current = current.next;
-			}
+			i++;
+			current = current.next;
 		}
 		return null;
 	};
 
-	contains = (value) => {
+	contains = (key) => {
 		let current = this.head;
 		while (current) {
-			if (current.value === value) return true;
+			if (current.key === key) return true;
 			else current = current.next;
 		}
 		return false;
 	};
 
-	find = (value) => {
+	find = (key) => {
 		let current = this.head;
 		let index = 0;
 		while (current) {
-			if (current.value === value) {
+			if (current.key === key) {
 				return index;
 			} else {
 				current = current.next;
@@ -95,7 +93,7 @@ export class LinkedList {
 		let current = this.head;
 		let output = "";
 		while (current) {
-			output += `${current.value} -> `;
+			output += `${current.key}_${current.value} -> `;
 			current = current.next;
 		}
 		output += "null;";
