@@ -1,4 +1,4 @@
-import { Node, LinkedList } from "./linkedList.js";
+import { LinkedList } from "./linkedList.js";
 
 class Hashmap {
 	constructor() {
@@ -66,15 +66,61 @@ class Hashmap {
 		console.log("Resizing Done.");
 	};
 
-	get = (key) => {};
+	get = (key) => {
+		console.log(`Getting ${key}...`);
+		const hash = this.hash(key);
+		if (this.buckets[hash].contains(key)) {
+			let index = this.buckets[hash].find(key);
+			return this.buckets[hash].at(index).value;
+		}
+		return null;
+	};
 
-	has = (key) => {};
+	has = (key) => {
+		console.log(`Has ${key}?`);
+		const hash = this.hash(key);
+		if (this.buckets[hash].contains(key)) return true;
+		return false;
+	};
 
-	remove = (key) => {};
+	remove = (key) => {
+		console.log(`Removing ${key}...`);
+		const hash = this.hash(key);
+		if (!this.buckets[hash].contains(key)) return false;
 
-	length = () => {};
+		if (this.buckets[hash].getSize() === 1) {
+			this.buckets[hash].pop();
+			return true;
+		}
 
-	keys = () => {};
+		let index = this.buckets[hash].find(key);
+		this.buckets[hash].removeAt(index);
+		return true;
+	};
+
+	length = () => {
+		return this.size;
+	};
+
+	clear = () => {
+		this.capacity = 16;
+		this.buckets = Array.from({ length: this.capacity }, () => new LinkedList());
+		this.size = 0;
+	};
+
+	keys = () => {
+		let array = [];
+		this.buckets.forEach((bucket) => {
+			if (bucket.getSize !== 0) {
+				let current = bucket.head;
+				while (current) {
+					array.push(current.key);
+					current = current.next;
+				}
+			}
+		});
+		return array;
+	};
 
 	values = () => {};
 
@@ -96,3 +142,10 @@ hashMap.set("jacket", "blue");
 hashMap.set("kite", "pink");
 hashMap.set("lion", "golden");
 hashMap.set("lion", "silver");
+
+console.log(hashMap.get("dog"));
+console.log(hashMap.has("ice cream"));
+console.log(hashMap.remove("kite"));
+console.log(hashMap.length());
+hashMap.set("panda", "white");
+console.log(hashMap.keys());

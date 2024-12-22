@@ -77,15 +77,20 @@ export class LinkedList {
 	};
 
 	pop = () => {
-		let current = this.head;
-		while (current) {
-			if (current.next === this.tail) {
-				current.next = null;
-				this.tail = current;
-			} else {
-				current = current.next;
-			}
+		if (this.head === this.tail) {
+			this.head = null;
+			this.tail = null;
+			return;
 		}
+
+		let current = this.head;
+
+		while (current.next !== this.tail) {
+			current = current.next;
+		}
+		current.next = null;
+		this.tail = current;
+		this.size--;
 		return null;
 	};
 
@@ -145,11 +150,12 @@ export class LinkedList {
 		while (current) {
 			if (i === index - 1) {
 				current.next = current.next.next;
-				this.size--;
 
 				if (current.next === null) {
 					this.tail = current;
 				}
+
+				this.size--;
 				return;
 			}
 			i++;
