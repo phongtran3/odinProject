@@ -27,7 +27,6 @@ class Hashmap {
 		} else {
 			//If head node === key, update value
 			if (this.buckets[hash].head.key === key) {
-				console.log("Same Key");
 				this.buckets[hash].head.value = value;
 			} else {
 				//If buckets contains a key, update the value
@@ -67,7 +66,6 @@ class Hashmap {
 	};
 
 	get = (key) => {
-		console.log(`Getting ${key}...`);
 		const hash = this.hash(key);
 		if (this.buckets[hash].contains(key)) {
 			let index = this.buckets[hash].find(key);
@@ -77,14 +75,12 @@ class Hashmap {
 	};
 
 	has = (key) => {
-		console.log(`Has ${key}?`);
 		const hash = this.hash(key);
 		if (this.buckets[hash].contains(key)) return true;
 		return false;
 	};
 
 	remove = (key) => {
-		console.log(`Removing ${key}...`);
 		const hash = this.hash(key);
 		if (!this.buckets[hash].contains(key)) return false;
 
@@ -122,9 +118,26 @@ class Hashmap {
 		return array;
 	};
 
-	values = () => {};
+	values = () => {
+		let array = [];
+		this.buckets.forEach((bucket) => {
+			if (bucket.getSize !== 0) {
+				let current = bucket.head;
+				while (current) {
+					array.push(current.value);
+					current = current.next;
+				}
+			}
+		});
+		return array;
+	};
 
-	entires = () => {};
+	entires = () => {
+		let keys = this.keys();
+		let values = this.values();
+
+		return keys.map((key, index) => [key, values[index]]);
+	};
 }
 
 let hashMap = new Hashmap();
@@ -143,9 +156,11 @@ hashMap.set("kite", "pink");
 hashMap.set("lion", "golden");
 hashMap.set("lion", "silver");
 
-console.log(hashMap.get("dog"));
+console.log("Key: dog - Value: " + hashMap.get("dog"));
 console.log(hashMap.has("ice cream"));
 console.log(hashMap.remove("kite"));
 console.log(hashMap.length());
 hashMap.set("panda", "white");
 console.log(hashMap.keys());
+console.log(hashMap.values());
+console.log(hashMap.entires());
