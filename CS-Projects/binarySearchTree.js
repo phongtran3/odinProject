@@ -1,4 +1,10 @@
-import { Node } from "./linkedList.js";
+class Node {
+	constructor(value) {
+		this.value = value;
+		this.right = null;
+		this.left = null;
+	}
+}
 
 class Tree {
 	constructor(array) {
@@ -15,4 +21,12 @@ class Tree {
 	deleteItem = (value) => {};
 
 	find = (value) => {};
+
+	levelOrder = (callBack) => {};
+	inOrder = (callBack) => {};
+	preOrder = (callBack) => {};
+	postOrder = (callBack) => {};
+	depth = (node) => {};
+	isBalance = () => {};
+	rebalance = () => {};
 }
