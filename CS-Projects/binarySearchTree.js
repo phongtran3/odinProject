@@ -38,20 +38,40 @@ class Tree {
 		return root;
 	};
 
-	insert = (value, current = this.root) => {
-		if (current === null) return new Node(value);
-		if (current.value === value) return current;
+	insert = (value, root = this.root) => {
+		if (root === null) return new Node(value);
+		if (root.value === value) return root;
 
-		if (value < current.value) {
-			current.left = this.insert(value, current.left);
+		if (value < root.value) {
+			root.left = this.insert(value, root.left);
 		} else {
-			current.right = this.insert(value, current.right);
+			root.right = this.insert(value, root.right);
 		}
 
-		return current;
+		return root;
 	};
 
-	deleteItem = (value) => {};
+	deleteItem = (value, root = this.root) => {
+		if (root === null) return root;
+
+		if (value < root.value) {
+			root.left = this.deleteItem(value, root.left);
+		} else if (value > root.value) {
+			root.right = this.deleteItem(value, root.right);
+		} else {
+			if (root.left === null) return root.right;
+			if (root.right === null) return root.left;
+
+			let successor = root.right;
+			while (successor.left !== null) {
+				successor = successor.left;
+			}
+			root.value = successor.value;
+			root.right = this.deleteItem(successor.value, root.right);
+		}
+
+		return root;
+	};
 
 	find = (value) => {};
 
@@ -66,5 +86,9 @@ class Tree {
 
 const array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 const tree = new Tree(array);
-console.log(tree.root);
+
+tree.insert(100);
+tree.prettyPrint(tree.root);
+tree.deleteItem(324);
+console.log(`---------------------`);
 tree.prettyPrint(tree.root);
