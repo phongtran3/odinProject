@@ -73,12 +73,38 @@ class Tree {
 		return root;
 	};
 
-	find = (value) => {};
+	find = (value) => {
+		let root = this.root;
+		while (root) {
+			if (value === root.value) return root;
+			if (value < root.value) {
+				root = root.left;
+			} else {
+				root = root.right;
+			}
+		}
+		return null;
+	};
 
 	levelOrder = (callBack) => {};
 	inOrder = (callBack) => {};
 	preOrder = (callBack) => {};
 	postOrder = (callBack) => {};
+
+	height = (node) => {
+		let root = this.find(node);
+		if (!root) console.log("Node doesn't exist in tree.");
+
+		const findHeight = (root) => {
+			if (root === null) return -1;
+			let left = findHeight(root.left);
+			let right = findHeight(root.right);
+			return Math.max(left, right) + 1;
+		};
+
+		return findHeight(root);
+	};
+
 	depth = (node) => {};
 	isBalance = () => {};
 	rebalance = () => {};
@@ -92,3 +118,6 @@ tree.prettyPrint(tree.root);
 tree.deleteItem(324);
 console.log(`---------------------`);
 tree.prettyPrint(tree.root);
+console.log(tree.find(1));
+console.log(`---------------------`);
+console.log(tree.height(8));
