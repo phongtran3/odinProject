@@ -91,21 +91,44 @@ class Tree {
 	preOrder = (callBack) => {};
 	postOrder = (callBack) => {};
 
-	height = (node) => {
-		let root = this.find(node);
-		if (!root) console.log("Node doesn't exist in tree.");
+	height = (value) => {
+		let targetNode = this.find(value);
+		if (!targetNode) {
+			console.error("Node doesn't exist in the tree.");
+			return null;
+		}
 
-		const findHeight = (root) => {
-			if (root === null) return -1;
-			let left = findHeight(root.left);
-			let right = findHeight(root.right);
+		const findHeight = (targetNode) => {
+			if (targetNode === null) return -1;
+			let left = findHeight(targetNode.left);
+			let right = findHeight(targetNode.right);
 			return Math.max(left, right) + 1;
 		};
 
-		return findHeight(root);
+		return findHeight(targetNode);
 	};
 
-	depth = (node) => {};
+	depth = (value) => {
+		if (!this.find(value)) {
+			console.error("Node doesn't exist in the tree.");
+			return null;
+		}
+
+		let root = this.root;
+		let depth = 0;
+
+		while (root.value !== value) {
+			if (value < root.value) {
+				root = root.left;
+			} else {
+				root = root.right;
+			}
+			depth++;
+		}
+
+		return depth;
+	};
+
 	isBalance = () => {};
 	rebalance = () => {};
 }
@@ -118,6 +141,9 @@ tree.prettyPrint(tree.root);
 tree.deleteItem(324);
 console.log(`---------------------`);
 tree.prettyPrint(tree.root);
+console.log(`---------------------`);
 console.log(tree.find(1));
 console.log(`---------------------`);
 console.log(tree.height(8));
+console.log(`---------------------`);
+console.log(tree.depth(8));
