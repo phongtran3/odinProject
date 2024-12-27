@@ -189,8 +189,38 @@ class Tree {
 		return depth;
 	};
 
-	isBalance = () => {};
-	rebalance = () => {};
+	isBalanced = (root = this.root) => {
+		if (root === null) return true;
+
+		const checkBalance = (root) => {
+			if (root === null) return 0;
+
+			let leftHeight = checkBalance(root.left);
+			if (leftHeight === -1) return -1;
+
+			let rightHeight = checkBalance(root.right);
+			if (rightHeight === -1) return -1;
+
+			if (Math.abs(leftHeight - rightHeight) > 1) return -1;
+
+			return Math.max(leftHeight, rightHeight) + 1;
+		};
+
+		return checkBalance(root) !== -1;
+	};
+
+	rebalance = () => {
+		let array = [];
+		const inOrderTraversal = (root) => {
+			if (root === null) return;
+			inOrderTraversal(root.left);
+			array.push(root.value);
+			inOrderTraversal(root.right);
+		};
+
+		inOrderTraversal(this.root);
+		this.root = this.buildTree(array);
+	};
 }
 
 const array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
@@ -216,3 +246,34 @@ tree.preOrder((node) => console.log(node));
 console.log(`-------Post Order-----`);
 tree.postOrder((node) => console.log(node));
 console.log(`---------------------`);
+console.log(tree.isBalanced());
+console.log(`---------------------`);
+tree.rebalance();
+
+const driverScript = () => {
+	let array = [];
+	for (let i = 0; i < 10; i++) {
+		array.push(Math.floor(Math.random() * 100));
+	}
+	const tree = new Tree(array);
+	tree.prettyPrint(tree.root);
+	for (let i = 0; i < 5; i++) {
+		tree.insert(Math.floor(Math.random() * 100 + 100));
+	}
+	console.log("Is it balanced?: " + tree.isBalanced());
+	tree.prettyPrint(tree.root);
+	tree.rebalance();
+	console.log("Is it balanced?: " + tree.isBalanced());
+	tree.prettyPrint(tree.root);
+
+	console.log(`-----Level Order-----`);
+	tree.levelOrder((node) => console.log(node));
+	console.log(`-------In Order-------`);
+	tree.inOrder((node) => console.log(node));
+	console.log(`-------Pre Order------`);
+	tree.preOrder((node) => console.log(node));
+	console.log(`-------Post Order-----`);
+	tree.postOrder((node) => console.log(node));
+};
+
+driverScript();
