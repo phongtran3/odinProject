@@ -86,7 +86,22 @@ class Tree {
 		return null;
 	};
 
-	levelOrder = (callBack) => {};
+	levelOrder = (callBack) => {
+		if (typeof callBack !== "function") {
+			console.error("Provided callback is not a function.");
+			return null;
+		}
+		if (this.root === null) return;
+		let queue = [];
+		queue.push(this.root);
+		while (queue.length > 0) {
+			let node = queue.shift();
+			callBack(node.value);
+			if (node.left) queue.push(node.left);
+			if (node.right) queue.push(node.right);
+		}
+	};
+
 	inOrder = (callBack) => {};
 	preOrder = (callBack) => {};
 	postOrder = (callBack) => {};
@@ -147,3 +162,5 @@ console.log(`---------------------`);
 console.log(tree.height(8));
 console.log(`---------------------`);
 console.log(tree.depth(8));
+console.log(`---------------------`);
+tree.levelOrder((node) => console.log(node));
