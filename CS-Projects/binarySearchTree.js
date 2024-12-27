@@ -94,6 +94,7 @@ class Tree {
 		if (this.root === null) return;
 		let queue = [];
 		queue.push(this.root);
+
 		while (queue.length > 0) {
 			let node = queue.shift();
 			callBack(node.value);
@@ -102,9 +103,53 @@ class Tree {
 		}
 	};
 
-	inOrder = (callBack) => {};
-	preOrder = (callBack) => {};
-	postOrder = (callBack) => {};
+	inOrder = (callBack) => {
+		if (typeof callBack !== "function") {
+			console.error("Provided callback is not a function.");
+			return null;
+		}
+
+		const inOrderTraversal = (root) => {
+			if (root === null) return;
+			inOrderTraversal(root.left);
+			callBack(root.value);
+			inOrderTraversal(root.right);
+		};
+
+		inOrderTraversal(this.root);
+	};
+
+	preOrder = (callBack) => {
+		if (typeof callBack !== "function") {
+			console.error("Provided callback is not a function.");
+			return null;
+		}
+
+		const preOrderTravseral = (root) => {
+			if (root === null) return;
+			callBack(root.value);
+			preOrderTravseral(root.left);
+			preOrderTravseral(root.right);
+		};
+
+		preOrderTravseral(this.root);
+	};
+
+	postOrder = (callBack) => {
+		if (typeof callBack !== "function") {
+			console.error("Provided callback is not a function.");
+			return null;
+		}
+
+		const postOrderTraversal = (root) => {
+			if (root === null) return;
+			postOrderTraversal(root.left);
+			postOrderTraversal(root.right);
+			callBack(root.value);
+		};
+
+		postOrderTraversal(this.root);
+	};
 
 	height = (value) => {
 		let targetNode = this.find(value);
@@ -162,5 +207,12 @@ console.log(`---------------------`);
 console.log(tree.height(8));
 console.log(`---------------------`);
 console.log(tree.depth(8));
-console.log(`---------------------`);
+console.log(`-----Level Order-----`);
 tree.levelOrder((node) => console.log(node));
+console.log(`-------In Order-------`);
+tree.inOrder((node) => console.log(node));
+console.log(`-------Pre Order------`);
+tree.preOrder((node) => console.log(node));
+console.log(`-------Post Order-----`);
+tree.postOrder((node) => console.log(node));
+console.log(`---------------------`);
