@@ -1,1 +1,97 @@
 import { Gameboard } from "../models/gameboard";
+
+describe("Gameboard Class", () => {
+	let gameboard;
+
+	beforeEach(() => {
+		gameboard = new Gameboard();
+	});
+
+	it("Gameboard Creation", () => {
+		expect(gameboard.fleet.length).toBe(0);
+		expect(gameboard.shipSunk).toBe(0);
+		expect(gameboard.board.length).toBe(10); //row
+		expect(gameboard.board[0].length).toBe(10); //col
+	});
+
+	it("No ship has sunken", () => {
+		gameboard.fleet.length = 5;
+		expect(gameboard.isAllSunk()).toBe(false);
+	});
+
+	it("All ship has sunken", () => {
+		gameboard.fleet.length = 5;
+		gameboard.shipSunk = 5;
+		expect(gameboard.isAllSunk()).toBe(true);
+	});
+});
+
+describe("Placing Ship", () => {
+	let gameboard;
+
+	beforeEach(() => {
+		gameboard = new Gameboard();
+	});
+
+	it("Placing Carrier Ship Horizontally", () => {
+		expect(gameboard.getShipCoordinates([0, 0], 5, 0)).toEqual([
+			[0, 0],
+			[1, 0],
+			[2, 0],
+			[3, 0],
+			[4, 0],
+		]);
+
+		expect(gameboard.placeShip({ name: "carrier", length: 5 }, [0, 0], 0)).toBe(true);
+		expect(gameboard.fleet.some((ship) => ship.name === "carrier")).toBe(true);
+		expect(gameboard.board[0][0]).toEqual({
+			ship: "carrier",
+			hit: false,
+		});
+	});
+
+	it("Placing Battleship ship vertically", () => {
+		expect(gameboard.getShipCoordinates([0, 0], 5, 1)).toEqual([
+			[0, 0],
+			[0, 1],
+			[0, 2],
+			[0, 3],
+			[0, 4],
+		]);
+		expect(gameboard.placeShip({ name: "battleship", length: 4 }, [0, 0], 0)).toBe(true);
+		expect(gameboard.fleet.some((ship) => ship.name === "battleship")).toBe(true);
+		expect(gameboard.board[0][0]).toEqual({
+			ship: "battleship",
+			hit: false,
+		});
+	});
+
+	it("Placing invalid Ship", () => {
+		expect(gameboard.placeShip({ name: "carrier", length: 5 }, [10, 11], 0)).toBe(false);
+		expect(gameboard.placeShip({ name: "carrier", length: 5 }, [-2, 5], 0)).toBe(false);
+		expect(gameboard.placeShip({ name: "carrier", length: 5 }, [9, 0], 0)).toBe(false); //out of bounds horizontally
+		expect(gameboard.placeShip({ name: "carrier", length: 5 }, [0, 6], 1)).toBe(false); //out of bounds vertically
+	});
+
+	it("Placing an already placed ship", () => {
+		expect(gameboard.placeShip({ name: "battleship", length: 4 }, [0, 0], 0)).toBe(true);
+		expect(gameboard.fleet.some((ship) => ship.name === "battleship")).toBe(true);
+		expect(gameboard.board[0][0]).toEqual({
+			ship: "battleship",
+			hit: false,
+		});
+
+		expect(gameboard.placeShip({ name: "battleship", length: 4 }, [0, 0], 0)).toBe(false);
+	});
+
+	it("Placing an ship on a occupied cell", () => {
+		expect(gameboard.placeShip({ name: "battleship", length: 4 }, [0, 0], 0)).toBe(true);
+		expect(gameboard.fleet.some((ship) => ship.name === "battleship")).toBe(true);
+		expect(gameboard.board[0][0]).toEqual({
+			ship: "battleship",
+			hit: false,
+		});
+
+		expect(gameboard.placeShip({ name: "carrier", length: 4 }, [0, 0], 0)).toBe(false);
+	});
+});

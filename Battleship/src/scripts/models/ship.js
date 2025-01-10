@@ -13,3 +13,10 @@ export class Ship {
 		return this.numHits === this.length;
 	};
 }
+
+// Class of ship	  Size
+// Carrier	        5
+// Battleship	      4
+// Destroyer	      3
+// Submarine	      3
+// Destroyer		   	2
