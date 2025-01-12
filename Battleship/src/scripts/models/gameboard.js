@@ -7,7 +7,27 @@ export class Gameboard {
 		this.shipSunk = 0;
 	}
 
-	receiveAttack = (name, [x, y]) => {};
+	receiveAttack = (coordinates) => {
+		const [x, y] = coordinates;
+		if (x < 0 || x >= 10 || y < 0 || y >= 10) return false;
+
+		const cell = this.board[x][y];
+
+		if (cell.hit) return false;
+
+		if (cell.ship === null) {
+			cell.hit = true;
+			return false;
+		}
+
+		cell.hit = true;
+		let ship = this.fleet.find((el) => el.name === cell.ship);
+		ship.hits();
+
+		if (ship.isSunk()) this.shipSunk++;
+
+		return true;
+	};
 
 	//0 horizontal - 1 vertical
 	placeShip = (newShip, startCoordinate, orientation) => {

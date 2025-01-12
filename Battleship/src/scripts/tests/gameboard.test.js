@@ -95,3 +95,55 @@ describe("Placing Ship", () => {
 		expect(gameboard.placeShip({ name: "carrier", length: 4 }, [0, 0], 0)).toBe(false);
 	});
 });
+
+describe("Recieving Attack", () => {
+	let gameboard;
+
+	beforeEach(() => {
+		gameboard = new Gameboard();
+		gameboard.placeShip({ name: "carrier", length: 5 }, [0, 0], 0);
+	});
+
+	it("Attacks on Empty Cells Miss", () => {
+		expect(gameboard.receiveAttack([0, 2])).toBe(false);
+		expect(gameboard.receiveAttack([5, 6])).toBe(false);
+		expect(gameboard.receiveAttack([5, 0])).toBe(false);
+	});
+
+	it("Attacks Landed", () => {
+		expect(gameboard.receiveAttack([0, 0])).toBe(true);
+		expect(gameboard.receiveAttack([1, 0])).toBe(true);
+	});
+
+	it("3 Attacks Landed and 1 Attack Missed, Ship not sunken", () => {
+		expect(gameboard.receiveAttack([2, 0])).toBe(true);
+		expect(gameboard.receiveAttack([3, 0])).toBe(true);
+		expect(gameboard.receiveAttack([4, 0])).toBe(true);
+		expect(gameboard.receiveAttack([5, 0])).toBe(false);
+		expect(gameboard.isAllSunk()).toBe(false);
+	});
+
+	it("Repeated Attack on a Ship Cell", () => {
+		expect(gameboard.receiveAttack([0, 0])).toBe(true);
+		expect(gameboard.receiveAttack([0, 0])).toBe(false);
+	});
+
+	it("Repeated attack on empty cell", () => {
+		expect(gameboard.receiveAttack([5, 6])).toBe(false);
+		expect(gameboard.receiveAttack([5, 6])).toBe(false);
+	});
+
+	it("Firing attacks out of bounds", () => {
+		expect(gameboard.receiveAttack([-2, 5])).toBe(false);
+		expect(gameboard.receiveAttack([15, 5])).toBe(false);
+	});
+
+	it("5 Attacks landed and ship sank", () => {
+		expect(gameboard.receiveAttack([0, 0])).toBe(true);
+		expect(gameboard.receiveAttack([1, 0])).toBe(true);
+		expect(gameboard.receiveAttack([2, 0])).toBe(true);
+		expect(gameboard.receiveAttack([3, 0])).toBe(true);
+		expect(gameboard.receiveAttack([4, 0])).toBe(true);
+		expect(gameboard.isAllSunk()).toBe(true);
+	});
+});
