@@ -34,12 +34,12 @@ describe("Placing Ship", () => {
 	});
 
 	it("Placing Carrier Ship Horizontally", () => {
-		expect(gameboard.getShipCoordinates([0, 0], 5, 0)).toEqual([
+		expect(gameboard.getShipCoordinates([0, 0], 5, 1)).toEqual([
 			[0, 0],
-			[1, 0],
-			[2, 0],
-			[3, 0],
-			[4, 0],
+			[0, 1],
+			[0, 2],
+			[0, 3],
+			[0, 4],
 		]);
 
 		expect(gameboard.placeShip({ name: "carrier", length: 5 }, [0, 0], 0)).toBe(true);
@@ -51,12 +51,12 @@ describe("Placing Ship", () => {
 	});
 
 	it("Placing Battleship ship vertically", () => {
-		expect(gameboard.getShipCoordinates([0, 0], 5, 1)).toEqual([
+		expect(gameboard.getShipCoordinates([0, 0], 5, 0)).toEqual([
 			[0, 0],
-			[0, 1],
-			[0, 2],
-			[0, 3],
-			[0, 4],
+			[1, 0],
+			[2, 0],
+			[3, 0],
+			[4, 0],
 		]);
 		expect(gameboard.placeShip({ name: "battleship", length: 4 }, [0, 0], 0)).toBe(true);
 		expect(gameboard.fleet.some((ship) => ship.name === "battleship")).toBe(true);
@@ -93,6 +93,12 @@ describe("Placing Ship", () => {
 		});
 
 		expect(gameboard.placeShip({ name: "carrier", length: 4 }, [0, 0], 0)).toBe(false);
+	});
+
+	it("Placing a ship that will cause collision", () => {
+		expect(gameboard.placeShip({ name: "battleship", length: 4 }, [2, 3], 0)).toBe(true);
+		expect(gameboard.placeShip({ name: "carrier", length: 5 }, [2, 0], 1)).toBe(false);
+		expect(gameboard.placeShip({ name: "destroyer", length: 2 }, [1, 3], 0)).toBe(false);
 	});
 });
 

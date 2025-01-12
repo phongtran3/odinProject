@@ -1,4 +1,4 @@
-import { Ship } from "./ship";
+import { Ship } from "./ship.js";
 
 export class Gameboard {
 	constructor() {
@@ -35,18 +35,18 @@ export class Gameboard {
 
 		const [x, y] = startCoordinate;
 		if (x < 0 || x >= 10 || y < 0 || y >= 10) return false;
-		let ship = new Ship(newShip.name, newShip.length);
 
+		let ship = new Ship(newShip.name, newShip.length);
 		let coordinates = this.getShipCoordinates(startCoordinate, newShip.length, orientation);
 
 		for (const [xi, yi] of coordinates) {
-			if (xi < 0 || xi >= 10 || yi < 0 || yi >= 10) return false;
-
-			if (this.board[xi][yi].ship === null) {
-				this.board[xi][yi] = { ship: ship.name, hit: false };
-			} else {
+			if (xi < 0 || xi >= 10 || yi < 0 || yi >= 10 || this.board[xi][yi].ship !== null) {
 				return false;
 			}
+		}
+
+		for (const [xi, yi] of coordinates) {
+			this.board[xi][yi] = { ship: ship.name, hit: false };
 		}
 
 		this.fleet.push(ship);
@@ -59,9 +59,9 @@ export class Gameboard {
 
 		for (let i = 0; i < length; i++) {
 			if (orientation === 0) {
-				coordinates.push([x + i, y]);
+				coordinates.push([x + i, y]); // Horizontal placement
 			} else {
-				coordinates.push([x, y + i]);
+				coordinates.push([x, y + i]); // Vertical placement
 			}
 		}
 		return coordinates;
