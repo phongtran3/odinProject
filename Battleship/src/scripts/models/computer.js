@@ -4,7 +4,14 @@ export class Computer extends Player {
 	constructor() {
 		super();
 		this.mustExplore = [];
-		this.lastHit = false;
+		this.lastHit = null;
+		this.availableMoves = new Set();
+
+		for (let x = 0; x < 10; x++) {
+			for (let y = 0; y < 10; y++) {
+				this.availableMoves.add(`${x},${y}`);
+			}
+		}
 	}
 
 	placeShips = () => {
@@ -44,6 +51,20 @@ export class Computer extends Player {
 	};
 
 	lanuchAttack = () => {};
+
+	generateAttackCoordinates = () => {
+		const availableMovesArray = [...this.availableMoves];
+		const index = Math.floor(Math.random() * availableMovesArray.length);
+		const coordinate = availableMovesArray[index];
+
+		const [x, y] = coordinate.split(",").map(Number);
+		this.availableMoves.delete(coordinate);
+		return [x, y];
+	};
+
+	removeFromAvailableMoves(x, y) {
+		this.availableMoves.delete(`${x},${y}`);
+	}
 
 	printBoard = (board) => {
 		console.log("    " + [...Array(10).keys()].join(" ")); // Column headers
