@@ -21,7 +21,7 @@ export class Gameboard {
 		}
 
 		cell.hit = true;
-		let ship = this.fleet.find((el) => el.name === cell.ship);
+		let ship = this.board[x][y].ship;
 		ship.hits();
 
 		if (ship.isSunk()) this.shipSunk++;
@@ -29,7 +29,7 @@ export class Gameboard {
 		return true;
 	};
 
-	//0 horizontal - 1 vertical
+	//1 horizontal - 0 vertical
 	placeShip = (newShip, startCoordinate, orientation) => {
 		if (this.fleet.some((ship) => ship.name === newShip.name)) return false;
 
@@ -46,7 +46,7 @@ export class Gameboard {
 		}
 
 		for (const [xi, yi] of coordinates) {
-			this.board[xi][yi] = { ship: ship.name, hit: false };
+			this.board[xi][yi] = { ship: ship, hit: false };
 		}
 
 		this.fleet.push(ship);
@@ -59,9 +59,9 @@ export class Gameboard {
 
 		for (let i = 0; i < length; i++) {
 			if (orientation === 0) {
-				coordinates.push([x + i, y]); // Horizontal placement
+				coordinates.push([x + i, y]); // Vertical placement
 			} else {
-				coordinates.push([x, y + i]); // Vertical placement
+				coordinates.push([x, y + i]); // Horitontal placement
 			}
 		}
 		return coordinates;

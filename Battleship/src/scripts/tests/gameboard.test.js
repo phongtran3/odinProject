@@ -1,4 +1,5 @@
 import { Gameboard } from "../models/gameboard";
+import { Ship } from "../models/ship";
 
 describe("Gameboard Class", () => {
 	let gameboard;
@@ -44,10 +45,12 @@ describe("Placing Ship", () => {
 
 		expect(gameboard.placeShip({ name: "carrier", length: 5 }, [0, 0], 0)).toBe(true);
 		expect(gameboard.fleet.some((ship) => ship.name === "carrier")).toBe(true);
-		expect(gameboard.board[0][0]).toEqual({
-			ship: "carrier",
-			hit: false,
-		});
+		expect(gameboard.board[0][0]).toEqual(
+			expect.objectContaining({
+				ship: expect.any(Ship),
+				hit: false,
+			})
+		);
 	});
 
 	it("Placing Battleship ship vertically", () => {
@@ -60,10 +63,12 @@ describe("Placing Ship", () => {
 		]);
 		expect(gameboard.placeShip({ name: "battleship", length: 4 }, [0, 0], 0)).toBe(true);
 		expect(gameboard.fleet.some((ship) => ship.name === "battleship")).toBe(true);
-		expect(gameboard.board[0][0]).toEqual({
-			ship: "battleship",
-			hit: false,
-		});
+		expect(gameboard.board[0][0]).toEqual(
+			expect.objectContaining({
+				ship: expect.any(Ship),
+				hit: false,
+			})
+		);
 	});
 
 	it("Placing invalid Ship", () => {
@@ -76,10 +81,12 @@ describe("Placing Ship", () => {
 	it("Placing an already placed ship", () => {
 		expect(gameboard.placeShip({ name: "battleship", length: 4 }, [0, 0], 0)).toBe(true);
 		expect(gameboard.fleet.some((ship) => ship.name === "battleship")).toBe(true);
-		expect(gameboard.board[0][0]).toEqual({
-			ship: "battleship",
-			hit: false,
-		});
+		expect(gameboard.board[0][0]).toEqual(
+			expect.objectContaining({
+				ship: expect.any(Ship),
+				hit: false,
+			})
+		);
 
 		expect(gameboard.placeShip({ name: "battleship", length: 4 }, [0, 0], 0)).toBe(false);
 	});
@@ -87,11 +94,12 @@ describe("Placing Ship", () => {
 	it("Placing an ship on a occupied cell", () => {
 		expect(gameboard.placeShip({ name: "battleship", length: 4 }, [0, 0], 0)).toBe(true);
 		expect(gameboard.fleet.some((ship) => ship.name === "battleship")).toBe(true);
-		expect(gameboard.board[0][0]).toEqual({
-			ship: "battleship",
-			hit: false,
-		});
-
+		expect(gameboard.board[0][0]).toEqual(
+			expect.objectContaining({
+				ship: expect.any(Ship),
+				hit: false,
+			})
+		);
 		expect(gameboard.placeShip({ name: "carrier", length: 4 }, [0, 0], 0)).toBe(false);
 	});
 
@@ -99,6 +107,14 @@ describe("Placing Ship", () => {
 		expect(gameboard.placeShip({ name: "battleship", length: 4 }, [2, 3], 0)).toBe(true);
 		expect(gameboard.placeShip({ name: "carrier", length: 5 }, [2, 0], 1)).toBe(false);
 		expect(gameboard.placeShip({ name: "destroyer", length: 2 }, [1, 3], 0)).toBe(false);
+	});
+
+	it("Placing all 5 ships", () => {
+		expect(gameboard.placeShip({ name: "carrier", length: 5 }, [0, 0], 1)).toBe(true);
+		expect(gameboard.placeShip({ name: "battleship", length: 4 }, [1, 0], 1)).toBe(true);
+		expect(gameboard.placeShip({ name: "cruiser", length: 3 }, [2, 0], 1)).toBe(true);
+		expect(gameboard.placeShip({ name: "submarine", length: 3 }, [3, 0], 1)).toBe(true);
+		expect(gameboard.placeShip({ name: "destroyer", length: 2 }, [4, 0], 1)).toBe(true);
 	});
 });
 

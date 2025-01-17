@@ -7,6 +7,13 @@ export class Computer extends Player {
 		this.lastHit = null;
 		this.availableMoves = new Set();
 
+		this.directions = {
+			up: [-1, 0],
+			down: [1, 0],
+			left: [0, -1],
+			right: [0, 1],
+		};
+
 		for (let x = 0; x < 10; x++) {
 			for (let y = 0; y < 10; y++) {
 				this.availableMoves.add(`${x},${y}`);
@@ -50,7 +57,45 @@ export class Computer extends Player {
 		return [x, y];
 	};
 
-	lanuchAttack = () => {};
+	launchAttack = (playerGameboard) => {
+		if (this.mustExplore.length <= 0) {
+			//let [x, y] = this.generateAttackCoordinates();
+
+			let [x, y] = [0, 0]; //Test purposes
+
+			let hit = playerGameboard.receiveAttack([x, y]); //Return false for miss and true for hit
+
+			if (hit) {
+				this.lastHit = [x, y];
+				this.mustExplore = this.getAdjacentCells([x, y], playerGameboard.board);
+				return hit;
+			} else {
+				playerGameboard.board[x][y].hit = false;
+				return hit;
+			}
+		} else {
+			//this.mustExplore.length > 0
+			let [x, y] = this.mustExplore.pop();
+			let hit = playerGameboard.receiveAttack([x, y]);
+			let ship = playerGameboard.board[x][y].ship;
+
+			if (ship.isSunk()) {
+				this.mustExplore.length = 0;
+				this.lastHit = null;
+				return true;
+			}
+
+			if (hit) {
+				let nextAttack = this.getNextAttack(this.lastHit, [x, y]);
+				this.lastHit = [x, y];
+				this.mustExplore.push(nextAttack);
+				return hit;
+			} else {
+				playerGameboard.board[x][y].hit = false;
+				return hit;
+			}
+		}
+	};
 
 	generateAttackCoordinates = () => {
 		const availableMovesArray = [...this.availableMoves];
@@ -65,6 +110,42 @@ export class Computer extends Player {
 	removeFromAvailableMoves(x, y) {
 		this.availableMoves.delete(`${x},${y}`);
 	}
+
+	getNextAttack = (firstHit, secondHit) => {
+		const [x1, y1] = firstHit;
+		const [x2, y2] = secondHit;
+		let direction;
+
+		if (x1 === x2) {
+			direction = y2 > y1 ? "right" : "left";
+		} else {
+			direction = x2 > x1 ? "down" : "up";
+		}
+
+		const [dx, dy] = this.directions[direction];
+		const nextX = x2 + dx;
+		const nextY = y2 + dy;
+
+		return [nextX, nextY];
+	};
+
+	getAdjacentCells = (coordinate, board) => {
+		let [x, y] = coordinate;
+		let adjacentCells = [];
+
+		for (let dir in this.directions) {
+			const [dx, dy] = this.directions[dir];
+			const newX = x + dx;
+			const newY = y + dy;
+
+			if (newX >= 0 && newX < board.length && newY >= 0 && newY < board[0].length) {
+				if (board[newX][newY].hit !== null) {
+					adjacentCells.push([newX, newY]);
+				}
+			}
+		}
+		return adjacentCells;
+	};
 
 	printBoard = (board) => {
 		console.log("    " + [...Array(10).keys()].join(" ")); // Column headers
