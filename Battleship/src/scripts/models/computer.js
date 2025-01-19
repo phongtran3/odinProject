@@ -150,7 +150,7 @@ export class Computer extends Player {
 					const cell = row[y]; // Get the cell at column y (index y)
 					if (cell.hit && cell.ship) return "X"; // Hit ship
 					if (cell.hit) return "O"; // Missed shot
-					if (cell.ship) return cell.ship[0].toUpperCase(); // First letter of ship name
+					if (cell.ship) return cell.ship.name[0].toUpperCase(); // First letter of ship name
 					return "-"; // Empty water
 				})
 				.join(" ");
