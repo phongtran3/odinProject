@@ -2,11 +2,10 @@ import { Ship } from "./ship.js";
 
 export class Gameboard {
 	constructor() {
-		this.board = Array.from({ length: 10 }, () => Array.from({ length: 10 }, () => ({ ship: null, hit: false }))); //10x10 grid
+		this.board = Array.from({ length: 10 }, () => Array.from({ length: 10 }, () => ({ ship: null, hit: null }))); //10x10 grid
 		this.fleet = []; //ship objs
 		this.shipSunk = 0;
 	}
-
 	receiveAttack = (coordinates) => {
 		const [x, y] = coordinates;
 		if (x < 0 || x >= 10 || y < 0 || y >= 10) return false;
@@ -15,8 +14,8 @@ export class Gameboard {
 
 		if (cell.hit) return false;
 
-		if (cell.ship === null) {
-			cell.hit = true;
+		if (cell.ship === null || cell.hit === null) {
+			cell.hit = false;
 			return false;
 		}
 

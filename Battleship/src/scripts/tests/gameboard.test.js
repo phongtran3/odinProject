@@ -123,25 +123,55 @@ describe("Recieving Attack", () => {
 
 	beforeEach(() => {
 		gameboard = new Gameboard();
-		gameboard.placeShip({ name: "carrier", length: 5 }, [0, 0], 0);
+		gameboard.placeShip({ name: "carrier", length: 5 }, [0, 0], 1);
 	});
 
 	it("Attacks on Empty Cells Miss", () => {
-		expect(gameboard.receiveAttack([0, 2])).toBe(false);
+		expect(gameboard.receiveAttack([1, 0])).toBe(false);
+		expect(gameboard.board[1][0]).toEqual(
+			expect.objectContaining({
+				ship: null,
+				hit: false,
+			})
+		);
 		expect(gameboard.receiveAttack([5, 6])).toBe(false);
+		expect(gameboard.board[5][6]).toEqual(
+			expect.objectContaining({
+				ship: null,
+				hit: false,
+			})
+		);
 		expect(gameboard.receiveAttack([5, 0])).toBe(false);
+		expect(gameboard.board[5][0]).toEqual(
+			expect.objectContaining({
+				ship: null,
+				hit: false,
+			})
+		);
 	});
 
 	it("Attacks Landed", () => {
 		expect(gameboard.receiveAttack([0, 0])).toBe(true);
-		expect(gameboard.receiveAttack([1, 0])).toBe(true);
+		expect(gameboard.board[0][0]).toEqual(
+			expect.objectContaining({
+				ship: expect.any(Ship),
+				hit: true,
+			})
+		);
+		expect(gameboard.receiveAttack([0, 1])).toBe(true);
+		expect(gameboard.board[0][1]).toEqual(
+			expect.objectContaining({
+				ship: expect.any(Ship),
+				hit: true,
+			})
+		);
 	});
 
 	it("3 Attacks Landed and 1 Attack Missed, Ship not sunken", () => {
-		expect(gameboard.receiveAttack([2, 0])).toBe(true);
-		expect(gameboard.receiveAttack([3, 0])).toBe(true);
-		expect(gameboard.receiveAttack([4, 0])).toBe(true);
-		expect(gameboard.receiveAttack([5, 0])).toBe(false);
+		expect(gameboard.receiveAttack([0, 2])).toBe(true);
+		expect(gameboard.receiveAttack([0, 3])).toBe(true);
+		expect(gameboard.receiveAttack([0, 4])).toBe(true);
+		expect(gameboard.receiveAttack([0, 5])).toBe(false);
 		expect(gameboard.isAllSunk()).toBe(false);
 	});
 
@@ -162,10 +192,10 @@ describe("Recieving Attack", () => {
 
 	it("5 Attacks landed and ship sank", () => {
 		expect(gameboard.receiveAttack([0, 0])).toBe(true);
-		expect(gameboard.receiveAttack([1, 0])).toBe(true);
-		expect(gameboard.receiveAttack([2, 0])).toBe(true);
-		expect(gameboard.receiveAttack([3, 0])).toBe(true);
-		expect(gameboard.receiveAttack([4, 0])).toBe(true);
+		expect(gameboard.receiveAttack([0, 1])).toBe(true);
+		expect(gameboard.receiveAttack([0, 2])).toBe(true);
+		expect(gameboard.receiveAttack([0, 3])).toBe(true);
+		expect(gameboard.receiveAttack([0, 4])).toBe(true);
 		expect(gameboard.isAllSunk()).toBe(true);
 	});
 });

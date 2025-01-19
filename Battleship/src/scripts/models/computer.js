@@ -63,21 +63,17 @@ export class Computer extends Player {
 
 			let [x, y] = [0, 0]; //Test purposes
 
-			let hit = playerGameboard.receiveAttack([x, y]); //Return false for miss and true for hit
+			const hit = playerGameboard.receiveAttack([x, y]); //Return false for miss and true for hit
 
 			if (hit) {
 				this.lastHit = [x, y];
 				this.mustExplore = this.getAdjacentCells([x, y], playerGameboard.board);
 				return hit;
-			} else {
-				playerGameboard.board[x][y].hit = false;
-				return hit;
 			}
 		} else {
-			//this.mustExplore.length > 0
-			let [x, y] = this.mustExplore.pop();
-			let hit = playerGameboard.receiveAttack([x, y]);
-			let ship = playerGameboard.board[x][y].ship;
+			const [x, y] = this.mustExplore.pop();
+			const hit = playerGameboard.receiveAttack([x, y]);
+			const ship = playerGameboard.board[x][y].ship;
 
 			if (ship.isSunk()) {
 				this.mustExplore.length = 0;
@@ -86,15 +82,14 @@ export class Computer extends Player {
 			}
 
 			if (hit) {
-				let nextAttack = this.getNextAttack(this.lastHit, [x, y]);
+				const nextAttack = this.getNextAttack(this.lastHit, [x, y]);
 				this.lastHit = [x, y];
 				this.mustExplore.push(nextAttack);
 				return hit;
-			} else {
-				playerGameboard.board[x][y].hit = false;
-				return hit;
 			}
 		}
+
+		return false;
 	};
 
 	generateAttackCoordinates = () => {

@@ -84,4 +84,17 @@ describe("Launching Attacks", () => {
 
 		expect(player.gameboard.shipSunk).toBe(1);
 	});
+
+	// it("Firing miss shots at [0,5]", () => {
+	// 	expect(computer.launchAttack(player.gameboard)).toBe(false);
+	// 	expect(computer.mustExplore.length).toBe(0);
+	// 	expect(computer.mustExplore).toStrictEqual([]);
+	// 	expect(computer.lastHit).toBe(null);
+	// 	expect(player.gameboard.board[0][5]).toEqual(
+	// 		expect.objectContaining({
+	// 			ship: null,
+	// 			hit: false,
+	// 		})
+	// 	);
+	// });
 });
