@@ -1,0 +1,49 @@
+.instruction-title {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.instruction {
+  padding: .75rem;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.instruction p {
+  line-height: 1.5rem;
+}
+
+.instruction div:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
+#start-btn {
+  cursor: pointer;
+  border: none;
+  background: none;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 1rem;
+  padding: 0;
+  width: 100%;
+}
+
+#start-btn:hover,
+#start-btn:focus {
+  color: var(--bostonBlue)
+}
+
+@media screen and (min-width: 600px){
+  .instruction {
+    padding: 1.5rem
+  }
+
+  #start-btn {
+    font-size: 1.5rem;
+  }
+
+  .instruction div:not(:last-child) {
+    margin-bottom: 1.75rem;
+  }
+
+}
