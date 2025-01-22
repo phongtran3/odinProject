@@ -8,7 +8,7 @@
   --whiteSmoke: #EAEAEA;
   --black: #000000;
 
-  
+  /* --cell-size: 7vw; */
   --font-size-body: 16px;
   --font-family-body: 'Press Start 2P', sans-serif
 }
@@ -26,10 +26,25 @@ body {
 
 button {
   font-family: var(--font-family-body);
+  cursor: pointer;
+  border: none;
+  background: none;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 1rem;
+  padding: 0;
+  width: max-content;
 }
 
+button:hover,
+button:focus {
+  color: var(--bostonBlue)
+}
+
+
 h2,
-h3 {
+h3,
+h4 {
   margin: 0;
 }
 

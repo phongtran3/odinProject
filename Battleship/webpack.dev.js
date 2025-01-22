@@ -8,7 +8,6 @@ module.exports = merge(common, {
 		static: "./dist",
 		liveReload: true,
 		watchFiles: ["./src/index.html"],
-		open: true,
 		hot: true,
 	},
 });

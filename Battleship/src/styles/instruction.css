@@ -17,7 +17,7 @@
   margin-bottom: 1.5rem;
 }
 
-#start-btn {
+/* #start-btn {
   cursor: pointer;
   border: none;
   background: none;
@@ -31,7 +31,7 @@
 #start-btn:hover,
 #start-btn:focus {
   color: var(--bostonBlue)
-}
+} */
 
 @media screen and (min-width: 600px){
   .instruction {
