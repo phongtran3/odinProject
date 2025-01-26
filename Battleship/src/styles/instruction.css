@@ -17,6 +17,11 @@
   margin-bottom: 1.5rem;
 }
 
+.btn-container {
+  text-align: center;
+}
+
+
 /* #start-btn {
   cursor: pointer;
   border: none;

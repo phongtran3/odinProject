@@ -1,164 +1,102 @@
-<div class="container">
-	<h4>Deploy your fleet!</h4>
-	<div class="main-container">
-		<div class="grid-container">
-			<div class="grid">
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-			</div>
-			<div class="col-header">
-				<div class="col">0</div>
-				<div class="col">1</div>
-				<div class="col">2</div>
-				<div class="col">3</div>
-				<div class="col">4</div>
-				<div class="col">5</div>
-				<div class="col">6</div>
-				<div class="col">7</div>
-				<div class="col">8</div>
-				<div class="col">9</div>
-			</div>
-			<div class="row-header">
-				<div class="row">0</div>
-				<div class="row">1</div>
-				<div class="row">2</div>
-				<div class="row">3</div>
-				<div class="row">4</div>
-				<div class="row">5</div>
-				<div class="row">6</div>
-				<div class="row">7</div>
-				<div class="row">8</div>
-				<div class="row">9</div>
-			</div>
-		</div>
+import "../../styles/deploy.css";
+import battleShipImg from "../../assets/battleship.svg";
+import carrierImg from "../../assets/carrier.svg";
+import cruiserImg from "../../assets/cruiser.svg";
+import destroyerImg from "../../assets/destroyer.svg";
+import submarineImg from "../../assets/submarine.svg";
 
-		<div class="fleet-container">
-			<div class="orientation">
-				<div>HORIZONTAL</div>
-			</div>
-			<div class="ship" draggable="true" data-name="carrier" data-length="5">
-				<img class="ship-img" src="./assets/carrier.svg" />
-				<div class="ship-name">CARRIER</div>
-			</div>
-			<div class="ship" draggable="true" data-name="battleship" data-length="4">
-				<img class="ship-img" src="./assets/battleship.svg" />
-				<div class="ship-name">BATTLESHIP</div>
-			</div>
-			<div class="ship" draggable="true" data-name="cruiser" data-length="3">
-				<img class="ship-img" src="./assets/cruiser.svg" />
-				<div class="ship-name">CRUISER</div>
-			</div>
-			<div class="ship" draggable="true" data-name="submarine" data-length="3">
-				<img class="ship-img" src="./assets/submarine.svg" />
-				<div class="ship-name">SUBMARINE</div>
-			</div>
-			<div class="ship" draggable="true" data-name="destroyer" data-length="2">
-				<img class="ship-img" src="./assets/destroyer.svg" />
-				<div class="ship-name">DESTROYER</div>
-			</div>
-		</div>
-	</div>
-	<div class="button-container">
+const ships = [
+	{
+		name: "battleship",
+		length: 5,
+		src: battleShipImg,
+	},
+	{
+		name: "carrier",
+		length: 4,
+		src: carrierImg,
+	},
+	{
+		name: "cruiser",
+		length: 3,
+		src: cruiserImg,
+	},
+	{
+		name: "destroyer",
+		length: 3,
+		src: destroyerImg,
+	},
+	{
+		name: "submarine",
+		length: 2,
+		src: submarineImg,
+	},
+];
+
+import { createElement } from "../helper";
+
+export default function createDeploy() {
+	console.log("Deploy");
+	const container = document.getElementById("container");
+	const pageTitle = createElement("h4", "", "", "Deploy your fleet!");
+	const mainContainer = createElement("div", "main-container");
+	const gridContainer = createElement("div", "grid-container");
+	const grid = createElement("div", "grid");
+	const colHeader = createElement("div", "col-header");
+	const rowHeader = createElement("div", "row-header");
+	const fleetContainer = createElement("div", "fleet-container");
+	const orientation = createElement("div", "", "orientation");
+	const buttonContainer = createElement("div", "button-container");
+
+	const cells = Array.from({ length: 100 }, () => {
+		const div = createElement("div", "cell");
+		return div;
+	});
+	cells.forEach((cell) => {
+		grid.appendChild(cell);
+	});
+
+	const columns = Array.from({ length: 10 }, (_, index) => {
+		const div = createElement("div", "col", "", `${index}`);
+		return div;
+	});
+	columns.forEach((col) => {
+		colHeader.appendChild(col);
+	});
+
+	const rows = Array.from({ length: 10 }, (_, index) => {
+		const div = createElement("div", "row", "", `${index}`);
+		return div;
+	});
+	rows.forEach((row) => {
+		rowHeader.appendChild(row);
+	});
+
+	orientation.innerHTML = `
+		<div>HORIZONTAL</div>
+	`;
+
+	fleetContainer.append(orientation);
+
+	ships.forEach((ship) => {
+		const div = createElement("div", "ship");
+		div.draggable = true;
+		div.dataset.name = ship.name;
+		div.dataset.length = ship.length;
+		div.innerHTML = `
+			<img class="ship-img" src=${ship.src} />
+			<div class="ship-name">CARRIER</div>
+		`;
+		fleetContainer.appendChild(div);
+	});
+
+	buttonContainer.innerHTML = `
 		<button id="random-btn">RANDOMIZE</button>
 		<button id="reset-btn">RESET</button>
 		<button id="confirm-btn">CONFIRM</button>
-	</div>
-</div>;
+	`;
+
+	gridContainer.append(grid, colHeader, rowHeader);
+	mainContainer.append(gridContainer, fleetContainer, buttonContainer);
+	container.append(pageTitle, mainContainer);
+}
