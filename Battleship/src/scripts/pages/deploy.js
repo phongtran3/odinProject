@@ -4,6 +4,7 @@ import carrierImg from "../../assets/carrier.svg";
 import cruiserImg from "../../assets/cruiser.svg";
 import destroyerImg from "../../assets/destroyer.svg";
 import submarineImg from "../../assets/submarine.svg";
+import { createElement } from "../helper";
 
 const ships = [
 	{
@@ -32,24 +33,28 @@ const ships = [
 		src: submarineImg,
 	},
 ];
+const container = document.getElementById("container");
+const pageTitle = createElement("h4", "", "", "Deploy your fleet!");
+const mainContainer = createElement("div", "main-container");
+const gridContainer = createElement("div", "grid-container");
+const grid = createElement("div", "grid");
+const colHeader = createElement("div", "col-header");
+const rowHeader = createElement("div", "row-header");
+const fleetContainer = createElement("div", "fleet-container");
+const orientation = createElement("div", "", "orientation");
+const buttonContainer = createElement("div", "button-container");
 
-import { createElement } from "../helper";
+let currentDragEl = null;
+let currentDragCells = [];
 
-export default function createDeploy() {
+export default function createDeployPage() {
 	console.log("Deploy");
-	const container = document.getElementById("container");
-	const pageTitle = createElement("h4", "", "", "Deploy your fleet!");
-	const mainContainer = createElement("div", "main-container");
-	const gridContainer = createElement("div", "grid-container");
-	const grid = createElement("div", "grid");
-	const colHeader = createElement("div", "col-header");
-	const rowHeader = createElement("div", "row-header");
-	const fleetContainer = createElement("div", "fleet-container");
-	const orientation = createElement("div", "", "orientation");
-	const buttonContainer = createElement("div", "button-container");
 
-	const cells = Array.from({ length: 100 }, () => {
+	const cells = Array.from({ length: 100 }, (_, index) => {
 		const div = createElement("div", "cell");
+		div.setAttribute("data-row", Math.floor(index / 10));
+		div.setAttribute("data-col", index % 10);
+		div.setAttribute("ship", null);
 		return div;
 	});
 	cells.forEach((cell) => {
@@ -75,6 +80,7 @@ export default function createDeploy() {
 	orientation.innerHTML = `
 		<div>HORIZONTAL</div>
 	`;
+	orientation.setAttribute("orientation", 1);
 
 	fleetContainer.append(orientation);
 
@@ -84,9 +90,16 @@ export default function createDeploy() {
 		div.dataset.name = ship.name;
 		div.dataset.length = ship.length;
 		div.innerHTML = `
-			<img class="ship-img" src=${ship.src} />
+			<img draggable="false" class="ship-img" src=${ship.src} />
 			<div class="ship-name">CARRIER</div>
 		`;
+
+		div.addEventListener("dragstart", (e) => {
+			e.dataTransfer.setData("ship-name", ship.name);
+			e.dataTransfer.setData("ship-length", ship.length);
+			currentDragEl = e.target;
+		});
+
 		fleetContainer.appendChild(div);
 	});
 
@@ -97,6 +110,83 @@ export default function createDeploy() {
 	`;
 
 	gridContainer.append(grid, colHeader, rowHeader);
-	mainContainer.append(gridContainer, fleetContainer, buttonContainer);
-	container.append(pageTitle, mainContainer);
+	mainContainer.append(gridContainer, fleetContainer);
+	container.append(pageTitle, mainContainer, buttonContainer);
 }
+
+orientation.addEventListener("click", () => {
+	orientation.textContent = orientation.textContent === "VERTICAL" ? "HORIZONTAL" : "VERTICAL";
+	let newOrientation = Number(orientation.getAttribute("orientation")) === 1 ? 0 : 1;
+	orientation.setAttribute("orientation", newOrientation);
+});
+
+grid.addEventListener("dragover", (e) => {
+	e.preventDefault();
+	const row = parseInt(e.target.dataset.row);
+	const col = parseInt(e.target.dataset.col);
+	displayDragOverEffect(row, col);
+});
+
+grid.addEventListener("dragleave", (e) => {
+	clearDragOverEffect();
+});
+
+const displayDragOverEffect = (row, col) => {
+	console.log(`row ${row}, col ${col}`);
+	let orientation = Number(document.getElementById("orientation").getAttribute("orientation"));
+	let shipLength = parseInt(currentDragEl.getAttribute("data-length"));
+	let cell = "";
+	if (isPlaceAvailable(row, col, orientation)) {
+		for (let i = 0; i < shipLength; i++) {
+			if (orientation) {
+				cell = document.querySelector(`.cell[data-row="${row}"][data-col="${col + i}"]`);
+			} else {
+				cell = document.querySelector(`.cell[data-row="${row + i}"][data-col="${col}"]`);
+			}
+			if (cell) {
+				currentDragCells.push(cell);
+				cell.classList.add("available");
+				cell.classList.remove("occupied");
+			}
+		}
+	} else {
+		for (let i = 0; i < shipLength; i++) {
+			if (orientation) {
+				cell = document.querySelector(`.cell[data-row="${row}"][data-col="${col + i}"]`);
+			} else {
+				cell = document.querySelector(`.cell[data-row="${row + i}"][data-col="${col}"]`);
+			}
+			if (cell) {
+				currentDragCells.push(cell);
+				cell.classList.remove("available");
+				cell.classList.add("occupied");
+			}
+		}
+	}
+};
+
+const isPlaceAvailable = (row, col, orientation) => {
+	let shipLength = parseInt(currentDragEl.getAttribute("data-length"));
+	for (let i = 0; i < shipLength; i++) {
+		if (orientation) {
+			// Horizontal placement
+			if (col + i > 9) return false;
+			const cell = document.querySelector(`.cell[data-row="${row}"][data-col="${col + i}"]`);
+			if (!cell || cell.getAttribute("ship") !== "null") return false;
+		} else {
+			// Vertical placement
+			if (row + i > 9) return false;
+			const cell = document.querySelector(`.cell[data-row="${row + i}"][data-col="${col}"]`);
+			if (!cell || cell.getAttribute("ship") !== "null") return false;
+		}
+	}
+	return true;
+};
+
+const clearDragOverEffect = () => {
+	currentDragCells.forEach((cell) => {
+		cell.classList.remove("available");
+		cell.classList.remove("occupied");
+	});
+	currentDragCells = [];
+};

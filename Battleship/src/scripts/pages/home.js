@@ -1,7 +1,7 @@
 import "../../styles/instruction.css";
 import { createElement } from "../helper";
 
-export default function createHome() {
+export default function createHomePage() {
 	console.log("Creating Home");
 	const container = document.getElementById("container");
 
