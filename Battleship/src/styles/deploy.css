@@ -57,18 +57,23 @@
 }
 
 .cell{
-  cursor: pointer;
   height: 100%;
   width: 100%;
   border: 1px solid black;
   align-content: center;
   text-align: center;
+  display: inline-flex;
+  position: relative;
 }
 
 .cell:hover {
-  background-color: var(--greenSpring);
+  background-color: var(--greenSpringOpac);
 }
 
+.cell .ship-img {
+  max-width: none;
+  position: absolute;
+}
 
 .ship{
   display: flex;
@@ -78,6 +83,7 @@
   cursor: grab;
   gap: .5rem;
   padding: .25rem;
+
 }
 
 .ship img {
@@ -96,6 +102,8 @@
   height: auto;
   font-size: .5rem;
   margin-bottom: 2rem;
+  user-select: none;
+
 }
 
 .fleet-container > div {

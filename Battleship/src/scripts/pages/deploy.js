@@ -5,6 +5,7 @@ import cruiserImg from "../../assets/cruiser.svg";
 import destroyerImg from "../../assets/destroyer.svg";
 import submarineImg from "../../assets/submarine.svg";
 import { createElement } from "../helper";
+import { Player } from "../models/player";
 
 const ships = [
 	{
@@ -41,9 +42,10 @@ const grid = createElement("div", "grid");
 const colHeader = createElement("div", "col-header");
 const rowHeader = createElement("div", "row-header");
 const fleetContainer = createElement("div", "fleet-container");
-const orientation = createElement("div", "", "orientation");
+const orientationDiv = createElement("div", "", "orientation");
 const buttonContainer = createElement("div", "button-container");
 
+const player = new Player();
 let currentDragEl = null;
 let currentDragCells = [];
 
@@ -77,21 +79,22 @@ export default function createDeployPage() {
 		rowHeader.appendChild(row);
 	});
 
-	orientation.innerHTML = `
+	orientationDiv.innerHTML = `
 		<div>HORIZONTAL</div>
 	`;
-	orientation.setAttribute("orientation", 1);
+	orientationDiv.setAttribute("orientation", 1);
 
-	fleetContainer.append(orientation);
+	fleetContainer.append(orientationDiv);
 
 	ships.forEach((ship) => {
 		const div = createElement("div", "ship");
+		const capitalizeName = ship.name.charAt(0).toUpperCase() + ship.name.slice(1);
 		div.draggable = true;
 		div.dataset.name = ship.name;
 		div.dataset.length = ship.length;
 		div.innerHTML = `
 			<img draggable="false" class="ship-img" src=${ship.src} />
-			<div class="ship-name">CARRIER</div>
+			<div class="ship-name">${capitalizeName}</div>
 		`;
 
 		div.addEventListener("dragstart", (e) => {
@@ -114,10 +117,10 @@ export default function createDeployPage() {
 	container.append(pageTitle, mainContainer, buttonContainer);
 }
 
-orientation.addEventListener("click", () => {
-	orientation.textContent = orientation.textContent === "VERTICAL" ? "HORIZONTAL" : "VERTICAL";
-	let newOrientation = Number(orientation.getAttribute("orientation")) === 1 ? 0 : 1;
-	orientation.setAttribute("orientation", newOrientation);
+orientationDiv.addEventListener("click", () => {
+	orientationDiv.textContent = orientationDiv.textContent === "VERTICAL" ? "HORIZONTAL" : "VERTICAL";
+	let newOrientation = Number(orientationDiv.getAttribute("orientation")) === 1 ? 0 : 1;
+	orientationDiv.setAttribute("orientation", newOrientation);
 });
 
 grid.addEventListener("dragover", (e) => {
@@ -129,6 +132,44 @@ grid.addEventListener("dragover", (e) => {
 
 grid.addEventListener("dragleave", (e) => {
 	clearDragOverEffect();
+});
+
+grid.addEventListener("drop", (e) => {
+	e.preventDefault();
+	console.log("dropping");
+	const row = parseInt(e.target.dataset.row);
+	const col = parseInt(e.target.dataset.col);
+	let orientation = Number(document.getElementById("orientation").getAttribute("orientation"));
+	if (!isPlaceAvailable(row, col, orientation)) {
+		clearDragOverEffect();
+		return;
+	}
+	console.log(currentDragEl);
+	console.log(`row ${row}, col ${col}`);
+	const targetCell = e.target;
+
+	let shipName = currentDragEl.getAttribute("data-name");
+	let shipLength = parseInt(currentDragEl.getAttribute("data-length"));
+	let shipObj = { name: shipName, length: shipLength };
+	player.gameboard.placeShip(shipObj, [row, col], orientation);
+
+	const shipElement = document.querySelector(`.ship[data-name="${shipName}"]`);
+	shipElement.draggable = false;
+
+	let img = shipElement.querySelector(".ship-img").cloneNode(true);
+
+	//Remove ship image and name from fleet container
+	if (shipElement) {
+		shipElement.querySelector(".ship-name").style.visibility = "hidden";
+		shipElement.querySelector(".ship-img").style.visibility = "hidden";
+	}
+	placeShipUI(targetCell, img, orientation, shipLength);
+
+	currentDragCells.forEach((cell) => {
+		cell.setAttribute("ship", shipName);
+	});
+	clearDragOverEffect();
+	return;
 });
 
 const displayDragOverEffect = (row, col) => {
@@ -189,4 +230,20 @@ const clearDragOverEffect = () => {
 		cell.classList.remove("occupied");
 	});
 	currentDragCells = [];
+};
+
+const placeShipUI = (startEl, imgEl, orientation, shipLength) => {
+	console.log("Placing ship on grid");
+	const width = startEl.offsetWidth;
+	const shipName = currentDragEl.getAttribute("data-name");
+	imgEl.style.position = "absolute";
+	imgEl.style.height = shipName === "submarine" ? "100%" : "90%";
+	imgEl.style.width = `${width * shipLength}px`;
+
+	if (orientation === 0) {
+		imgEl.style.transformOrigin = "top left";
+		imgEl.style.transform = `rotate(90deg) translate(0, -125%)`;
+	}
+
+	startEl.appendChild(imgEl);
 };
