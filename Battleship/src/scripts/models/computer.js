@@ -31,11 +31,11 @@ export class Computer extends Player {
 		];
 
 		ships.forEach((ship) => {
-			let isCollsion = true;
-			while (isCollsion) {
+			let collision = true;
+			while (collision) {
 				let orientation = Math.random() > 0.5 ? 1 : 0;
 				let [x, y] = this.generateCoordinates(ship.length, orientation);
-				isCollsion = !this.gameboard.placeShip(ship, [x, y], orientation);
+				collision = !this.gameboard.placeShip(ship, [x, y], orientation);
 			}
 		});
 

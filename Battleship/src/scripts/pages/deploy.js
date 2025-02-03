@@ -4,7 +4,7 @@ import carrierImg from "../../assets/carrier.svg";
 import cruiserImg from "../../assets/cruiser.svg";
 import destroyerImg from "../../assets/destroyer.svg";
 import submarineImg from "../../assets/submarine.svg";
-import { createElement } from "../helper";
+import { createElement, generateCoordinates } from "../helper";
 import { Player } from "../models/player";
 
 const ships = [
@@ -156,7 +156,6 @@ grid.addEventListener("drop", (e) => {
 
 	//Remove ship image and name from fleet container
 	if (shipElement) {
-		shipElement.querySelector(".ship-name").style.visibility = "hidden";
 		shipElement.querySelector(".ship-img").style.visibility = "hidden";
 	}
 	placeShipUI(targetCell, img, orientation, shipLength);
@@ -231,10 +230,12 @@ const clearDragOverEffect = () => {
 	currentDragCells = [];
 };
 
-const placeShipUI = (startEl, imgEl, orientation, shipLength) => {
+const placeShipUI = (startEl, imgEl, orientation, shipLength, shipName) => {
 	const width = startEl.offsetWidth;
-	const shipName = currentDragEl.getAttribute("data-name");
 
+	if (shipName == null) {
+		shipName = currentDragEl.getAttribute("data-name");
+	}
 	imgEl.style.position = "absolute";
 	imgEl.style.height = shipName === "submarine" ? "100%" : "90%";
 	imgEl.style.width = `${width * shipLength}px`;
@@ -259,18 +260,24 @@ resetBtn.addEventListener("click", () => {
 	resetBtn.blur();
 	if (player.gameboard.fleet.length <= 0) return;
 
-	player.gameboard.fleet = [];
-	player.gameboard.board = Array.from({ length: 10 }, () => Array.from({ length: 10 }, () => ({ ship: null, hit: null })));
+	resetPlayerGameBoard();
 
 	const fleetContainerArr = document.querySelectorAll(".ship");
 	fleetContainerArr.forEach((shipDiv) => {
-		const img = shipDiv.querySelector("img");
-		const nameDiv = shipDiv.querySelector("div");
-		img.style.visibility = "visible";
-		nameDiv.style.visibility = "visible";
+		shipDiv.querySelector("img").style.visibility = "visible";
+		shipDiv.querySelector("div").style.visibility = "visible";
 		shipDiv.draggable = true;
 	});
 
+	resetGridCells();
+});
+
+const resetPlayerGameBoard = () => {
+	player.gameboard.fleet = [];
+	player.gameboard.board = Array.from({ length: 10 }, () => Array.from({ length: 10 }, () => ({ ship: null, hit: null })));
+};
+
+const resetGridCells = () => {
 	const cells = document.querySelectorAll(".cell");
 	cells.forEach((cell) => {
 		const img = cell.querySelector("img");
@@ -278,5 +285,41 @@ resetBtn.addEventListener("click", () => {
 			cell.removeChild(img);
 		}
 		cell.setAttribute("ship", null);
+	});
+};
+{
+	/* <div class="ship" draggable="true" data-name="battleship" data-length="5">
+		<img draggable="false" class="ship-img" src="http://localhost:8080/f604c1d3fb1e881866d7.svg" 		style="visibility: visible;">
+			<div class="ship-name" style="visibility: visible;">Battleship</div>
+		</div> */
+}
+randomizeBtn.addEventListener("click", () => {
+	console.log("Randomizing");
+	currentDragEl = null;
+	resetPlayerGameBoard();
+	resetGridCells();
+	randomizeBtn.blur();
+
+	const fleetContainerArr = document.querySelectorAll(".ship");
+	fleetContainerArr.forEach((shipDiv) => {
+		const shipName = shipDiv.getAttribute("data-name");
+		const shipLength = shipDiv.getAttribute("data-length");
+		const imgEl = shipDiv.querySelector("img").cloneNode(true);
+		imgEl.style.visibility = "visible";
+
+		let shipObj = { name: shipName, length: shipLength };
+		let [x, y] = [];
+		let collision = true;
+		let orientation;
+
+		while (collision) {
+			orientation = Math.random() > 0.5 ? 1 : 0;
+			[x, y] = generateCoordinates(shipLength, orientation);
+			collision = !player.gameboard.placeShip(shipObj, [x, y], orientation);
+		}
+		const startingEl = document.querySelector(`.cell[data-row="${x}"][data-col="${y}"]`);
+		placeShipUI(startingEl, imgEl, orientation, shipLength, shipName);
+		shipDiv.draggable = false;
+		shipDiv.querySelector("img").style.visibility = "hidden";
 	});
 });
