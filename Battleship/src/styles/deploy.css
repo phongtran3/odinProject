@@ -145,6 +145,11 @@
   background-color: var(--greenSpring);
 }
 
+
+.disable {
+  cursor: not-allowed;
+}
+
 @media screen and (min-width: 700px) {
   .main-container {
     display: flex;

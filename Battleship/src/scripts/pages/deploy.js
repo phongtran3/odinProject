@@ -44,6 +44,9 @@ const rowHeader = createElement("div", "row-header");
 const fleetContainer = createElement("div", "fleet-container");
 const orientationDiv = createElement("div", "", "orientation");
 const buttonContainer = createElement("div", "button-container");
+const confirmBtn = createElement("button", "disable", "confirm-btn", "CONFIRM");
+const randomizeBtn = createElement("button", "", "rest-btn", "RANDOMIZE");
+const resetBtn = createElement("button", "", "randomize-btn", "RESET");
 
 const player = new Player();
 let currentDragEl = null;
@@ -106,11 +109,7 @@ export default function createDeployPage() {
 		fleetContainer.appendChild(div);
 	});
 
-	buttonContainer.innerHTML = `
-		<button id="random-btn">RANDOMIZE</button>
-		<button id="reset-btn">RESET</button>
-		<button id="confirm-btn">CONFIRM</button>
-	`;
+	buttonContainer.append(randomizeBtn, resetBtn, confirmBtn);
 
 	gridContainer.append(grid, colHeader, rowHeader);
 	mainContainer.append(gridContainer, fleetContainer);
@@ -136,7 +135,6 @@ grid.addEventListener("dragleave", (e) => {
 
 grid.addEventListener("drop", (e) => {
 	e.preventDefault();
-	console.log("dropping");
 	const row = parseInt(e.target.dataset.row);
 	const col = parseInt(e.target.dataset.col);
 	let orientation = Number(document.getElementById("orientation").getAttribute("orientation"));
@@ -144,8 +142,6 @@ grid.addEventListener("drop", (e) => {
 		clearDragOverEffect();
 		return;
 	}
-	console.log(currentDragEl);
-	console.log(`row ${row}, col ${col}`);
 	const targetCell = e.target;
 
 	let shipName = currentDragEl.getAttribute("data-name");
@@ -168,12 +164,15 @@ grid.addEventListener("drop", (e) => {
 	currentDragCells.forEach((cell) => {
 		cell.setAttribute("ship", shipName);
 	});
+	if (player.gameboard.fleet.length === 5) {
+		confirmBtn.classList.remove("disable");
+	}
+
 	clearDragOverEffect();
 	return;
 });
 
 const displayDragOverEffect = (row, col) => {
-	console.log(`row ${row}, col ${col}`);
 	let orientation = Number(document.getElementById("orientation").getAttribute("orientation"));
 	let shipLength = parseInt(currentDragEl.getAttribute("data-length"));
 	let cell = "";
@@ -233,9 +232,9 @@ const clearDragOverEffect = () => {
 };
 
 const placeShipUI = (startEl, imgEl, orientation, shipLength) => {
-	console.log("Placing ship on grid");
 	const width = startEl.offsetWidth;
 	const shipName = currentDragEl.getAttribute("data-name");
+
 	imgEl.style.position = "absolute";
 	imgEl.style.height = shipName === "submarine" ? "100%" : "90%";
 	imgEl.style.width = `${width * shipLength}px`;
@@ -247,3 +246,37 @@ const placeShipUI = (startEl, imgEl, orientation, shipLength) => {
 
 	startEl.appendChild(imgEl);
 };
+
+confirmBtn.addEventListener("click", (e) => {
+	if (player.gameboard.fleet.length < 5) {
+		e.preventDefault();
+		return;
+	}
+	console.log("Confirm");
+});
+
+resetBtn.addEventListener("click", () => {
+	resetBtn.blur();
+	if (player.gameboard.fleet.length <= 0) return;
+
+	player.gameboard.fleet = [];
+	player.gameboard.board = Array.from({ length: 10 }, () => Array.from({ length: 10 }, () => ({ ship: null, hit: null })));
+
+	const fleetContainerArr = document.querySelectorAll(".ship");
+	fleetContainerArr.forEach((shipDiv) => {
+		const img = shipDiv.querySelector("img");
+		const nameDiv = shipDiv.querySelector("div");
+		img.style.visibility = "visible";
+		nameDiv.style.visibility = "visible";
+		shipDiv.draggable = true;
+	});
+
+	const cells = document.querySelectorAll(".cell");
+	cells.forEach((cell) => {
+		const img = cell.querySelector("img");
+		if (img) {
+			cell.removeChild(img);
+		}
+		cell.setAttribute("ship", null);
+	});
+});
