@@ -1,282 +1,63 @@
-// <!DOCTYPE html>
-// <html lang="en">
-// 	<head>
-// 		<meta charset="UTF-8" />
-// 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-// 		<title>TOP BattleShip</title>
-// 		<link rel="stylesheet" href="./styles/main.css" />
-// 	</head>
-// 	<body>
-// 		<div class="container">
-// 			<div class="message-container">
-// 				<!-- <p class="message">Computer's turn, Please wait...</p> -->
-// 				<p class="message">Your turn, Please choose your next attack...</p>
-// 				<!-- <p class="message">Ship down, 3 more ships to go.</p> -->
-// 			</div>
-// 			<div class="game-container">
-// 				<div class="player-container">
-// 					<h3 class="grid-title">Player Waters</h3>
-// 					<div class="grid-container">
-// 						<div id="player-grid" class="grid">
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 						</div>
-// 						<div class="col-header">
-// 							<div class="col">0</div>
-// 							<div class="col">1</div>
-// 							<div class="col">2</div>
-// 							<div class="col">3</div>
-// 							<div class="col">4</div>
-// 							<div class="col">5</div>
-// 							<div class="col">6</div>
-// 							<div class="col">7</div>
-// 							<div class="col">8</div>
-// 							<div class="col">9</div>
-// 						</div>
-// 						<div class="row-header">
-// 							<div class="row">0</div>
-// 							<div class="row">1</div>
-// 							<div class="row">2</div>
-// 							<div class="row">3</div>
-// 							<div class="row">4</div>
-// 							<div class="row">5</div>
-// 							<div class="row">6</div>
-// 							<div class="row">7</div>
-// 							<div class="row">8</div>
-// 							<div class="row">9</div>
-// 						</div>
-// 					</div>
-// 				</div>
-// 				<div class="computer-container">
-// 					<h3 class="grid-title">Enemy Waters</h3>
-// 					<div class="grid-container">
-// 						<div id="enemy-grid" class="grid">
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 							<div class="cell"></div>
-// 						</div>
-// 						<div class="col-header">
-// 							<div class="col">0</div>
-// 							<div class="col">1</div>
-// 							<div class="col">2</div>
-// 							<div class="col">3</div>
-// 							<div class="col">4</div>
-// 							<div class="col">5</div>
-// 							<div class="col">6</div>
-// 							<div class="col">7</div>
-// 							<div class="col">8</div>
-// 							<div class="col">9</div>
-// 						</div>
-// 						<div class="row-header">
-// 							<div class="row">0</div>
-// 							<div class="row">1</div>
-// 							<div class="row">2</div>
-// 							<div class="row">3</div>
-// 							<div class="row">4</div>
-// 							<div class="row">5</div>
-// 							<div class="row">6</div>
-// 							<div class="row">7</div>
-// 							<div class="row">8</div>
-// 							<div class="row">9</div>
-// 						</div>
-// 					</div>
-// 				</div>
-// 			</div>
-// 		</div>
-// 	</body>
-// </html>
+import "../../styles/battle.css";
+import battleShipImg from "../../assets/battleship.svg";
+import carrierImg from "../../assets/carrier.svg";
+import cruiserImg from "../../assets/cruiser.svg";
+import destroyerImg from "../../assets/destroyer.svg";
+import submarineImg from "../../assets/submarine.svg";
+import { createElement } from "../helper";
+import { gridContainer as playerGrid, player, computer } from "./deploy";
+
+const container = document.getElementById("container");
+const messageContainer = createElement("div", "message-container");
+const message = createElement("p", "message", "", "Your turn, Please choose your next attack...");
+const gameContainer = createElement("div", "game-container");
+const playerContainer = createElement("div", "player-container");
+const playerGridTitle = createElement("h3", "grid-title", "", "Player Waters");
+const computerContainer = createElement("div", "computer-container");
+const computerGridTitle = createElement("h3", "grid-title", "", "Enemy Waters");
+const computerGridContainer = createElement("div", "grid-container");
+const computerGrid = createElement("div", "grid", "computer-grid");
+const colHeader = createElement("div", "col-header");
+const rowHeader = createElement("div", "row-header");
+
+export default function createBattlePage() {
+	const cells = Array.from({ length: 100 }, (_, index) => {
+		const div = createElement("div", "cell");
+		div.setAttribute("data-row", Math.floor(index / 10));
+		div.setAttribute("data-col", index % 10);
+		div.setAttribute("ship", null);
+		return div;
+	});
+	cells.forEach((cell) => {
+		computerGrid.appendChild(cell);
+	});
+
+	const columns = Array.from({ length: 10 }, (_, index) => {
+		const div = createElement("div", "col", "", `${index}`);
+		return div;
+	});
+	columns.forEach((col) => {
+		colHeader.appendChild(col);
+	});
+
+	const rows = Array.from({ length: 10 }, (_, index) => {
+		const div = createElement("div", "row", "", `${index}`);
+		return div;
+	});
+	rows.forEach((row) => {
+		rowHeader.appendChild(row);
+	});
+
+	messageContainer.append(message);
+	playerContainer.append(playerGridTitle, playerGrid);
+	computerGridContainer.append(computerGrid, colHeader, rowHeader);
+	computerContainer.append(computerGridTitle, computerGridContainer);
+	gameContainer.append(playerContainer, computerContainer);
+	container.append(messageContainer, gameContainer);
+}
+
+computerGrid.addEventListener("click", (e) => {
+	const row = parseInt(e.target.dataset.row);
+	const col = parseInt(e.target.dataset.col);
+	console.log(`${row},${col}`);
+});

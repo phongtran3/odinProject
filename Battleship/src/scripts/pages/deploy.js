@@ -6,6 +6,8 @@ import destroyerImg from "../../assets/destroyer.svg";
 import submarineImg from "../../assets/submarine.svg";
 import { createElement, generateCoordinates } from "../helper";
 import { Player } from "../models/player";
+import { Computer } from "../models/computer";
+import createBattlePage from "./battle";
 
 const ships = [
 	{
@@ -38,7 +40,7 @@ const container = document.getElementById("container");
 const pageTitle = createElement("h4", "", "", "Deploy your fleet!");
 const mainContainer = createElement("div", "main-container");
 const gridContainer = createElement("div", "grid-container");
-const grid = createElement("div", "grid");
+const grid = createElement("div", "grid", "player-grid");
 const colHeader = createElement("div", "col-header");
 const rowHeader = createElement("div", "row-header");
 const fleetContainer = createElement("div", "fleet-container");
@@ -49,6 +51,7 @@ const randomizeBtn = createElement("button", "", "rest-btn", "RANDOMIZE");
 const resetBtn = createElement("button", "", "randomize-btn", "RESET");
 
 const player = new Player();
+const computer = new Computer();
 let currentDragEl = null;
 let currentDragCells = [];
 
@@ -248,16 +251,9 @@ const placeShipUI = (startEl, imgEl, orientation, shipLength, shipName) => {
 	startEl.appendChild(imgEl);
 };
 
-confirmBtn.addEventListener("click", (e) => {
-	if (player.gameboard.fleet.length < 5) {
-		e.preventDefault();
-		return;
-	}
-	console.log("Confirm");
-});
-
 resetBtn.addEventListener("click", () => {
 	resetBtn.blur();
+	confirmBtn.classList.add("disable");
 	if (player.gameboard.fleet.length <= 0) return;
 
 	resetPlayerGameBoard();
@@ -287,12 +283,7 @@ const resetGridCells = () => {
 		cell.setAttribute("ship", null);
 	});
 };
-{
-	/* <div class="ship" draggable="true" data-name="battleship" data-length="5">
-		<img draggable="false" class="ship-img" src="http://localhost:8080/f604c1d3fb1e881866d7.svg" 		style="visibility: visible;">
-			<div class="ship-name" style="visibility: visible;">Battleship</div>
-		</div> */
-}
+
 randomizeBtn.addEventListener("click", () => {
 	console.log("Randomizing");
 	currentDragEl = null;
@@ -322,4 +313,21 @@ randomizeBtn.addEventListener("click", () => {
 		shipDiv.draggable = false;
 		shipDiv.querySelector("img").style.visibility = "hidden";
 	});
+
+	if (player.gameboard.fleet.length === 5) {
+		confirmBtn.classList.remove("disable");
+	}
 });
+
+confirmBtn.addEventListener("click", (e) => {
+	if (player.gameboard.fleet.length < 5) {
+		e.preventDefault();
+		return;
+	}
+	console.log("Confirm");
+	computer.placeShips();
+	container.textContent = " ";
+	createBattlePage();
+});
+
+export { gridContainer, player, computer };

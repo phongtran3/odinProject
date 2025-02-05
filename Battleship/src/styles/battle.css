@@ -27,6 +27,9 @@
   padding: 2rem 0;
 }
 
+#computer-grid .cell {
+  cursor: pointer;
+}
 
 @media screen and (min-width: 800px) {
   .game-container {

@@ -39,7 +39,7 @@ export class Computer extends Player {
 			}
 		});
 
-		// this.printBoard(this.gameboard.board);
+		this.printBoard(this.gameboard.board);
 
 		return true;
 	};
@@ -159,5 +159,5 @@ export class Computer extends Player {
 	};
 }
 
-let computer = new Computer();
-computer.placeShips();
+// let computer = new Computer();
+// computer.placeShips();
