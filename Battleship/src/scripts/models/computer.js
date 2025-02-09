@@ -61,7 +61,7 @@ export class Computer extends Player {
 		if (this.mustExplore.length <= 0) {
 			//let [x, y] = this.generateAttackCoordinates();
 
-			let [x, y] = [0, 5]; //Test purposes
+			let [x, y] = [3, 5]; //Test purposes
 
 			const hit = playerGameboard.receiveAttack([x, y]); //Return false for miss and true for hit
 			if (hit) {

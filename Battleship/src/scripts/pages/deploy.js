@@ -11,14 +11,14 @@ import createBattlePage from "./battle";
 
 const ships = [
 	{
-		name: "battleship",
+		name: "carrier",
 		length: 5,
-		src: battleShipImg,
+		src: carrierImg,
 	},
 	{
-		name: "carrier",
+		name: "battleship",
 		length: 4,
-		src: carrierImg,
+		src: battleShipImg,
 	},
 	{
 		name: "cruiser",
@@ -310,6 +310,17 @@ randomizeBtn.addEventListener("click", () => {
 		}
 		const startingEl = document.querySelector(`.cell[data-row="${x}"][data-col="${y}"]`);
 		placeShipUI(startingEl, imgEl, orientation, shipLength, shipName);
+
+		for (let i = 0; i < shipLength; i++) {
+			let element;
+			if (orientation) {
+				element = document.querySelector(`.cell[data-row="${x}"][data-col="${y + i}"]`);
+			} else {
+				element = document.querySelector(`.cell[data-row="${x + i}"][data-col="${y}"]`);
+			}
+			element.setAttribute("ship", shipName);
+		}
+
 		shipDiv.draggable = false;
 		shipDiv.querySelector("img").style.visibility = "hidden";
 	});
