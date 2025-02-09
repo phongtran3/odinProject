@@ -61,7 +61,7 @@ export class Computer extends Player {
 		if (this.mustExplore.length <= 0) {
 			//let [x, y] = this.generateAttackCoordinates();
 
-			let [x, y] = [0, 0]; //Test purposes
+			let [x, y] = [0, 5]; //Test purposes
 
 			const hit = playerGameboard.receiveAttack([x, y]); //Return false for miss and true for hit
 			if (hit) {
@@ -71,10 +71,11 @@ export class Computer extends Player {
 			}
 		} else {
 			const [x, y] = this.mustExplore.pop();
+			this.removeFromAvailableMoves(x, y);
 			const hit = playerGameboard.receiveAttack([x, y]);
 			const ship = playerGameboard.board[x][y].ship;
 
-			if (ship.isSunk()) {
+			if (ship && ship.isSunk()) {
 				this.mustExplore.length = 0;
 				this.lastHit = null;
 				return true;
@@ -92,9 +93,9 @@ export class Computer extends Player {
 	};
 
 	generateAttackCoordinates = () => {
-		const availableMovesArray = [...this.availableMoves];
 		const index = Math.floor(Math.random() * availableMovesArray.length);
-		const coordinate = availableMovesArray[index];
+		const coordinate = Array.from(this.availableMoves)[index];
+		if (!coordinate) return null;
 
 		const [x, y] = coordinate.split(",").map(Number);
 		this.availableMoves.delete(coordinate);
@@ -102,7 +103,7 @@ export class Computer extends Player {
 	};
 
 	removeFromAvailableMoves(x, y) {
-		this.availableMoves.delete(`${x},${y}`);
+		if (this.availableMoves.has(`${x},${y}`)) this.availableMoves.delete(`${x},${y}`);
 	}
 
 	getNextAttack = (firstHit, secondHit) => {
@@ -120,7 +121,10 @@ export class Computer extends Player {
 		const nextX = x2 + dx;
 		const nextY = y2 + dy;
 
-		return [nextX, nextY];
+		if (nextX >= 0 && nextX < 10 && nextY >= 0 && nextY < 10) {
+			return [nextX, nextY];
+		}
+		return [];
 	};
 
 	getAdjacentCells = (coordinate, board) => {

@@ -21,56 +21,60 @@ describe("Launching Attacks", () => {
 
 		computer = new Computer();
 
-		player.gameboard.placeShip({ name: "carrier", length: 5 }, [0, 0], 1);
+		player.gameboard.placeShip({ name: "carrier", length: 5 }, [0, 5], 1);
 		player.gameboard.placeShip({ name: "battleship", length: 4 }, [1, 0], 1);
 		player.gameboard.placeShip({ name: "cruiser", length: 3 }, [2, 0], 1);
 		player.gameboard.placeShip({ name: "submarine", length: 3 }, [3, 0], 1);
 		player.gameboard.placeShip({ name: "destroyer", length: 2 }, [4, 0], 1);
 	});
 
-	it("First shot firing hit at [0,0]", () => {
+	it("First shot firing hit at [0,5]", () => {
 		expect(computer.launchAttack(player.gameboard)).toBe(true);
 		expect(computer.mustExplore).toEqual([
-			[1, 0],
-			[0, 1],
+			[1, 5],
+			[0, 4],
+			[0, 6],
 		]);
-		expect(computer.lastHit).toEqual([0, 0]);
+		expect(computer.lastHit).toEqual([0, 5]);
 	});
 
-	it("Second shot hit at [0,1]", () => {
+	it("Second shot hit at [0,6]", () => {
 		expect(computer.launchAttack(player.gameboard)).toBe(true);
 		expect(computer.launchAttack(player.gameboard)).toBe(true);
 		expect(computer.getNextAttack([0, 0], [0, 1])).toEqual([0, 2]);
 		expect(computer.mustExplore).toEqual([
-			[1, 0],
-			[0, 2],
+			[1, 5],
+			[0, 4],
+			[0, 7],
 		]);
-		expect(computer.lastHit).toEqual([0, 1]);
+		expect(computer.lastHit).toEqual([0, 6]);
 	});
 
-	it("Third shot hit at [0,2]", () => {
+	it("Third shot hit at [0,7]", () => {
 		expect(computer.launchAttack(player.gameboard)).toBe(true);
 		expect(computer.launchAttack(player.gameboard)).toBe(true);
 		expect(computer.launchAttack(player.gameboard)).toBe(true);
 		expect(computer.getNextAttack([0, 1], [0, 2])).toEqual([0, 3]);
 		expect(computer.mustExplore).toEqual([
-			[1, 0],
-			[0, 3],
+			[1, 5],
+			[0, 4],
+			[0, 8],
 		]);
-		expect(computer.lastHit).toEqual([0, 2]);
+		expect(computer.lastHit).toEqual([0, 7]);
 	});
 
-	it("Fourth shot hit at [0,3]", () => {
+	it("Fourth shot hit at [0,8]", () => {
 		expect(computer.launchAttack(player.gameboard)).toBe(true);
 		expect(computer.launchAttack(player.gameboard)).toBe(true);
 		expect(computer.launchAttack(player.gameboard)).toBe(true);
 		expect(computer.launchAttack(player.gameboard)).toBe(true);
 		expect(computer.getNextAttack([0, 2], [0, 3])).toEqual([0, 4]);
 		expect(computer.mustExplore).toEqual([
-			[1, 0],
+			[1, 5],
 			[0, 4],
+			[0, 9],
 		]);
-		expect(computer.lastHit).toEqual([0, 3]);
+		expect(computer.lastHit).toEqual([0, 8]);
 	});
 
 	it("Fifth shot hit at [0,4]", () => {
