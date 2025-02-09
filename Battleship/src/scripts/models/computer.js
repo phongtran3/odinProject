@@ -39,7 +39,7 @@ export class Computer extends Player {
 			}
 		});
 
-		this.printBoard(this.gameboard.board);
+		//this.printBoard(this.gameboard.board);
 
 		return true;
 	};
@@ -64,7 +64,6 @@ export class Computer extends Player {
 			let [x, y] = [0, 0]; //Test purposes
 
 			const hit = playerGameboard.receiveAttack([x, y]); //Return false for miss and true for hit
-
 			if (hit) {
 				this.lastHit = [x, y];
 				this.mustExplore = this.getAdjacentCells([x, y], playerGameboard.board);
@@ -134,7 +133,7 @@ export class Computer extends Player {
 			const newY = y + dy;
 
 			if (newX >= 0 && newX < board.length && newY >= 0 && newY < board[0].length) {
-				if (board[newX][newY].hit !== null) {
+				if (board[newX][newY].hit == null) {
 					adjacentCells.push([newX, newY]);
 				}
 			}

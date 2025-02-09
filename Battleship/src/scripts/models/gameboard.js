@@ -6,24 +6,27 @@ export class Gameboard {
 		this.fleet = []; //ship objs
 		this.shipSunk = 0;
 	}
+
 	receiveAttack = (coordinates) => {
 		const [x, y] = coordinates;
 		if (x < 0 || x >= 10 || y < 0 || y >= 10) return false;
 
 		const cell = this.board[x][y];
 
-		if (cell.hit) return false;
+		if (cell.hit !== null) return false;
 
-		if (cell.ship === null || cell.hit === null) {
+		if (cell.ship === null) {
 			cell.hit = false;
 			return false;
 		}
 
 		cell.hit = true;
-		let ship = this.board[x][y].ship;
-		ship.hits();
+		let ship = cell.ship;
+		if (ship) {
+			ship.hits();
 
-		if (ship.isSunk()) this.shipSunk++;
+			if (ship.isSunk()) this.shipSunk++;
+		}
 
 		return true;
 	};
@@ -45,7 +48,7 @@ export class Gameboard {
 		}
 
 		for (const [xi, yi] of coordinates) {
-			this.board[xi][yi] = { ship: ship, hit: false };
+			this.board[xi][yi] = { ship: ship, hit: null };
 		}
 
 		this.fleet.push(ship);
