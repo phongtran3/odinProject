@@ -1,187 +1,181 @@
 #container {
-  height: 100%;
-  padding: 1rem;
+	height: 100%;
+	padding: 1rem;
 }
 
 #container h4 {
-  margin-bottom: 2rem;
-  text-align: center;
+	margin-bottom: 2rem;
+	text-align: center;
 }
 
 .main-container {
-  height: 100%;
-  align-content: center;
+	height: 100%;
+	align-content: center;
 }
 
 .grid-container {
-  display: grid;
-  grid-template-columns: repeat(11, 1fr);
-  grid-template-rows: repeat(11, 1fr);
-  justify-content: center;
-  aspect-ratio: 1;
-  width: 100%;
-  max-width: 550px;
-  max-height: 550px;
-  margin: 0 auto 2rem;
+	display: grid;
+	grid-template-columns: repeat(11, 1fr);
+	grid-template-rows: repeat(11, 1fr);
+	justify-content: center;
+	aspect-ratio: 1;
+	width: 100%;
+	max-width: 550px;
+	max-height: 550px;
+	margin: 0 auto 2rem;
 }
 
-.col-header{
-  grid-column: 2 / span 10;
-  grid-row: 1 / 2;
-  display: grid;
-  grid-template-columns: subgrid;
-  grid-template-rows: subgrid;
-  align-items: center;
+.col-header {
+	grid-column: 2 / span 10;
+	grid-row: 1 / 2;
+	display: grid;
+	grid-template-columns: subgrid;
+	grid-template-rows: subgrid;
+	align-items: center;
 }
 
-.row-header{
-  grid-column: 1 / 2;
-  grid-row: 2 / span 10;
-  display: grid;
-  grid-template-columns: subgrid;
-  grid-template-rows: subgrid;
-  align-items: center;
+.row-header {
+	grid-column: 1 / 2;
+	grid-row: 2 / span 10;
+	display: grid;
+	grid-template-columns: subgrid;
+	grid-template-rows: subgrid;
+	align-items: center;
 }
 
 .col-header div,
 .row-header div {
-  text-align: center;
+	text-align: center;
 }
 
-
-.grid{
-  display: grid;
-  grid-column: 2 / span 10;
-  grid-row: 2 / span 10;
-  grid-template-columns: subgrid;
+.grid {
+	display: grid;
+	grid-column: 2 / span 10;
+	grid-row: 2 / span 10;
+	grid-template-columns: subgrid;
+	grid-template-rows: subgrid;
+	user-select: none;
 }
 
-.cell{
-  height: 100%;
-  width: 100%;
-  border: 1px solid black;
-  align-content: center;
-  text-align: center;
-  display: inline-flex;
-  position: relative;
+.cell {
+	height: 100%;
+	width: 100%;
+	border: 1px solid black;
+	align-content: center;
+	text-align: center;
+	display: inline-flex;
+	position: relative;
 }
 
 .cell:hover {
-  background-color: var(--greenSpringOpac);
+	background-color: var(--greenSpringOpac);
 }
 
 .cell .ship-img {
-  max-width: none;
-  position: absolute;
+	max-width: none;
+	position: absolute;
 }
 
-.ship{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  cursor: grab;
-  gap: .5rem;
-  padding: .25rem;
-
+.ship {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	cursor: grab;
+	gap: 0.5rem;
+	padding: 0.25rem;
 }
 
 .ship img {
-  max-width: 100%;
-  height: 2rem;
-  object-fit: contain; 
+	max-width: 100%;
+	height: 2rem;
+	object-fit: contain;
 }
 
 .fleet-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  align-items: stretch;
-  width: auto;
-  height: auto;
-  font-size: .5rem;
-  margin-bottom: 2rem;
-  user-select: none;
-
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	justify-content: center;
+	align-items: stretch;
+	width: auto;
+	height: auto;
+	font-size: 0.5rem;
+	margin-bottom: 2rem;
+	user-select: none;
 }
 
 .fleet-container > div {
-  flex: 0 1 calc(50% - 10px);
-  max-width: 155px;
-  text-align: center;
-  border: 1px solid var(--whiteSmoke);
+	flex: 0 1 calc(50% - 10px);
+	max-width: 155px;
+	text-align: center;
+	border: 1px solid var(--whiteSmoke);
 }
 
 .fleet-container > div:hover {
-  opacity: .7;
-  transform: scale(1.02); 
-  transition: opacity 0.2s ease, transform 0.2s ease;
+	opacity: 0.7;
+	transform: scale(1.02);
+	transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 #orientation {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .button-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .button-container button {
-  font-size: .7rem;
+	font-size: 0.7rem;
 }
 
-
 .cell.occupied {
-  background-color: var(--red);
+	background-color: var(--red);
 }
 
 .cell.available {
-  background-color: var(--greenSpring);
+	background-color: var(--greenSpring);
 }
 
-
 .disable {
-  cursor: not-allowed;
+	cursor: not-allowed;
 }
 
 @media screen and (min-width: 700px) {
-  .main-container {
-    display: flex;
-    gap: 2rem;
-    max-width: 1040px;
-    margin: 0 auto 2rem;
-    justify-content: center;
-  }
+	.main-container {
+		display: flex;
+		gap: 2rem;
+		max-width: 1040px;
+		margin: 0 auto 2rem;
+		justify-content: center;
+	}
 
-  .grid-container {
-    margin: 0 0 2rem 0;
-  }
+	.grid-container {
+		margin: 0 0 2rem 0;
+	}
 
-  .fleet-container {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    font-size: .65rem
-  }
+	.fleet-container {
+		flex-direction: column;
+		flex-wrap: nowrap;
+		font-size: 0.65rem;
+	}
 
-  .ship img { 
-    height: 3rem;
-  }
+	.ship img {
+		height: 3rem;
+	}
 
-  .button-container {
-    margin: 0 auto;
-    max-width: 1040px;
-  }
+	.button-container {
+		margin: 0 auto;
+		max-width: 1040px;
+	}
 
-  .button-container button {
-    font-size: .75rem;
-  }
-  
+	.button-container button {
+		font-size: 0.75rem;
+	}
 }
-
-

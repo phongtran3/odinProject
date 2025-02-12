@@ -6,6 +6,7 @@ export class Computer extends Player {
 		this.mustExplore = [];
 		this.lastHit = null;
 		this.availableMoves = new Set();
+		this.shipStartCoord = [];
 
 		this.directions = {
 			up: [-1, 0],
@@ -32,15 +33,18 @@ export class Computer extends Player {
 
 		ships.forEach((ship) => {
 			let collision = true;
+			let [x, y] = [];
+			let orientation;
 			while (collision) {
-				let orientation = Math.random() > 0.5 ? 1 : 0;
-				let [x, y] = this.generateCoordinates(ship.length, orientation);
+				orientation = Math.random() > 0.5 ? 1 : 0;
+				[x, y] = this.generateCoordinates(ship.length, orientation);
 				collision = !this.gameboard.placeShip(ship, [x, y], orientation);
 			}
+			this.shipStartCoord.push({ name: ship.name, startCoord: [x, y], orientation });
 		});
 
-		//this.printBoard(this.gameboard.board);
-
+		this.printBoard(this.gameboard.board);
+		console.log(this.shipStartCoord);
 		return true;
 	};
 
@@ -148,9 +152,8 @@ export class Computer extends Player {
 	printBoard = (board) => {
 		console.log("    " + [...Array(10).keys()].join(" ")); // Column headers
 		for (let y = 0; y < 10; y++) {
-			const rowDisplay = board
-				.map((row) => {
-					const cell = row[y]; // Get the cell at column y (index y)
+			const rowDisplay = board[y]
+				.map((cell) => {
 					if (cell.hit && cell.ship) return "X"; // Hit ship
 					if (cell.hit) return "O"; // Missed shot
 					if (cell.ship) return cell.ship.name[0].toUpperCase(); // First letter of ship name

@@ -29,15 +29,42 @@
 
 #computer-grid .cell {
   cursor: pointer;
+  align-items: center;
 }
 
-@media screen and (min-width: 800px) {
+#computer-grid .cell img {
+  max-width: none
+}
+
+#computer-grid .cell img[is="ship-img"] {
+  position: absolute; /* Prevents it from affecting X */
+  width: 150px; /* Keep your original sizing */
+  height: 100%;
+  left: 0; /* Adjust placement as needed */
+  top: 0;
+}
+
+.shot {
+  position: absolute;
+  z-index: 2;
+  left: 25%;
+  width: 25px;
+}
+
+.miss {
+  color: var(--whiteSmoke);
+}
+
+.hit {
+  color: var(--red)
+}
+
+
+@media screen and (min-width: 1140px) {
   .game-container {
     flex-direction: row;
     gap: 1rem;
     max-width: 1440px;
     margin: 0 auto;
   }
-
-
 }

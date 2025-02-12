@@ -1,41 +1,9 @@
 import "../../styles/deploy.css";
-import battleShipImg from "../../assets/battleship.svg";
-import carrierImg from "../../assets/carrier.svg";
-import cruiserImg from "../../assets/cruiser.svg";
-import destroyerImg from "../../assets/destroyer.svg";
-import submarineImg from "../../assets/submarine.svg";
-import { createElement, generateCoordinates } from "../helper";
+import { createElement, generateCoordinates, ships } from "../helper";
 import { Player } from "../models/player";
 import { Computer } from "../models/computer";
 import createBattlePage from "./battle";
 
-const ships = [
-	{
-		name: "carrier",
-		length: 5,
-		src: carrierImg,
-	},
-	{
-		name: "battleship",
-		length: 4,
-		src: battleShipImg,
-	},
-	{
-		name: "cruiser",
-		length: 3,
-		src: cruiserImg,
-	},
-	{
-		name: "destroyer",
-		length: 3,
-		src: destroyerImg,
-	},
-	{
-		name: "submarine",
-		length: 2,
-		src: submarineImg,
-	},
-];
 const container = document.getElementById("container");
 const pageTitle = createElement("h4", "", "", "Deploy your fleet!");
 const mainContainer = createElement("div", "main-container");
@@ -245,7 +213,7 @@ const placeShipUI = (startEl, imgEl, orientation, shipLength, shipName) => {
 
 	if (orientation === 0) {
 		imgEl.style.transformOrigin = "top left";
-		imgEl.style.transform = `rotate(90deg) translate(0, -125%)`;
+		imgEl.style.transform = `rotate(90deg) translate(0, ${shipName === "submarine" ? "-110%" : "-125%"})`;
 	}
 
 	startEl.appendChild(imgEl);
