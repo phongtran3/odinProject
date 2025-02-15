@@ -10,7 +10,7 @@ export class Ship {
 	};
 
 	isSunk = () => {
-		return this.numHits === this.length;
+		return this.numHits === Number(this.length);
 	};
 }
 

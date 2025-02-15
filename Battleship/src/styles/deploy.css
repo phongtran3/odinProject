@@ -65,6 +65,8 @@
 	text-align: center;
 	display: inline-flex;
 	position: relative;
+  align-items: center;
+
 }
 
 .cell:hover {

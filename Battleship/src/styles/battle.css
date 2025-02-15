@@ -29,7 +29,6 @@
 
 #computer-grid .cell {
   cursor: pointer;
-  align-items: center;
 }
 
 #computer-grid .cell img {

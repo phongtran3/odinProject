@@ -53,17 +53,19 @@ export default function createBattlePage() {
 
 const handleAttackAI = (e) => {
 	const attackCell = e.target.closest(".cell");
-	const row = parseInt(e.target.dataset.row);
-	const col = parseInt(e.target.dataset.col);
-	if (!attackCell || isNaN(row) || isNaN(col)) return;
+	if (!attackCell) return;
+
+	const row = parseInt(attackCell.dataset.row);
+	const col = parseInt(attackCell.dataset.col);
 
 	if (checkAlreadyAttack(row, col)) {
-		message.textContent = "You have already attack this cell. Please choose a differnt cell";
+		message.textContent = "You have already attack this region. Please choose a differnt region";
 		return;
 	}
+	message.textContent = "Computer's turn to attack, please wait...";
+
 	let shot = createElement("span", "shot", "", "X");
 	attackCell.append(shot);
-	// attackCell.classList.add("miss");
 	let hitLanded = computer.gameboard.receiveAttack([row, col]);
 
 	if (hitLanded) {
@@ -76,13 +78,32 @@ const handleAttackAI = (e) => {
 		if (computer.gameboard.isAllSunk()) {
 			//Shot sanked the final ship
 			//Display congrats dialog
+			console.log("All ships have sunk");
+			computerGrid.removeEventListener("click", handleAttackAI);
 			return;
 		}
-
-		console.log(hitLanded);
 	} else {
 		shot.classList.add("miss");
 	}
+
+	computerGrid.removeEventListener("click", handleAttackAI);
+	//Handle Computer AI Move Logic
+	setTimeout(() => {
+		const atkResult = computer.launchAttack(player.gameboard);
+		const [x, y] = atkResult.coord;
+		const cell = document.querySelector(`.cell[data-row="${x}"][data-col="${y}"]`);
+		let shot = createElement("span", "shot", "", "X");
+		if (atkResult.hit) {
+			shot.classList.add("hit");
+		} else {
+			shot.classList.add("miss");
+		}
+		cell.append(shot);
+
+		computerGrid.addEventListener("click", handleAttackAI);
+
+		message.textContent = "Your turn, Please choose your next attack...";
+	}, 1500);
 };
 
 const checkAlreadyAttack = (row, col) => {
@@ -93,7 +114,6 @@ const checkAlreadyAttack = (row, col) => {
 	return false;
 };
 
-//document.querySelector(`.cell[data-row="${row}"][data-col="${col + i}"]`)
 const placeShipUI = (enemyShip) => {
 	const imgSrc = ships.find((ship) => ship.name === enemyShip.name).src;
 	const shipData = computer.shipStartCoord.find((ship) => ship.name === enemyShip.name);

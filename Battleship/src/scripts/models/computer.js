@@ -44,7 +44,6 @@ export class Computer extends Player {
 		});
 
 		this.printBoard(this.gameboard.board);
-		console.log(this.shipStartCoord);
 		return true;
 	};
 
@@ -62,41 +61,42 @@ export class Computer extends Player {
 	};
 
 	launchAttack = (playerGameboard) => {
+		let [x, y] = [];
 		if (this.mustExplore.length <= 0) {
-			//let [x, y] = this.generateAttackCoordinates();
+			[x, y] = this.generateAttackCoordinates();
 
-			let [x, y] = [3, 5]; //Test purposes
+			//[x, y] = [3, 5]; //Test purposes
 
 			const hit = playerGameboard.receiveAttack([x, y]); //Return false for miss and true for hit
 			if (hit) {
 				this.lastHit = [x, y];
 				this.mustExplore = this.getAdjacentCells([x, y], playerGameboard.board);
-				return hit;
+				return { hit, coord: [x, y] };
 			}
 		} else {
-			const [x, y] = this.mustExplore.pop();
+			[x, y] = this.mustExplore.pop();
 			this.removeFromAvailableMoves(x, y);
 			const hit = playerGameboard.receiveAttack([x, y]);
 			const ship = playerGameboard.board[x][y].ship;
-
 			if (ship && ship.isSunk()) {
 				this.mustExplore.length = 0;
 				this.lastHit = null;
-				return true;
+				return { hit, coord: [x, y] };
 			}
 
 			if (hit) {
 				const nextAttack = this.getNextAttack(this.lastHit, [x, y]);
 				this.lastHit = [x, y];
 				this.mustExplore.push(nextAttack);
-				return hit;
+				return { hit, coord: [x, y] };
 			}
 		}
 
-		return false;
+		return { hit: false, coord: [x, y] };
 	};
 
 	generateAttackCoordinates = () => {
+		const availableMovesArray = Array.from(this.availableMoves);
 		const index = Math.floor(Math.random() * availableMovesArray.length);
 		const coordinate = Array.from(this.availableMoves)[index];
 		if (!coordinate) return null;
