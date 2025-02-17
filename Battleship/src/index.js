@@ -7,13 +7,12 @@ import createDeployPage from "./scripts/pages/deploy";
 import createBattlePage from "./scripts/pages/battle";
 
 const container = document.getElementById("container");
-//createHomePage();
-createDeployPage();
+createHomePage();
+// createDeployPage();
 //createBattlePage();
 
-// const startBtn = document.getElementById("start-btn");
-// startBtn.addEventListener("click", () => {
-// 	console.log("Start");
-// 	container.textContent = " ";
-// 	createDeployPage();
-// });
+const startBtn = document.getElementById("start-btn");
+startBtn.addEventListener("click", () => {
+	container.textContent = " ";
+	createDeployPage();
+});

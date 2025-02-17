@@ -24,8 +24,6 @@ let currentDragEl = null;
 let currentDragCells = [];
 
 export default function createDeployPage() {
-	console.log("Deploy");
-
 	const cells = Array.from({ length: 100 }, (_, index) => {
 		const div = createElement("div", "cell");
 		div.setAttribute("data-row", Math.floor(index / 10));
@@ -253,7 +251,6 @@ const resetGridCells = () => {
 };
 
 randomizeBtn.addEventListener("click", () => {
-	console.log("Randomizing");
 	currentDragEl = null;
 	resetPlayerGameBoard();
 	resetGridCells();
@@ -303,7 +300,6 @@ confirmBtn.addEventListener("click", (e) => {
 		e.preventDefault();
 		return;
 	}
-	console.log("Confirm");
 	computer.placeShips();
 	container.textContent = " ";
 	createBattlePage();

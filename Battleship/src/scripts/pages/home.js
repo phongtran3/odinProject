@@ -1,18 +1,17 @@
 import "../../styles/instruction.css";
 import { createElement } from "../helper";
 
+const container = document.getElementById("container");
+
+const instrucDiv = createElement("div", "instruction");
+const instructTitle = createElement("h2", "instruction-title", "", "Battleship");
+const setUpDiv = createElement("div", "setup");
+const gameplayDiv = createElement("div", "gameplay");
+const winningDiv = createElement("div", "winning");
+const btnDiv = createElement("div", "btn-container");
+const startBtn = createElement("button", "", "start-btn", "START");
+
 export default function createHomePage() {
-	console.log("Creating Home");
-	const container = document.getElementById("container");
-
-	const instrucDiv = createElement("div", "instruction");
-	const instructTitle = createElement("h2", "instruction-title", "", "Battleship");
-	const setUpDiv = createElement("div", "setup");
-	const gameplayDiv = createElement("div", "gameplay");
-	const winningDiv = createElement("div", "winning");
-	const btnDiv = createElement("div", "btn-container");
-	const startBtn = createElement("button", "", "start-btn", "START");
-
 	setUpDiv.innerHTML = `
 		<h3>Setting Up</h3>
 		<p>1.Each player has a fleet of 5 ships of different lengths that need to be placed on their grid.</p>

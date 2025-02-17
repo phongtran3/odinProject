@@ -43,7 +43,7 @@ export class Computer extends Player {
 			this.shipStartCoord.push({ name: ship.name, startCoord: [x, y], orientation });
 		});
 
-		this.printBoard(this.gameboard.board);
+		// this.printBoard(this.gameboard.board);
 		return true;
 	};
 
@@ -86,8 +86,11 @@ export class Computer extends Player {
 
 			if (hit) {
 				const nextAttack = this.getNextAttack(this.lastHit, [x, y]);
-				this.lastHit = [x, y];
-				this.mustExplore.push(nextAttack);
+				if (nextAttack != null) {
+					this.lastHit = [x, y];
+					this.mustExplore.push(nextAttack);
+				}
+
 				return { hit, coord: [x, y] };
 			}
 		}
@@ -128,7 +131,7 @@ export class Computer extends Player {
 		if (nextX >= 0 && nextX < 10 && nextY >= 0 && nextY < 10) {
 			return [nextX, nextY];
 		}
-		return [];
+		return null;
 	};
 
 	getAdjacentCells = (coordinate, board) => {

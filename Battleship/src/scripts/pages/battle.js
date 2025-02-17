@@ -1,4 +1,5 @@
 import "../../styles/battle.css";
+import createHomePage from "./home";
 import { createElement, ships } from "../helper";
 import { gridContainer as playerGrid, player, computer } from "./deploy";
 
@@ -14,6 +15,8 @@ const computerGridContainer = createElement("div", "grid-container");
 const computerGrid = createElement("div", "grid", "computer-grid");
 const colHeader = createElement("div", "col-header");
 const rowHeader = createElement("div", "row-header");
+const playAgainContainer = createElement("div", "play-again-containter");
+const playAgainBtn = createElement("button", "play-again-btn", "", "PLAY AGAIN");
 
 export default function createBattlePage() {
 	const cells = Array.from({ length: 100 }, (_, index) => {
@@ -42,13 +45,13 @@ export default function createBattlePage() {
 	rows.forEach((row) => {
 		rowHeader.appendChild(row);
 	});
-
+	playAgainContainer.append(playAgainBtn);
 	messageContainer.append(message);
 	playerContainer.append(playerGridTitle, playerGrid);
 	computerGridContainer.append(computerGrid, colHeader, rowHeader);
 	computerContainer.append(computerGridTitle, computerGridContainer);
 	gameContainer.append(playerContainer, computerContainer);
-	container.append(messageContainer, gameContainer);
+	container.append(messageContainer, gameContainer, playAgainContainer);
 }
 
 const handleAttackAI = (e) => {
@@ -79,6 +82,8 @@ const handleAttackAI = (e) => {
 			//Shot sanked the final ship
 			//Display congrats dialog
 			console.log("All ships have sunk");
+			message.textContent = "Congratulations! The enemy's fleet has been destroyed!";
+			playAgainContainer.style.visibility = "visible";
 			computerGrid.removeEventListener("click", handleAttackAI);
 			return;
 		}
@@ -95,6 +100,13 @@ const handleAttackAI = (e) => {
 		let shot = createElement("span", "shot", "", "X");
 		if (atkResult.hit) {
 			shot.classList.add("hit");
+			setTimeout(() => {
+				if (player.gameboard.isAllSunk()) {
+					message.textContent = "Game Over! Your fleet has been destroyed!";
+					playAgainContainer.style.visibility = "visible";
+					computerGrid.removeEventListener("click", handleAttackAI);
+				}
+			}, 0);
 		} else {
 			shot.classList.add("miss");
 		}
@@ -136,3 +148,8 @@ const placeShipUI = (enemyShip) => {
 };
 
 computerGrid.addEventListener("click", handleAttackAI);
+
+playAgainBtn.addEventListener("click", () => {
+	playAgainContainer.style.visibility = "hidden";
+	location.reload();
+});

@@ -58,6 +58,10 @@
   color: var(--red)
 }
 
+.play-again-containter {
+  text-align: center;
+  visibility: hidden;
+}
 
 @media screen and (min-width: 1140px) {
   .game-container {
