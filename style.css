@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Young+Serif&display=swap');
+
+:root {
+    --amethyest: #AA60C8;
+    --lightWisteria: #D69ADE;
+    --frenchLilac: #EABDE6;
+    --paleRose: #FFDFEF;
+    --white: #ffffff;
+    --black: #181818;
+
+    --font-size-body: 16px;
+    --font-family-heading: "Young Serif", sans-serif;
+    --font-family-body: "Outfit", sans-serif;
+}
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3{
+    margin: 0;
+    font-family: var(--font-family-heading);
+
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family-body);
+    font-size: var(--font-size-body);
+}
