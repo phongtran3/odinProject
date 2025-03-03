@@ -5,30 +5,31 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>The Odin Project Homepage</title>
 		<link rel="stylesheet" href="./style.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 	</head>
 	<body>
 		<div class="page-container">
 			<header>
 				<div class="img-container">
 					<h1>Phong Tran</h1>
+					<img class="header-img" src="./assets/images/sukiHD.jpg" />
 				</div>
 				<div class="about-me-container">
-					<h2>About me</h2>
+					<h2 class="about-me-header">About me</h2>
 					<p>
 						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto minima non laborum repudiandae, assumenda impedit dolorem qui molestiae. Atque, consequatur
 						possimus porro quam alias blanditiis, necessitatibus amet iste nihil provident, dolor repellat minima impedit ipsa incidunt molestiae similique molestias laboriosam
 						optio inventore eos aperiam.
 					</p>
 				</div>
-				<div class="social-link-container"></div>
-				<div class="social-media-links">
-					<a href="https://github.com/phongtran3" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-github"></i></a>
+				<div class="social-link-container">
+					<div class="social-media-links">
+						<a href="https://github.com/phongtran3" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-github"></i></a>
 
-					<a href="https://www.instagram.com/phongtran_3/" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-instagram"></i></a>
+						<a href="https://www.instagram.com/phongtran_3/" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-instagram"></i></a>
 
-					<a href="https://www.linkedin.com/in/phong-tran230/" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-linkedin-in"></i></a>
+						<a href="https://www.linkedin.com/in/phong-tran230/" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fa-brands fa-linkedin"></i></a>
+					</div>
 				</div>
 			</header>
 			<main>
@@ -36,27 +37,45 @@
 					<h2 class="content-header">My Work</h2>
 					<div class="projects-container">
 						<div class="project-card">
-							<div class="card-img"></div>
+							<div class="card-img">
+								<a href="./Weather-Page/dist/index.html" rel="noopener noreferrer" target="_blank"><img src="./assets/images/weather-page.jpg" /></a>
+							</div>
 							<div class="card-text">
 								<div class="card-header">
-									<h3 class="card-title">Project 1</h3>
+									<a href="./Weather-Page/dist/index.html" rel="noopener noreferrer" target="_blank"><h3 class="card-title">Weather Page</h3></a>
 									<div class="card-links">
-										<a href="https://github.com/phongtran3" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-github"></i></a>
-										<a href="https://github.com/phongtran3" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+										<a href="https://github.com/phongtran3/odinProject/tree/main/Weather-Page" rel="noopener noreferrer" target="_blank" class="social-links">
+											<i class="fab fa-github"></i>
+										</a>
+										<a href="./Weather-Page/dist/index.html" rel="noopener noreferrer" target="_blank" class="social-links">
+											<i class="fa-solid fa-arrow-up-right-from-square"></i>
+										</a>
 									</div>
+								</div>
+								<div class="description">
+									<p>Real-time weather application using Visual Crossing API. Built using HTML, CSS, and JavaScript.</p>
 								</div>
 							</div>
 						</div>
 
 						<div class="project-card">
-							<div class="card-img"></div>
+							<div class="card-img">
+								<a href="./Todo-List/dist/index.html" rel="noopener noreferrer" target="_blank"><img src="./assets/images/todo-list.jpg" /></a>
+							</div>
 							<div class="card-text">
 								<div class="card-header">
-									<h3 class="card-title">Project 2</h3>
+									<a href="./Todo-List/dist/index.html" rel="noopener noreferrer" target="_blank"><h3 class="card-title">To-do List</h3></a>
 									<div class="card-links">
-										<a href="https://github.com/phongtran3" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-github"></i></a>
-										<a href="https://github.com/phongtran3" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+										<a href="https://github.com/phongtran3/odinProject/tree/main/Todo-List" rel="noopener noreferrer" target="_blank" class="social-links">
+											<i class="fab fa-github"></i>
+										</a>
+										<a href="./Todo-List/dist/index.html" rel="noopener noreferrer" target="_blank" class="social-links">
+											<i class="fa-solid fa-arrow-up-right-from-square"></i>
+										</a>
 									</div>
+								</div>
+								<div class="description">
+									<p>Simple To-Do List app built using HTML, CSS, and JavaScript. Features includes adding, editing, and deleting projects and tasks.</p>
 								</div>
 							</div>
 						</div>
@@ -65,22 +84,28 @@
 			</main>
 			<footer>
 				<div class="footer-content">
-					<h3 class="footer-header">Contact Me</h3>
+					<h2 class="footer-header">Contact Me</h2>
 					<div class="footer-body">
 						<p>Please get in touch if you think our work could be mutually beneficial!</p>
 						<p>1234 Random Road Random Town, Texas 12354</p>
 						<div class="contact-info">
-							<div><i class="fa-solid fa-phone"></i> 123-456-7890</div>
-							<div><i class="fa-solid fa-envelope"></i> example@email.com</div>
+							<div>
+								<i class="fa-solid fa-phone"></i>
+								123-456-7890
+							</div>
+							<div>
+								<i class="fa-solid fa-envelope"></i>
+								phongtran230@gmail.com
+							</div>
 						</div>
 					</div>
 					<div class="footer-links">
 						<a href="https://github.com/phongtran3" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-github"></i></a>
-   					    <a href="https://www.instagram.com/phongtran_3/" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-instagram"></i></a>
-  					    <a href="https://www.linkedin.com/in/phong-tran230/" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-linkedin-in"></i></a>
+						<a href="https://www.instagram.com/phongtran_3/" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-instagram"></i></a>
+						<a href="https://www.linkedin.com/in/phong-tran230/" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fa-brands fa-linkedin"></i></a>
 					</div>
 				</div>
-				<div class="footer-img"></div>
+				<div class="footer-img"><img class="header-img" src="./assets/images/suki_sleeping.jpg" /></div>
 			</footer>
 		</div>
 	</body>

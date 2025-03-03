@@ -1,187 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= htmlWebpackPlugin.options.title %></title>
-    <link rel="stylesheet" href="./styles/main.css" />
-    <script type="module" src="./index.js"></script>
-  </head>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>TOP To-Do List</title>
+		<link rel="stylesheet" href="./styles/main.css" />
+		<script type="module" src="./index.js"></script>
+	</head>
 
-  <body>
-    <div class="page-container">
-      <div id="overlay" class="nav-menu-overlay mobile" style="display: none"></div>
+	<body>
+		<div class="page-container">
+			<div id="overlay" class="nav-menu-overlay mobile" style="display: none"></div>
 
-      <nav class="header-nav-mobile">
-        <ul class="nav-mobile-menu">
-          <li class="nav-mobile-menu-item">
-            <button id="mobile-menu-btn"><img class="icon-svg" src="./assets/svgs/bars.svg" /></button>
-          </li>
+			<nav class="header-nav-mobile">
+				<ul class="nav-mobile-menu">
+					<li class="nav-mobile-menu-item">
+						<button id="mobile-menu-btn"><img class="icon-svg" src="./assets/svgs/bars.svg" /></button>
+					</li>
 
-          <li class="nav-mobile-menu-item">
-            <h1>TOP ToDo List</h1>
-          </li>
-        </ul>
-      </nav>
+					<li class="nav-mobile-menu-item">
+						<h1>TOP ToDo List</h1>
+					</li>
+				</ul>
+			</nav>
 
-      <div class="page-content">
-        <section id="side-bar-container" class="side-bar">
-          <div id="add-task-btn">
-            <button class="add-task">
-              <img class="icon-svg" src="./assets/svgs/addPlus2.svg" alt="plus icon to add new task" />
-              <h2>Add New Task</h2>
-            </button>
-          </div>
+			<div class="page-content">
+				<section id="side-bar-container" class="side-bar">
+					<div id="add-task-btn">
+						<button class="add-task">
+							<img class="icon-svg" src="./assets/svgs/addPlus2.svg" alt="plus icon to add new task" />
+							<h2>Add New Task</h2>
+						</button>
+					</div>
 
-          <nav class="nav-task-container">
-            <ul class="nav-task-filter">
-              <li id="all-tasks" class="filter-item">
-                <img src="./assets/svgs/list-check.svg" alt="list check icon to display all tasks" class="icon-svg" />
-                <h3>All Tasks</h3>
-              </li>
-              <li id="today-tasks" class="filter-item">
-                <img src="./assets/svgs/calendar-days.svg" alt="calendar day icon" class="icon-svg" />
-                <h3>Today</h3>
-              </li>
-              <li id="week-tasks" class="filter-item">
-                <img src="./assets/svgs/calendar-week.svg" alt="calendar week icon" class="icon-svg" />
-                <h3>This Week</h3>
-              </li>
-              <li id="month-tasks" class="filter-item">
-                <img src="./assets/svgs/calendar-month.svg" alt="calendar month icon" class="icon-svg" />
-                <h3>This Month</h3>
-              </li>
-              <li id="completed-tasks" class="filter-item">
-                <img src="./assets/svgs/calendar-check.svg" alt="calendar checked icon" class="icon-svg" />
-                <h3>Completed Tasks</h3>
-              </li>
-            </ul>
-          </nav>
+					<nav class="nav-task-container">
+						<ul class="nav-task-filter">
+							<li id="all-tasks" class="filter-item">
+								<img src="./assets/svgs/list-check.svg" alt="list check icon to display all tasks" class="icon-svg" />
+								<h3>All Tasks</h3>
+							</li>
+							<li id="today-tasks" class="filter-item">
+								<img src="./assets/svgs/calendar-days.svg" alt="calendar day icon" class="icon-svg" />
+								<h3>Today</h3>
+							</li>
+							<li id="week-tasks" class="filter-item">
+								<img src="./assets/svgs/calendar-week.svg" alt="calendar week icon" class="icon-svg" />
+								<h3>This Week</h3>
+							</li>
+							<li id="month-tasks" class="filter-item">
+								<img src="./assets/svgs/calendar-month.svg" alt="calendar month icon" class="icon-svg" />
+								<h3>This Month</h3>
+							</li>
+							<li id="completed-tasks" class="filter-item">
+								<img src="./assets/svgs/calendar-check.svg" alt="calendar checked icon" class="icon-svg" />
+								<h3>Completed Tasks</h3>
+							</li>
+						</ul>
+					</nav>
 
-          <nav id="nav-project-container">
-            <div class="nav-project-header">
-              <h2>Projects</h2>
-              <button id="add-project-btn" class="add-project"><img src="./assets/svgs/addPlus2.svg" alt="" class="icon-svg" /></button>
-            </div>
+					<nav id="nav-project-container">
+						<div class="nav-project-header">
+							<h2>Projects</h2>
+							<button id="add-project-btn" class="add-project"><img src="./assets/svgs/addPlus2.svg" alt="" class="icon-svg" /></button>
+						</div>
 
-            <ul id="nav-project-items">
-              <li class="nav-item">
-                <div class="project-title">
-                  <h3 title="Test Project Test Project">Test Project Test Project</h3>
-                </div>
+						<ul id="nav-project-items">
+							<li class="nav-item">
+								<div class="project-title">
+									<h3 title="Test Project Test Project">Test Project Test Project</h3>
+								</div>
 
-                <div class="project-btns">
-                  <button class="edit-project">
-                    <img class="icon-svg" src="./assets/svgs/edit.svg" />
-                  </button>
-                  <button data-type="project" class="delete-btn">
-                    <img class="icon-svg" src="./assets/svgs/trash.svg" />
-                  </button>
-                </div>
-              </li>
-            </ul>
-          </nav>
-        </section>
+								<div class="project-btns">
+									<button class="edit-project">
+										<img class="icon-svg" src="./assets/svgs/edit.svg" />
+									</button>
+									<button data-type="project" class="delete-btn">
+										<img class="icon-svg" src="./assets/svgs/trash.svg" />
+									</button>
+								</div>
+							</li>
+						</ul>
+					</nav>
+				</section>
 
-        <section class="main-content">
-          <div class="main-header-container">
-            <h2 id="main-header">All Tasks</h2>
-          </div>
+				<section class="main-content">
+					<div class="main-header-container">
+						<h2 id="main-header">All Tasks</h2>
+					</div>
 
-          <div id="task-list-container">
-            <div data="task" class="task-card">
-              <div class="task-left">
-                <div class="task-header">
-                  <div class="task-title">
-                    <input type="checkbox" />
-                    <h3 data="task">Task Title</h3>
-                  </div>
-                  <div class="task-project">
-                    <h3>BCS</h3>
-                  </div>
-                </div>
-                <div class="task-priority">
-                  <div class="flag low"></div>
-                  <span>Easy</span>
-                </div>
-                <div class="date-created"><p>Date Created: 10/10/2024</p></div>
-              </div>
+					<div id="task-list-container">
+						<div data="task" class="task-card">
+							<div class="task-left">
+								<div class="task-header">
+									<div class="task-title">
+										<input type="checkbox" />
+										<h3 data="task">Task Title</h3>
+									</div>
+									<div class="task-project">
+										<h3>BCS</h3>
+									</div>
+								</div>
+								<div class="task-priority">
+									<div class="flag low"></div>
+									<span>Easy</span>
+								</div>
+								<div class="date-created"><p>Date Created: 10/10/2024</p></div>
+							</div>
 
-              <div class="task-right">
-                <div class="date-due"><p>Due: 10/24/2024</p></div>
-                <div class="task-btn">
-                  <button class="edit-task">
-                    <img class="icon-svg" src="./assets/svgs/edit.svg" />
-                  </button>
-                  <button data-type="task" class="delete-btn">
-                    <img class="icon-svg" src="./assets/svgs/trash.svg" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
+							<div class="task-right">
+								<div class="date-due"><p>Due: 10/24/2024</p></div>
+								<div class="task-btn">
+									<button class="edit-task">
+										<img class="icon-svg" src="./assets/svgs/edit.svg" />
+									</button>
+									<button data-type="task" class="delete-btn">
+										<img class="icon-svg" src="./assets/svgs/trash.svg" />
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
 
-      <dialog id="task-dialog-container">
-        <div class="task-dialog-header">
-          <h2 id="task-dialog-title">Add New Task</h2>
-        </div>
+			<dialog id="task-dialog-container">
+				<div class="task-dialog-header">
+					<h2 id="task-dialog-title">Add New Task</h2>
+				</div>
 
-        <p id="task-error" style="color: red; display: none">A task with this name already exist with this project. Please input a new name.</p>
+				<p id="task-error" style="color: red; display: none">A task with this name already exist with this project. Please input a new name.</p>
 
-        <form action="" method="dialog" id="task-form">
-          <div class="text-input">
-            <label for="title">Title</label>
-            <input required type="text" name="title" id="title" />
-          </div>
+				<form action="" method="dialog" id="task-form">
+					<div class="text-input">
+						<label for="title">Title</label>
+						<input required type="text" name="title" id="title" />
+					</div>
 
-          <div class="date-input">
-            <label for="task-due-date">Due Date</label>
-            <input required type="date" name="task-due-date" />
-          </div>
+					<div class="date-input">
+						<label for="task-due-date">Due Date</label>
+						<input required type="date" name="task-due-date" />
+					</div>
 
-          <div id="project-select" class="select">
-            <select name="project" required>
-              <!-- <option value="">--Select a Project--</option> -->
-            </select>
-          </div>
+					<div id="project-select" class="select">
+						<select name="project" required>
+							<!-- <option value="">--Select a Project--</option> -->
+						</select>
+					</div>
 
-          <div class="select-priority">
-            <select name="priority" id="priority-selection" required>
-              <option value="">--Select a Priority--</option>
-              <option value="Low">Low</option>
-              <option value="Medium">Medium</option>
-              <option value="High">High</option>
-            </select>
-          </div>
+					<div class="select-priority">
+						<select name="priority" id="priority-selection" required>
+							<option value="">--Select a Priority--</option>
+							<option value="Low">Low</option>
+							<option value="Medium">Medium</option>
+							<option value="High">High</option>
+						</select>
+					</div>
 
-          <div class="form-btn-container">
-            <button type="button" class="cancel-btn">Cancel</button>
-            <button type="submit" class="add-btn">Add Task</button>
-          </div>
-        </form>
-      </dialog>
+					<div class="form-btn-container">
+						<button type="button" class="cancel-btn">Cancel</button>
+						<button type="submit" class="add-btn">Add Task</button>
+					</div>
+				</form>
+			</dialog>
 
-      <dialog id="delete-dialog-container">
-        <h4></h4>
-        <div class="form-btn-container">
-          <button id="yes-btn">Yes</button>
-          <button id="no-btn">No</button>
-        </div>
-      </dialog>
+			<dialog id="delete-dialog-container">
+				<h4></h4>
+				<div class="form-btn-container">
+					<button id="yes-btn">Yes</button>
+					<button id="no-btn">No</button>
+				</div>
+			</dialog>
 
-      <dialog id="new-project-dialog-container">
-        <h4 id="project-dialog-title"></h4>
-        <p id="project-error" style="color: red; display: none">A project with this name already exist. Please input a new name.</p>
-        <form id="add-project-form">
-          <input name="project-name" placeholder="Project Name..." type="text" class="new-project" required />
-          <div class="form-btn-container">
-            <button type="button" class="cancel-btn">Cancel</button>
-            <button type="submit" class="add-btn">Add Project</button>
-          </div>
-        </form>
-      </dialog>
-    </div>
-  </body>
+			<dialog id="new-project-dialog-container">
+				<h4 id="project-dialog-title"></h4>
+				<p id="project-error" style="color: red; display: none">A project with this name already exist. Please input a new name.</p>
+				<form id="add-project-form">
+					<input name="project-name" placeholder="Project Name..." type="text" class="new-project" required />
+					<div class="form-btn-container">
+						<button type="button" class="cancel-btn">Cancel</button>
+						<button type="submit" class="add-btn">Add Project</button>
+					</div>
+				</form>
+			</dialog>
+		</div>
+	</body>
 </html>
