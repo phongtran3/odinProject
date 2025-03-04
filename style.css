@@ -42,7 +42,7 @@ a {
 
 .social-links:hover {
     color: var(--lightWisteria);
-    transform: scale(1.4) rotate(360deg)
+    transform: scale(1.3) rotate(360deg)
 }
 
 footer .social-links:hover {
@@ -112,6 +112,15 @@ main {
     overflow: hidden;
 }
 
+.card-img {
+    display: flex;
+    overflow: hidden;
+}
+
+.card-img a {
+    display: block;
+}
+
 .card-img img{
     transition: transform 1s ease; 
 }
@@ -141,6 +150,8 @@ main {
     display: flex;
     gap: 1rem;
     font-size: 1.25rem;
+    justify-content: center;
+    align-items: center;
 }
 
 .footer-content {
