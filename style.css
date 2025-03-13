@@ -209,7 +209,6 @@ footer {
 
 
 @media screen and (min-width: 600px) {
-
     .header-content {
         margin: 3rem 2rem 0;
     }
@@ -217,9 +216,9 @@ footer {
     .img-container {
         float: inline-start;
         width: 55%;
+        max-width: 500px;
         margin: 0 1rem -2rem 0;
         transform: translateY(-30px) translateX(-15px);
-
     }
 
     .about-me-container {
@@ -235,10 +234,6 @@ footer {
     .social-media-links {
         justify-content: flex-end;
     }
-
-    
-
-
 
     .content-header {
         text-align: justify;
@@ -259,5 +254,33 @@ footer {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+    }
+}
+
+@media screen and (min-width: 1040px) {
+    .page-container {
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+
+    header {
+        margin-bottom: 5rem;
+    }
+    
+    .header-background {
+        height: 30rem;
+        transform: skewY(-10deg) translateY(-230px)
+    }
+
+    .img-container {
+        transform: translateY(-45px) translateX(-15px);
+    }
+
+    .project-card {
+        width: calc(33% - .5rem);
+    }
+
+    .footer-container {
+        gap: 15%;
     }
 }
