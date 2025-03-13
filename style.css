@@ -80,7 +80,7 @@ main {
 }
 
 .img-container,
-.about-me-container,
+.about-me-text,
 main {
     margin-bottom: 1rem;
 }
@@ -168,12 +168,12 @@ main {
 }
 
 footer {
-    padding: 1rem;
     background-color: var(--lightWisteria);
     color: var(--white);
 }
 
 .footer-container {
+    padding: 2rem;
     display: flex;
     gap: 1.5rem;
     justify-content: center;
@@ -209,6 +209,37 @@ footer {
 
 
 @media screen and (min-width: 600px) {
+
+    .header-content {
+        margin: 3rem 2rem 0;
+    }
+
+    .img-container {
+        float: inline-start;
+        width: 55%;
+        margin: 0 1rem -2rem 0;
+        transform: translateY(-30px) translateX(-15px);
+
+    }
+
+    .about-me-container {
+        background-color: var(--white);
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        padding: 1rem 2rem;
+    }
+
+    .about-me-header {
+        text-align: start;
+    }
+
+    .social-media-links {
+        justify-content: flex-end;
+    }
+
+    
+
+
+
     .content-header {
         text-align: justify;
         transform: translateX(3px);
