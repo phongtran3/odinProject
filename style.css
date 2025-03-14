@@ -254,6 +254,7 @@ footer {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        font-size: 1.25rem;
     }
 }
 
@@ -283,4 +284,9 @@ footer {
     .footer-container {
         gap: 15%;
     }
+
+    .footer-body > p,
+    .contact-info div {
+        margin-bottom: 1rem;
+      }
 }
