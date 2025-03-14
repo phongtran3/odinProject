@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TOP Weather Page</title>
+    <script defer type="module" src="d754b4249a3487e18605.js"></script>
+    <link rel="stylesheet" href="d1d9066262962261faf0.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <script defer src="main.js"></script></head>
+  <body>
+    <div id="loader-container" style="display: none">
+      <div id="loader"></div>
+    </div>
+
+    <div id="container" style="display: none">
+      <div id="overlay" style="display: none"></div>
+
+      <div class="setting-container">
+        <button type="button" id="setting-btn">
+          <img src="60a397a9878d8d9491db.svg" alt="setting icon" />
+        </button>
+      </div>
+
+      <div class="search-area">
+        <form autocomplete="off" spellcheck="false" id="search-form">
+          <input type="text" name="search-input" id="search-input" />
+          <button type="submit" id="search-btn">
+            <img src="f0caf8fde4b16382f188.svg" alt="search button icon" />
+          </button>
+        </form>
+      </div>
+
+      <div id="main-content">
+        <section class="header-container">
+          <div class="header-text">
+            <h1 class="current-city"></h1>
+            <p class="current-description"></p>
+          </div>
+          <div class="header-temp">
+            <h2 class="current-temp"></h2>
+            <img id="current-temp-icon" alt="" />
+          </div>
+        </section>
+
+        <section class="detail-container">
+          <div class="detail-item">
+            <img class="detail-icon" src="43c4ac708e11cbd8f4c4.svg" />
+            <div class="detail-text">
+              <p class="detail-title">Humidity</p>
+              <p class="detail-value" id="humidity"></p>
+            </div>
+          </div>
+          <div class="detail-item">
+            <img class="detail-icon" src="f65fbe9cb8b784f97b89.svg" />
+            <div class="detail-text">
+              <p class="detail-title">Wind Speed</p>
+              <p class="detail-value" id="wind-speed"></p>
+            </div>
+          </div>
+
+          <div class="detail-item">
+            <img class="detail-icon" src="87bf8de1608474b89d86.svg" />
+            <div class="detail-text">
+              <p class="detail-title">Rain Chance</p>
+              <p class="detail-value" id="rain-chance"></p>
+            </div>
+          </div>
+
+          <div class="detail-item">
+            <img class="detail-icon" src="04950538f62267de9ac7.svg" />
+            <div class="detail-text">
+              <p class="detail-title">Snow Chance</p>
+              <p class="detail-value" id="snow-chance"></p>
+            </div>
+          </div>
+          <div class="detail-item">
+            <img class="detail-icon" src="4a253911a70b6753c9b6.svg" />
+            <div class="detail-text">
+              <p class="detail-title">Sunrise</p>
+              <p class="detail-value" id="sunrise"></p>
+            </div>
+          </div>
+
+          <div class="detail-item">
+            <img class="detail-icon" src="946e4c9fdffecdee3416.svg" />
+            <div class="detail-text">
+              <p class="detail-title">Sunset</p>
+              <p class="detail-value" id="sunset"></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="hourly-section">
+          <div class="section-title">
+            <h3>Hourly Forecast</h3>
+          </div>
+          <div class="hourly-container">
+            <div class="hourly-forecast">
+              <p class="hour-time"></p>
+              <img src="52ad623b4a34fe12c902.svg" alt="" class="hour-icon" />
+              <p class="hour-temp"></p>
+            </div>
+
+            <div class="hourly-forecast">
+              <p class="hour-time"></p>
+              <img src="baee6cea7eea5901bb48.svg" alt="" class="hour-icon" />
+              <p class="hour-temp"></p>
+            </div>
+
+            <div class="hourly-forecast">
+              <p class="hour-time"></p>
+              <img src="0103d56b08041516e25c.svg" alt="" class="hour-icon" />
+              <p class="hour-temp"></p>
+            </div>
+
+            <div class="hourly-forecast">
+              <p class="hour-time"></p>
+              <img src="2eb38f5ca5630a451dad.svg" alt="" class="hour-icon" />
+              <p class="hour-temp"></p>
+            </div>
+
+            <div class="hourly-forecast">
+              <p class="hour-time"></p>
+              <img src="72cecdfff03b00928830.svg" alt="" class="hour-icon" />
+              <p class="hour-temp"></p>
+            </div>
+
+            <div class="hourly-forecast">
+              <p class="hour-time"></p>
+              <img src="ac5cdbcad41a5bb9e071.svg" alt="" class="hour-icon" />
+              <p class="hour-temp"></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="daily-section">
+          <div class="section-title">
+            <h3>Daily Forecast</h3>
+          </div>
+          <div class="daily-container">
+            <div class="daily-forecast">
+              <p class="daily-day"></p>
+              <img alt="" class="daily-icon" />
+              <p class="daily-temp"></p>
+            </div>
+
+            <div class="daily-forecast">
+              <p class="daily-day"></p>
+              <img alt="" class="daily-icon" />
+              <p class="daily-temp"></p>
+            </div>
+
+            <div class="daily-forecast">
+              <p class="daily-day"></p>
+              <img alt="" class="daily-icon" />
+              <p class="daily-temp"></p>
+            </div>
+
+            <div class="daily-forecast">
+              <p class="daily-day"></p>
+              <img alt="" class="daily-icon" />
+              <p class="daily-temp"></p>
+            </div>
+
+            <div class="daily-forecast">
+              <p class="daily-day"></p>
+              <img alt="" class="daily-icon" />
+              <p class="daily-temp"></p>
+            </div>
+
+            <div class="daily-forecast">
+              <p class="daily-day"></p>
+              <img alt="" class="daily-icon" />
+              <p class="daily-temp"></p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <section class="footer-section">
+      <div class="copyright">&copy; Phong Tran</div>
+
+      <div class="footer-text">
+        <p class="footer-title">The Oden Project: Weather Page</p>
+        <p class="disclaimer">
+          Disclaimer: All images and SVGs are courtesy of
+          <a href="https://bas.dev/work/meteocons" rel="noopener noreferrer" target="_blank">Meteocons</a>
+        </p>
+      </div>
+
+      <div class="social-media-links">
+        <a href="https://github.com/phongtran3" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-github"></i></a>
+
+        <a href="https://www.instagram.com/phongtran_3/" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-instagram"></i></a>
+
+        <a href="https://www.linkedin.com/in/phong-tran230/" rel="noopener noreferrer" target="_blank" class="social-links"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </section>
+    <dialog id="setting-dialog">
+      <button id="close-button">&times;</button>
+      <div class="setting-dialog-container">
+        <h2 class="dialog-header">Unit Preferences</h2>
+        <div class="switch-container">
+          <h3>Temperature</h3>
+          <div class="toggle-switch">
+            <input type="radio" id="fahrenheit" name="temperature" />
+            <label for="fahrenheit">Fahrenheit</label>
+
+            <input type="radio" id="celsius" name="temperature" />
+            <label for="celsius">Celsius</label>
+          </div>
+        </div>
+
+        <div class="switch-container">
+          <h3>Wind Speed</h3>
+          <div class="toggle-switch">
+            <input type="radio" id="miles" name="wind" />
+            <label for="miles">mph</label>
+
+            <input type="radio" id="kilometers" name="wind" />
+            <label for="kilometers">km/h</label>
+          </div>
+        </div>
+      </div>
+    </dialog>
+  </body>
+</html>
